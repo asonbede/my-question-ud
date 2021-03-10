@@ -1,30 +1,284 @@
 const soluArch = [
   {
-    "A developer in your team h set up a classic 3 tier architecture composed of an Applicntion Load Balancer, an Auto Scaling group managing a fleet of EC2 instances, and an Aurora database As a Solutions Architect, you would like to adhere to the security pillar of the well-architected framework.How do you configure the security group of the Aurora database to only allow traffic coming from the EC2 instances?": [
-      "Add a rule authorizing the EC2 security group",
-      "Add a rule authorizing the Aurora security group",
-      "Add a rule authorizing the ASG's subnets CIDR",
-    ],
+
+    // {
+    //     question: `
+    //  `,
+    //     answers: {
+    //       a: " ",
+    //       b: "",
+    //       c: "",
+    //       d: "",
+    //     },
+    //     correctAnswer: "",
+    //     explanation: `
+    
+    
+    // `,
+    //   },
+
+    
+        question: `
+A developer in your team has set up a classic 3 tier architecture
+composed of an Applicntion Load Balancer, 
+an Auto Scaling group managing a fleet of EC2 instances,
+and an Aurora database. As a Solutions Architect,
+you would like to adhere to the security pillar of the well-architected framework.
+How do you configure the security group of the Aurora database 
+to only allow traffic coming from the EC2 instances?
+     `,
+        answers: {
+          a: " Add a rule authorizing the EC2 security group",
+          b: "Add a rule authorizing the Aurora security group",
+          c: "Add a rule authorizing the ASG's subnets CIDR",
+          d: "Add a rule authorizing the ELB security group",
+        },
+        correctAnswer: "a",
+        explanation: `
+        Correct option:
+      Add a rule authorizing the EC2 security group
+        A security group acts as a virtual firewall that controls the traffic for one or more instances.
+         When you launch an instance, you can specify one or more security groups;
+        otherwise, we use the default security group. 
+        You can add rules to each security group that allow traffic to or from its associated instances.
+         You can modify the rules for a security group at any time; 
+         the new rules are automatically applied to all instances that are associated with the security group.
+          When we decide whether to allow traffic to reach an instance,
+          we evaluate all the rules from all the security groups that are associated with the instance. 
+          The following are the characteristics of security group rules: 
+          By default, security groups allow all outbound traffic. 
+          Security group rules are always permissive; you can't create rules that deny access. 
+          Security groups are stateful.
+        
+        In our scenario, the EC2 instances that are part of the ASG are the ones accessing the database layer. 
+        The correct response is to add a rule to the security group attached to
+         Aurora authorizing the EC2 instance's security group.
+        
+        Incorrect options:
+        
+        Add a rule authorizing the Aurora security group - Adding a rule, authorizing the Aurora security group, 
+        is just a distractor. Since it has no bearing on traffic allowed from the EC2 instances.
+        
+        Add a rule authorizing the ASG's subnets CIDR - 
+        Authorizing the entire CIDR of the ASG's subnets is overkill and would allow non-ASG instances,
+         access Aurora if they were part of the same CIDR.
+        
+        Add a rule authorizing the ELB security group - 
+        Adding a rule authorizing the ELB security group would dilute the security
+         for the Aurora databases because only the EC2 instances that are 
+         part of the ASG are the ones accessing the database layer. Therefore, it is not the correct option.
+        
+        Reference:
+        
+        https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-security-groups.html
+        
+    
+    `,
+      },
+
+      
+  
+  {
+        question: `
+    Your company runs a website for evaluating coding skills. 
+    As a Solutions Architect, you've designed the architecture of the website 
+    to follow a serverless pattern on the AWS Cloud using API Gateway and AWS Lambda. 
+    The backend is leveraging an RDS PostgreSQL database. 
+    Caching is implemented using a Redis ElastiCache cluster. 
+    You would like to increase the security of your authentication to Redis from the Lambda function, 
+    leveraging a username and password combination.As a solutions architect,
+     which of the following options would you recommend?
+     `,
+        answers: {
+          a: "Use Redis Auth ",
+          b: "Use IAM Auth and attach an IAM ro",
+          c: "Enable KMS Encryption",
+          d: "Create an inbound rule to restrict access to Redis Auth only from the Lambda security group ",
+        },
+        correctAnswer: "a",
+        explanation: `
+        Correct option:
+
+        Use Redis Auth - Amazon ElastiCache for Redis is a blazing
+         fast in-memory data store that provides sub-millisecond latency 
+         to power internet-scale real-time applications.
+        
+        Amazon ElastiCache for Redis is a great choice for real-time transactional
+         and analytical processing use cases such as caching, chat/messaging, 
+         gaming leaderboards, geospatial, machine learning, media streaming, queues, 
+         real-time analytics, and session store.
+        
+        ElastiCache for Redis supports replication, 
+        high availability, and cluster sharding right out of the box. 
+        IAM Auth is not supported by ElastiCache.
+        
+        Redis authentication tokens enable Redis to require 
+        a token (password) before allowing clients to execute commands, thereby improving data security.
+        
+        Incorrect options:
+        
+        Use IAM Auth and attach an IAM role to Lambda - 
+        As discussed above, IAM Auth is not supported by ElastiCache.
+        
+        Enable KMS Encryption - AWS Key Management Service (KMS) 
+        makes it easy for you to create and manage cryptographic 
+        keys and control their use across a wide range of AWS services and in your applications. 
+        AWS KMS is a secure and resilient service that uses hardware security
+         modules that have been validated under FIPS 140-2. 
+         KMS does not support username and password for enabling encryption.
+        
+        Create an inbound rule to restrict access to Redis Auth only from the Lambda security group - 
+        A security group acts as a virtual firewall that controls the traffic for one or more instances.
+        You can add rules to each security group that allows traffic to or from its associated instances.
+        You can modify the rules for a security group at any time; 
+          the new rules are automatically applied to all instances that are associated with the security group.
+        
+        References:
+        
+        https://aws.amazon.com/elasticache/redis/
+        
+        https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/IAM.Overview.html
+        
+        https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/auth.html
+        
+    
+    `,
+      },
+
+
+    
+  
+  {
+    question:  `The data engineering team at an e-commerce company has set up a workflow to ingest 
+    the clickstream data into the raw zone of the S3 data lake. 
+    The team wants to run some SQL based data sanity checks on the raw zone of the data lake.
+    What AWS services would you recommend for this use-case such that 
+    the solution is cost-effective and easy to maintain?`,
+    answers: {
+        a:`Load the incremental raw zone data into RDS on an hourly basis and run the SQL based sanity checks`,
+        b:`Use Athena to run SQL based analytics against S3 data`,
+        c:`Load the incremental raw zone data into Redshift on an hourly basis and run the SQL based sanity checks `,
+        d:`Load the incremental raw zone data into an EMR based Spark Cluster on an hourly basis and use SparkSQL to run the SQL based sanity checks ",
+        `
+    },
+    correctAnswer:"b",
+    explanation:`
+    Correct option:
+
+Use Athena to run SQL based analytics against S3 data
+
+Amazon Athena is an interactive query service that makes it easy to analyze data directly in Amazon S3 using standard SQL.
+ Athena is serverless, so there is no infrastructure to set up or manage, and customers pay only for the queries they run. 
+ You can use Athena to process logs, perform ad-hoc analysis, and run interactive queries.
+
+AWS Athena Benefits:
+Incorrect options:
+
+Load the incremental raw zone data into Redshift on an hourly basis and run the SQL based sanity checks - Amazon Redshift is a fully-managed petabyte-scale cloud-based data warehouse product designed for large scale data set storage and analysis. As the development team would have to maintain and monitor the Redshift cluster size and would require significant development time to set up the processes to consume the data periodically, so this option is ruled out.
+
+Load the incremental raw zone data into an EMR based Spark Cluster on an hourly basis and use SparkSQL to run the SQL based sanity checks - Amazon EMR is the industry-leading cloud big data platform for processing vast amounts of data using open source tools such as Apache Spark, Apache Hive, Apache HBase, Apache Flink, Apache Hudi, and Presto. Amazon EMR uses Hadoop, an open-source framework, to distribute your data and processing across a resizable cluster of Amazon EC2 instances. Using an EMR cluster would imply managing the underlying infrastructure so it’s ruled out because the correct solution for the given use-case should require the least amount of development effort and ongoing maintenance.
+
+Load the incremental raw zone data into RDS on an hourly basis and run the SQL based sanity checks - Loading the incremental data into RDS implies data migration jobs will have to be written via a Lambda function or an EC2 based process. This goes against the requirement that the solution should involve the least amount of development effort and ongoing maintenance. Hence this option is not correct.
+
+Reference:
+
+https://aws.amazon.com/athena/
+    
+    `
+    
   },
   {
-    "Your company runs a website for evaluating coding skills. As a Solutions Architect, you've designed the architecture of the website to follow a serverless pattern on the AWS Cloud using API Gateway and AWS Lambda. The backend is leveraging an RDS PostgreSQL database. Caching is implemented using a Redis ElastiCache cluster. You would like to increase the security of your authentication to Redis from the Lambda function, leveraging a username and password combination.As a solutions architect, which of the following options would you recommend?": [
-      "Use Redis Auth",
-      "Use IAM Auth and attach an IAM role to Lambda",
-      "Enable KMS Encryption",
-    ],
-  },
-  {
-    "The data engineering team at an e-commerce company has set up a workflow to ingest the clickstream data into the raw zone of the S3 data lake. The team wants to run some SQL based data sanity checks on the raw zone of the data lake.What AWS services would you recommend for this use-case such that the solution is cost-effective and easy to maintain?": [
-      "Use Athena to run SQL based analytics against S3 data",
-      "Load the incremental raw zone data into Redshift on an hourly basis and run the SQL based sanity checks ",
-      "Load the incremental raw zone data into an EMR based Spark Cluster on an hourly basis and use SparkSQL to run the SQL based sanity checks ",
-    ],
-  },
-  {
-      "A sports data company is delivering real-time data to media companies, sports federations, and the betting industry using its IT infrastructure on AWS Cloud. The company wants an urgent solution that provides a low-latency way to ingest live sports results regardless of where in the world their sports journalists are sitting. The live sports results are delivered via a proprietary application using UDP protocol.As a solutions architect, which of the following solutions would you recommend such that it offers the BEST performance for ingesting live sports results?":[
-          "Use Global Accelerator to provide a low latency way to ingest live sports results",
-          "Use CloudFront to provide a low latency way to ingest live sports results",
-          "Use Elastic Load Balancer to provide a low latency way to ingest live sports results"]
+    question:  `A sports data company is delivering real-time data to media companies, 
+    sports federations, and the betting industry using its IT infrastructure on AWS Cloud. 
+    The company wants an urgent solution that provides a low-latency way to ingest live 
+    sports results regardless of where in the world their sports journalists are sitting. 
+    The live sports results are delivered via a proprietary application using UDP protocol.
+    As a solutions architect, which of the following solutions would you recommend such that
+     it offers the BEST performance for ingesting live sports results?`,
+     answers:{
+      a:"Use CloudFront to provide a low latency way to ingest live sports results",
+      b:"Use Global Accelerator to provide a low latency way to ingest live sports results",
+      c:"Use Elastic Load Balancer to provide a low latency way to ingest live sports results",
+      d:"Use Auto Scaling group to provide a low latency way to ingest live sports results"
+
+
+     },
+     correctAnswer:"b",
+     explanation:`
+     Correct option:
+
+Use Global Accelerator to provide a low latency way to ingest live sports results
+
+AWS Global Accelerator is a networking service that helps you 
+improve the availability and performance of the applications 
+that you offer to your global users. 
+AWS Global Accelerator is easy to set up, configure, and manage. 
+It provides static IP addresses that provide a fixed entry point to your applications 
+and eliminate the complexity of managing specific IP addresses for different AWS Regions and Availability Zones.
+ AWS Global Accelerator always routes user traffic to the optimal endpoint based on performance,
+reacting instantly to changes in application health, your user’s location, and policies that you configure.
+Global Accelerator is a good fit for non-HTTP use cases, such as gaming (UDP), IoT (MQTT), or Voice over IP. 
+Therefore, this option is correct.
+
+How AWS Global Accelerator Works via - https://aws.amazon.com/global-accelerator/
+
+Incorrect options:
+
+Use CloudFront to provide a low latency way to ingest live sports results - 
+Amazon CloudFront is a fast content delivery network (CDN) service that securely delivers data,
+ videos, applications, and APIs to customers globally with low latency, 
+ high transfer speeds, all within a developer-friendly environment.
+
+CloudFront points of presence (POPs) (edge locations) 
+make sure that popular content can be served quickly to your viewers. 
+CloudFront also has regional edge caches that bring more of your content closer to your viewers,
+ even when the content is not popular enough to stay at a POP, to help improve performance for that content.
+Regional edge caches help with all types of content,
+particularly content that tends to become less popular over time.
+Examples include user-generated content, such as video, photos, or artwork;
+ e-commerce assets such as product photos and videos;
+  and news and event-related content that might suddenly find new popularity.
+CloudFront supports HTTP/RTMP protocol based requests, therefore this option is incorrect.
+
+Use Elastic Load Balancer to provide a low latency way to ingest live sports results -
+ Elastic Load Balancer automatically distributes incoming application traffic across multiple targets,
+such as Amazon EC2 instances, containers, IP addresses, and Lambda functions.
+It can handle the varying load of your application traffic in a single Availability Zone or across 
+multiple Availability Zones. 
+Elastic Load Balancer cannot help with decreasing latency of incoming traffic from the source.
+
+Use Auto Scaling group to provide a low latency way to ingest live sports results -
+ Amazon EC2 Auto Scaling helps you ensure that you have the correct number of Amazon EC2 instances available to 
+ handle the load for your application. You create collections of EC2 instances, called Auto Scaling groups. 
+ You can specify the minimum number of instances in each Auto Scaling group, 
+ and Amazon EC2 Auto Scaling ensures that your group never goes below this size. 
+ Auto Scaling group cannot help with decreasing latency of incoming traffic from the source.
+
+Exam Alert:
+
+Please note the differences between the capabilities of Global Accelerator and CloudFront -
+
+AWS Global Accelerator and Amazon CloudFront are separate services that use the AWS global network
+ and its edge locations around the world. 
+CloudFront improves performance for both cacheable content (such as images and videos) 
+and dynamic content (such as API acceleration and dynamic site delivery). 
+Global Accelerator improves performance for a wide range of applications 
+over TCP or UDP by proxying packets at the edge to applications running in one or more AWS Regions.
+
+Global Accelerator is a good fit for non-HTTP use cases, 
+such as gaming (UDP), IoT (MQTT), or Voice over IP, as well as for HTTP use cases that specifically
+require static IP addresses or deterministic, fast regional failover. 
+Both services integrate with AWS Shield for DDoS protection.
+
+References:
+
+https://aws.amazon.com/global-accelerator/
+
+https://aws.amazon.com/cloudfront/faqs/
+
+     
+     `
+    
   },
   {
       "Which of the following is true regarding cross-zone load balancing as seen in Application Load Balancer versus Network Load Balancer?":[
@@ -225,6 +479,8 @@ const soluArch = [
     ]
 },
 {
+
+
     "The DevOps team at an IT company is provisioning a two-tier application in a VPC with a public subnet and a private subnet. The team wants to use either a NAT instance or a NAT gateway in the public subnet to enable instances in the private subnet to initiate outbound IPv4 traffic to the internet but needs some technical assistance in terms of the configuration options available for the NAT instance and the NAT gateway.As a solutions architect, which of the following options would you identify as CORRECT? (Select three)":[
         "NAT instance can be used as a bastion server and Security Groups can be associated with a NAT instance and  NAT instance supports port forwarding",
         "NAT gateway supports port forwarding",

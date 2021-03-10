@@ -1640,91 +1640,2083 @@ https://tutorialsdojo.com/amazon-relational-database-service-amazon-rds/
 `,
   },
   {
-    question: ``,
+    question: `
+  A startup is using Amazon RDS to store data from a web application. 
+  Most of the time, the application has low user activity but it receives bursts of traffic within seconds whenever there is a new product announcement. 
+  The Solutions Architect needs to create a solution that will allow users around the globe to access the data using an API.
+  What should the Solutions Architect do meet the above requirement?
+ `,
     answers: {
-      a: "",
-      b: "",
-      c: "",
-      d: "",
+      a: "Create an API using Amazon API Gateway and use AWS Lambda to handle the bursts of traffic.",
+      b: "Create an API using Amazon API Gateway and use the Amazon ECS cluster with Service Auto Scaling to handle the bursts of traffic in seconds",
+      c: "Create an API using Amazon API Gateway and use Amazon Elastic Beanstalk with Auto Scaling to handle the bursts of traffic in seconds",
+      d: "Create an API using Amazon API Gateway and use an Auto Scaling group of Amazon EC2 instances to handle the bursts of traffic in seconds",
     },
-    correctAnswer: "",
-    explanation: "",
+    correctAnswer: "a",
+    explanation: `
+AWS Lambda lets you run code without provisioning or managing servers.
+You pay only for the compute time you consume. With Lambda, you can run code for virtually any type of application or backend service - all with zero administration. Just upload your code, and Lambda takes care of everything required to run and scale your code with high availability. You can set up your code to automatically trigger from other AWS services or call it directly from any web or mobile app.
+The first time you invoke your function, AWS Lambda creates an instance of the function and runs its handler method to process the event.
+ When the function returns a response, it stays active and waits to process additional events. If you invoke the function again while the first event is being processed, Lambda initializes another instance, and the function processes the two events concurrently. As more events come in, Lambda routes them to available instances and creates new instances as needed. When the number of requests decreases,
+ Lambda stops unused instances to free up the scaling capacity for other functions.
+ Your functions' concurrency is the number of instances that serve requests at a given time. For an initial burst of traffic, your functions' cumulative concurrency in a Region can reach an initial level of between 500 and 3000, which varies per Region.
+
+ Based on the given scenario, you need to create a solution that will satisfy the two requirements. The first requirement is to create a solution that will allow the users to access the data using an API. To implement this solution, you can use Amazon API Gateway. The second requirement is to handle the burst of traffic within seconds. You should use AWS Lambda in this scenario because Lambda functions can absorb reasonable bursts of traffic for approximately 15-30 minutes.
+ 
+ Lambda can scale faster than the regular Auto Scaling feature of Amazon EC2, Amazon Elastic Beanstalk, or Amazon ECS. This is because AWS Lambda is more lightweight than other computing services. Under the hood, Lambda can run your code to thousands of available AWS-managed EC2 instances (that could already be running) within seconds to accommodate traffic. This is faster than the Auto Scaling process of launching new EC2 instances that could take a few minutes or so. An alternative is to overprovision your compute capacity but that will incur significant costs. The best option to implement given the requirements is a combination of AWS Lambda and Amazon API Gateway.
+ 
+ Hence, the correct answer is: Create an API using Amazon API Gateway and use AWS Lambda to handle the bursts of traffic.
+ 
+ The option that says: Create an API using Amazon API Gateway and use the Amazon ECS cluster with Service Auto Scaling to handle the bursts of traffic in seconds is incorrect. AWS Lambda is a better option than Amazon ECS since it can handle a sudden burst of traffic within seconds and not minutes.
+ 
+ The option that says: Create an API using Amazon API Gateway and use Amazon Elastic Beanstalk with Auto Scaling to handle the bursts of traffic in seconds is incorrect because just like the previous option, the use of Auto Scaling has a delay of a few minutes as it launches new EC2 instances that will be used by Amazon Elastic Beanstalk.
+ 
+ The option that says: Create an API using Amazon API Gateway and use an Auto Scaling group of Amazon EC2 instances to handle the bursts of traffic in seconds is incorrect because the processing time of Amazon EC2 Auto Scaling to provision new resources takes minutes. Take note that in the scenario, a burst of traffic within seconds is expected to happen.
+ 
+ 
+ References:
+ 
+ https://aws.amazon.com/blogs/startups/from-0-to-100-k-in-seconds-instant-scale-with-aws-lambda/
+ 
+ https://docs.aws.amazon.com/lambda/latest/dg/invocation-scaling.html
+ 
+ 
+ Check out this AWS Lambda Cheat Sheet:
+ 
+ https://tutorialsdojo.com/aws-lambda/
+
+    `,
   },
   {
-    question: ``,
+    question: `
+  A popular mobile game uses CloudFront, Lambda, and DynamoDB for its backend services. The player data is persisted on a DynamoDB table and the static assets are distributed by CloudFront.
+   However, there are a lot of complaints that saving and retrieving player information is taking a lot of time.   
+To improve the game's performance, which AWS service can you use to reduce DynamoDB response times from milliseconds to microseconds?
+
+
+    `,
     answers: {
-      a: "",
-      b: "",
-      c: "",
-      d: "",
+      a: "AWS Device Farm",
+      b: "Amazon ElastiCache",
+      c: "Amazon DynamoDB Accelerator (DAX) ",
+      d: "DynamoDB Auto Scaling",
     },
-    correctAnswer: "",
-    explanation: "",
+    correctAnswer: "c",
+    explanation: `
+    Amazon DynamoDB Accelerator (DAX) is a fully managed, highly available,
+    in-memory cache that can reduce Amazon DynamoDB response times from milliseconds to microseconds,
+    even at millions of requests per second.
+    Amazon ElastiCache is incorrect because although you may use ElastiCache as your database cache, it will not reduce the DynamoDB response time from milliseconds to microseconds as compared with DynamoDB DAX.
+   AWS Device Farm is incorrect because this is an app testing service that lets you test and interact with your Android, iOS, and web apps on many devices at once, or reproduce issues on a device in real time.
+  DynamoDB Auto Scaling is incorrect because this is primarily used to automate capacity management for your tables and global secondary indexes.
+      
+      
+      References:
+      
+      https://aws.amazon.com/dynamodb/dax
+      
+      https://aws.amazon.com/device-farm
+      
+      
+      Check out this Amazon DynamoDB Cheat Sheet:
+      
+      https://tutorialsdojo.com/aws-cheat-sheet-amazon-dynamodb/
+`,
   },
   {
-    question: ``,
+    question: `
+    An IT consultant is working for a large financial company.
+   The role of the consultant is to help the development team build a highly available web application using stateless web servers.
+In this scenario, which AWS services are suitable for storing session state data? (Select TWO.)
+    `,
     answers: {
-      a: "",
-      b: "",
-      c: "",
-      d: "",
+      a: "Redshift Spectrum ",
+      b: "DynamoDB and ElastiCache",
+      c: "RDS",
+      d: "S3 Glacier",
     },
-    correctAnswer: "",
-    explanation: "",
+    correctAnswer: "b",
+    explanation: `
+    DynamoDB and ElastiCache are the correct answers. You can store session state data on both
+     DynamoDB and ElastiCache. These AWS services provide high-performance 
+    storage of key-value pairs which can be used to build a highly available web application.
+    Redshift Spectrum is incorrect since this is a data warehousing solution where you can directly query data from your data warehouse. Redshift is not suitable for storing session state, but more on analytics and OLAP processes.
+
+RDS is incorrect as well since this is a relational database solution of AWS. This relational storage type might not be the best fit for session states, and it might not provide the performance you need compared to DynamoDB for the same cost.
+
+S3 Glacier is incorrect since this is a low-cost cloud storage service for data archiving and long-term backup. The archival and retrieval speeds of Glacier is too slow for handling session states.
+
+References:
+
+https://aws.amazon.com/caching/database-caching/
+
+https://aws.amazon.com/caching/session-management/
+
+
+Check out this Amazon Elasticache Cheat Sheet:
+
+https://tutorialsdojo.com/amazon-elasticache/
+
+    `,
   },
   {
-    question: ``,
+    question: `
+A retail website has intermittent, sporadic, and unpredictable transactional workloads throughout the day that are hard to predict.
+The website is currently hosted on-premises and is slated to be migrated to AWS.
+A new relational database is needed that autoscales capacity to meet the needs of the application's peak load and scales back down when the surge of activity is over.
+Which of the following option is the MOST cost-effective and suitable database setup in this scenario?
+    `,
     answers: {
-      a: "",
-      b: "",
-      c: "",
-      d: "",
+      a: "Launch an Amazon Redshift data warehouse cluster with Concurrency Scaling",
+      b: "Launch an Amazon Aurora Provisioned DB cluster with burstable performance DB instance class types",
+      c: "Launch an Amazon Aurora Serverless DB cluster then set the minimum and maximum capacity for the cluster",
+      d: "Launch a DynamoDB Global table with Auto Scaling enabled",
     },
-    correctAnswer: "",
-    explanation: "",
+    correctAnswer: "c",
+    explanation: `
+    Amazon Aurora Serverless is an on-demand, auto-scaling configuration for Amazon Aurora. An Aurora Serverless DB cluster is a DB cluster that automatically starts up, shuts down, and scales up or down its compute capacity based on your application's needs. Aurora Serverless provides a relatively simple, cost-effective option for infrequent, intermittent, sporadic or unpredictable workloads. It can provide this because it automatically starts up, scales compute capacity to match your application's usage and shuts down when it's not in use.
+
+Take note that a non-Serverless DB cluster for Aurora is called a provisioned DB cluster. Aurora Serverless clusters and provisioned clusters both have the same kind of high-capacity, distributed, and highly available storage volume.
+
+When you work with Amazon Aurora without Aurora Serverless (provisioned DB clusters), you can choose your DB instance class size and create Aurora Replicas to increase read throughput. If your workload changes, you can modify the DB instance class size and change the number of Aurora Replicas. This model works well when the database workload is predictable, because you can adjust capacity manually based on the expected workload.
+
+However, in some environments, workloads can be intermittent and unpredictable. There can be periods of heavy workloads that might last only a few minutes or hours, and also long periods of light activity, or even no activity. Some examples are retail websites with intermittent sales events, reporting databases that produce reports when needed, development and testing environments, and new applications with uncertain requirements. In these cases and many others, it can be difficult to configure the correct capacity at the right times. It can also result in higher costs when you pay for capacity that isn't used.
+to a fleet of resources that are automatically scaled. Because of the proxy fleet, connections are continuous as Aurora Serverless scales the resources automatically based on the minimum and maximum capacity specifications. Database client applications don't need to change to use the proxy fleet. Aurora Serverless manages the connections automatically. Scaling is rapid because it uses a pool of "warm" resources that are always ready to service requests. Storage and processing are separate, so you can scale down to zero processing and pay only for storage.
+
+Aurora Serverless introduces a new serverless DB engine mode for Aurora DB clusters. Non-Serverless DB clusters use the provisioned DB engine mode.
+
+Hence, the correct answer is: Launch an Amazon Aurora Serverless DB cluster then set the minimum and maximum capacity for the cluster.
+
+The option that says: Launch an Amazon Aurora Provisioned DB cluster with burstable performance DB instance class types is incorrect because an Aurora Provisioned DB cluster is not suitable for intermittent, sporadic, and unpredictable transactional workloads. This model works well when the database workload is predictable because you can adjust capacity manually based on the expected workload. A better database setup here is to use an Amazon Aurora Serverless cluster.
+
+The option that says: Launch a DynamoDB Global table with Auto Scaling enabled is incorrect because although it is using Auto Scaling, the scenario explicitly indicated that you need a relational database to handle your transactional workloads. DynamoDB is a NoSQL database and is not suitable for this use case. Moreover, the use of a DynamoDB Global table is not warranted since this is primarily used if you need a fully managed, multi-region, and multi-master database that provides fast, local, read and write performance for massively scaled, global applications.
+
+The option that says: Launch an Amazon Redshift data warehouse cluster with Concurrency Scaling is incorrect because this type of database is primarily used for online analytical processing (OLAP) and not for online transactional processing (OLTP). Concurrency Scaling is simply an Amazon Redshift feature that automatically and elastically scales query processing power of your Redshift cluster to provide consistently fast performance for hundreds of concurrent queries.
+
+
+References:
+
+https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless.how-it-works.html
+
+https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless.html
+`,
   },
   {
-    question: ``,
+    question: `
+A popular social media website uses a CloudFront web distribution to serve their static contents to their millions of users around the globe. 
+They are receiving a number of complaints recently that their users take a lot of time to log into their website. 
+There are also occasions when their users are getting HTTP 504 errors. 
+You are instructed by your manager to significantly reduce the user's login time to further optimize the system.
+Which of the following options should you use together to set up a cost-effective solution that can improve your application's performance? (Select TWO.)
+    `,
     answers: {
-      a: "",
-      b: "",
-      c: "",
-      d: "",
+      a: `
+      Customize the content that the CloudFront web distribution delivers to your users using Lambda@Edge, 
+      which allows your Lambda functions to execute the authentication process in AWS locations closer to the users
+      `,
+      b: `
+      Set up an origin failover by creating an origin group with two origins. 
+      Specify one as the primary origin and the other as the second origin
+       which CloudFront automatically switches to when the primary origin returns specific HTTP status code failure responses.
+      `,
+      c: "a and b",
+      d: `
+      Use multiple and geographically disperse VPCs to various AWS regions then create a transit VPC to connect all of your resources. In order to handle the requests faster,
+       set up Lambda functions in each region using the AWS Serverless Application Model (SAM) service 
+      `,
+      e:`
+      Configure your origin to add a Cache-Control max-age directive to your objects, and specify the
+       longest practical value for max-age to increase the cache hit ratio of your CloudFront distribution
+      `
     },
-    correctAnswer: "",
-    explanation: "",
+    correctAnswer: "c",
+    explanation: `
+    Lambda@Edge lets you run Lambda functions to customize the content that CloudFront delivers, executing the functions in AWS locations closer to the viewer. The functions run in response to CloudFront events, without provisioning or managing servers. You can use Lambda functions to change CloudFront requests and responses at the following points:
+
+- After CloudFront receives a request from a viewer (viewer request)
+
+- Before CloudFront forwards the request to the origin (origin request)
+
+- After CloudFront receives the response from the origin (origin response)
+
+- Before CloudFront forwards the response to the viewer (viewer response)
+
+in the given scenario, you can use Lambda@Edge to allow your Lambda functions to customize the content that CloudFront delivers and to execute the authentication process in AWS locations closer to the users. In addition, you can set up an origin failover by creating an origin group with two origins with one as the primary origin and the other as the second origin which CloudFront automatically switches to when the primary origin fails. This will alleviate the occasional HTTP 504 errors that users are experiencing. Therefore, the correct answers are:
+
+- Customize the content that the CloudFront web distribution delivers to your users using Lambda@Edge, which allows your Lambda functions to execute the authentication process in AWS locations closer to the users.
+
+- Set up an origin failover by creating an origin group with two origins. Specify one as the primary origin and the other as the second origin which CloudFront automatically switches to when the primary origin returns specific HTTP status code failure responses.
+
+The option that says: Use multiple and geographically disperse VPCs to various AWS regions then create a transit VPC to connect all of your resources. In order to handle the requests faster, set up Lambda functions in each region using the AWS Serverless Application Model (SAM) service is incorrect because of the same reason provided above. Although setting up multiple VPCs across various regions which are connected with a transit VPC is valid, this solution still entails higher setup and maintenance costs. A more cost-effective option would be to use Lambda@Edge instead.
+
+The option that says: Configure your origin to add a Cache-Control max-age directive to your objects, and specify the longest practical value for max-age to increase the cache hit ratio of your CloudFront distribution is incorrect because improving the cache hit ratio for the CloudFront distribution is irrelevant in this scenario. You can improve your cache performance by increasing the proportion of your viewer requests that are served from CloudFront edge caches instead of going to your origin servers for content. However, take note that the problem in the scenario is the sluggish authentication process of your global users and not just the caching of the static objects.
+
+The option that says: Deploy your application to multiple AWS regions to accommodate your users around the world. Set up a Route 53 record with latency routing policy to route incoming traffic to the region that provides the best latency to the user is incorrect because although this may resolve the performance issue, this solution entails a significant implementation cost since you have to deploy your application to multiple AWS regions. Remember that the scenario asks for a solution that will improve the performance of the application with minimal cost.
+
+
+References:
+
+https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/high_availability_origin_failover.html
+
+https://docs.aws.amazon.com/lambda/latest/dg/lambda-edge.html
+
+
+Check out these Amazon CloudFront and AWS Lambda Cheat Sheets:
+
+https://tutorialsdojo.com/aws-cheat-sheet-amazon-cloudfront/
+
+https://tutorialsdojo.com/aws-cheat-sheet-aws-lambda/
+
+    `,
   },
   {
-    question: ``,
+    question: `
+  An application is hosted in an AWS Fargate cluster that runs a batch job whenever
+  an object is loaded on an Amazon S3 bucket. 
+  The minimum number of ECS Tasks is initially set to 1 to save on costs, and it will only increase the task count based on the new objects uploaded on the S3 bucket.
+  Once processing is done, the bucket becomes empty and the ECS Task count should be back to 1.
+Which is the most suitable option to implement with the LEAST amount of effort?
+    `,
     answers: {
-      a: "",
-      b: "",
-      c: "",
-      d: "",
+      a: `
+      Set up a CloudWatch Event rule to detect S3 object PUT operations and set the target to a Lambda function that will run Amazon ECS API command to increase the number of tasks on ECS. 
+      Create another rule to detect S3 DELETE operations and run the Lambda function to reduce the number of ECS tasks 
+      `,
+      b: `
+      Set up an alarm in CloudWatch to monitor CloudTrail since the S3 object-level operations are recorded on CloudTrail. Create two Lambda functions for increasing/decreasing the ECS task count.
+       Set these as respective targets for the CloudWatch Alarm depending on the S3 event
+      `,
+      c: `
+      Set up an alarm in CloudWatch to monitor CloudTrail since this S3 object-level operations are recorded on CloudTrail. 
+      Set two alarm actions to update ECS task count to scale-out/scale-in depending on the S3 event 
+      `,
+      d: `
+      Set up a CloudWatch Event rule to detect S3 object PUT operations and set the target to the ECS cluster with the increased number of tasks. Create another 
+      rule to detect S3 DELETE operations and set the target to the ECS Cluster with 1 as the Task count.
+      `,
     },
-    correctAnswer: "",
-    explanation: "",
+    correctAnswer: "d",
+    explanation: `
+    You can use CloudWatch Events to run Amazon ECS tasks when certain AWS events occur. 
+    You can set up a CloudWatch Events rule that runs an Amazon ECS task whenever a file is uploaded to a certain Amazon S3 bucket using the Amazon S3 PUT operation. 
+    You can also declare a reduced number of ECS tasks whenever a file is deleted on the S3 bucket using the DELETE operation.
+First, you must create a CloudWatch Events rule for the S3 service that will watch for object-level operations – PUT and DELETE objects. For object-level operations, 
+it is required to create a CloudTrail trail first.
+ On the Targets section, select the “ECS task” and input the needed values such as the cluster name, task definition and the task count. You need two rules – one for the scale-up and another for the scale-down of the ECS task count.
+
+ Hence, the correct answer is: Set up a CloudWatch Event rule to detect S3 object PUT operations and set the target to the ECS cluster with the increased number of tasks. Create another rule to detect S3 DELETE operations and set the target to the ECS Cluster with 1 as the Task count.
+
+ The option that says: Set up a CloudWatch Event rule to detect S3 object PUT operations and set the target to a Lambda function that will run Amazon ECS API command to increase the number of tasks on ECS. Create another rule to detect S3 DELETE operations and run the Lambda function to reduce the number of ECS tasks is incorrect because although this solution meets the requirement, creating your own Lambda function for this scenario is not really necessary. It is much simpler to control ECS task directly as target for the CloudWatch Event rule. Take note that the scenario asks for a solution that is the easiest to implement.
+ 
+ The option that says: Set up an alarm in CloudWatch to monitor CloudTrail since the S3 object-level operations are recorded on CloudTrail. Create two Lambda functions for increasing/decreasing the ECS task count. Set these as respective targets for the CloudWatch Alarm depending on the S3 event is incorrect because using CloudTrail, CloudWatch Alarm, and two Lambda functions creates an unnecessary complexity to what you want to achieve. CloudWatch Events can directly target an ECS task on the Targets section when you create a new rule.
+ 
+ The option that says: Set up an alarm in CloudWatch to monitor CloudTrail since this S3 object-level operations are recorded on CloudTrail. Set two alarm actions to update ECS task count to scale-out/scale-in depending on the S3 event is incorrect because you can’t directly set CloudWatch Alarms to update the ECS task count. You have to use CloudWatch Events instead.
+ 
+ 
+ References: https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/CloudWatch-Events-tutorial-ECS.html
+ 
+ https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/Create-CloudWatch-Events-Rule.html
+ 
+ 
+ Check out this Amazon CloudWatch Cheat Sheet:
+ 
+ https://tutorialsdojo.com/amazon-cloudwatch/
+
+    `,
   },
   {
-    question: ``,
+    question: `
+    A multi-tiered application hosted in your on-premises data center is scheduled to be migrated to AWS.
+     The application has a message broker service which uses industry standard 
+     messaging APIs and protocols that must be migrated as well, 
+     without rewriting the messaging code in your application. 
+Which of the following is the most suitable service that you should use to move your messaging service to AWS?
+    `,
     answers: {
-      a: "",
-      b: "",
-      c: "",
-      d: "",
+      a: "Amazon SQS",
+      b: "Amazon MQ",
+      c: "Amazon SNS",
+      d: "Amazon SWF",
     },
-    correctAnswer: "",
-    explanation: "",
+    correctAnswer: "b",
+    explanation: `
+    Amazon MQ, Amazon SQS, and Amazon SNS are messaging services that are suitable 
+    for anyone from startups to enterprises. If you're using messaging with existing 
+    applications and want to move your messaging service to the cloud quickly and easily, 
+    it is recommended that you consider Amazon MQ. It supports industry-standard APIs and 
+    protocols so you can switch from any standards-based message broker to Amazon MQ without rewriting the messaging code in your applications.
+Hence, Amazon MQ is the correct answer.
+
+If you are building brand new applications in the cloud, then it is highly recommended that you consider Amazon SQS and Amazon SNS. Amazon SQS and SNS are lightweight, fully managed message queue and topic services that scale almost infinitely and provide simple, easy-to-use APIs. You can use Amazon SQS and SNS to decouple and scale microservices, distributed systems, and serverless applications, and improve reliability.
+
+Amazon SQS is incorrect because although this is a fully managed message queuing service, it does not support an extensive list of industry-standard messaging APIs and protocol, unlike Amazon MQ. Moreover, using Amazon SQS requires you to do additional changes in the messaging code of applications to make it compatible.
+
+Amazon SNS is incorrect because SNS is more suitable as a pub/sub messaging service instead of a message broker service.
+
+Amazon SWF is incorrect because this is a fully-managed state tracker and task coordinator service and not a messaging service, unlike Amazon MQ, AmazonSQS and Amazon SNS.
+
+
+References:
+
+https://aws.amazon.com/amazon-mq/faqs/
+
+https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/welcome.html#sqs-difference-from-amazon-mq-sns
+
+
+Check out this Amazon MQ Cheat Sheet:
+
+https://tutorialsdojo.com/aws-cheat-sheet-amazon-mq/
+
+
+
+    `,
   },
   {
-    question: ``,
+    question: `
+A multi-tiered application hosted in your on-premises data center is scheduled to be migrated to AWS. 
+The application has a message broker service which uses industry standard messaging APIs and protocols that must be migrated as well, without rewriting the messaging code in your application. 
+Which of the following is the most suitable service that you should use to move your messaging service to AWS?
+    `,
     answers: {
-      a: "",
-      b: "",
-      c: "",
-      d: "",
+      a: "Amazon SQS ",
+      b: "Amazon SNS",
+      c: " Amazon MQ",
+      d: "Amazon SWF",
     },
-    correctAnswer: "",
-    explanation: "",
+    correctAnswer: "c",
+    explanation: `
+Amazon MQ, Amazon SQS, and Amazon SNS are messaging services that are suitable for
+anyone from startups to enterprises. If you're using messaging with
+existing applications and want to move your messaging service to the cloud quickly and easily, 
+it is recommended that you consider Amazon MQ. It supports industry-standard APIs and protocols so you can switch from any standards-based message broker 
+to Amazon MQ without rewriting the messaging code in your applications.
+Hence, Amazon MQ is the correct answer.
+
+If you are building brand new applications in the cloud, then it is highly recommended that you consider Amazon SQS and Amazon SNS. Amazon SQS and SNS are lightweight, fully managed message queue and topic services that scale almost infinitely and provide simple, easy-to-use APIs. You can use Amazon SQS and SNS to decouple and scale microservices, distributed systems, and serverless applications, and improve reliability.
+
+Amazon SQS is incorrect because although this is a fully managed message queuing service, it does not support an extensive list of industry-standard messaging APIs and protocol, unlike Amazon MQ. Moreover, using Amazon SQS requires you to do additional changes in the messaging code of applications to make it compatible.
+
+Amazon SNS is incorrect because SNS is more suitable as a pub/sub messaging service instead of a message broker service.
+
+Amazon SWF is incorrect because this is a fully-managed state tracker and task coordinator service and not a messaging service, unlike Amazon MQ, AmazonSQS and Amazon SNS.
+
+
+References:
+
+https://aws.amazon.com/amazon-mq/faqs/
+
+https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/welcome.html#sqs-difference-from-amazon-mq-sns
+
+
+Check out this Amazon MQ Cheat Sheet:
+
+https://tutorialsdojo.com/aws-cheat-sheet-amazon-mq/
+`,
   },
+
+  {
+    question: `
+    A company needs to design an online analytics application that uses Redshift Cluster for its data warehouse.
+     Which of the following services allows them to monitor all API calls in Redshift instance and can also provide secured data for auditing and compliance purposes?
+`,
+    answers: {
+      a: "AWS CloudTrail",
+      b: "Amazon CloudWatch ",
+      c: "AWS X-Ray",
+      d: "Amazon Redshift Spectrum",
+    },
+    correctAnswer: "a",
+    explanation: `
+    AWS CloudTrail is a service that enables governance, compliance, operational auditing, 
+    and risk auditing of your AWS account. With CloudTrail, you can log, continuously monitor,
+     and retain account activity related to actions across your AWS infrastructure. By default,
+      CloudTrail is enabled on your AWS account when you create it. When activity occurs in your AWS account, 
+      that activity is recorded in a CloudTrail event. 
+    You can easily view recent events in the CloudTrail console by going to Event history.
+    CloudTrail provides event history of your AWS account activity, including actions taken through the AWS Management Console, AWS SDKs, command line tools, API calls, and other AWS services. This event history simplifies security analysis, resource change tracking, and troubleshooting.
+
+Hence, the correct answer is: AWS CloudTrail.
+
+Amazon CloudWatch is incorrect. Although this is also a monitoring service, it cannot track the API calls to your AWS resources.
+
+AWS X-Ray is incorrect because this is not a suitable service to use to track each API call to your AWS resources. It just helps you debug and analyze your microservices applications with request tracing so you can find the root cause of issues and performance.
+
+Amazon Redshift Spectrum is incorrect because this is not a monitoring service but rather a feature of Amazon Redshift that enables you to query and analyze all of your data in Amazon S3 using the open data formats you already use, with no data loading or transformations needed.
+
+
+References:
+
+https://aws.amazon.com/cloudtrail/
+
+https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-user-guide.html
+
+
+Check out this AWS CloudTrail Cheat Sheet:
+
+https://tutorialsdojo.com/aws-cloudtrail/
+`,
+  },
+
+  {
+    question: `
+A pharmaceutical company has resources hosted on both their on-premises network and in AWS cloud.
+They want all of their Software Architects to access resources on both environments using their on-premises credentials, which is stored in Active Directory.
+In this scenario, which of the following can be used to fulfill this requirement?
+ `,
+    answers: {
+      a: "Setting up SAML 2.0-Based Federation by using a Web Identity Federation",
+      b: "Set up SAML 2.0-Based Federation by using a Microsoft Active Directory Federation Service (AD FS).",
+      c: "Using IAM users",
+      d: "Using Amazon VPC",
+    },
+    correctAnswer: "b",
+    explanation: `
+    Since the company is using Microsoft Active Directory which implements Security Assertion Markup Language (SAML), 
+    you can set up a SAML-Based Federation for API Access to your AWS cloud. 
+    In this way, you can easily connect to AWS using the login credentials of your on-premises network.
+    AWS supports identity federation with SAML 2.0, an open standard that many identity providers (IdPs) use. This feature enables federated single sign-on (SSO), so users can log into the AWS Management Console or call the AWS APIs without you having to create an IAM user for everyone in your organization. By using SAML, you can simplify the process of configuring federation with AWS, because you can use the IdP's service instead of writing custom identity proxy code.
+
+    Before you can use SAML 2.0-based federation as described in the preceding scenario and diagram, you must configure your organization's IdP and your AWS account to trust each other. The general process for configuring this trust is described in the following steps. Inside your organization, you must have an IdP that supports SAML 2.0, like Microsoft Active Directory Federation Service (AD FS, part of Windows Server), Shibboleth, or another compatible SAML 2.0 provider.
+    
+    Hence, the correct answer is: Set up SAML 2.0-Based Federation by using a Microsoft Active Directory Federation Service (AD FS).
+    
+    Setting up SAML 2.0-Based Federation by using a Web Identity Federation is incorrect because this is primarily used to let users sign in via a well-known external identity provider (IdP), such as Login with Amazon, Facebook, Google. It does not utilize Active Directory.
+    
+    Using IAM users is incorrect because the situation requires you to use the existing credentials stored in their Active Directory, and not user accounts that will be generated by IAM.
+    
+    Using Amazon VPC is incorrect because this only lets you provision a logically isolated section of the AWS Cloud where you can launch AWS resources in a virtual network that you define. This has nothing to do with user authentication or Active Directory.
+    
+    
+    References:
+    
+    http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_saml.html
+    
+    https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers.html
+    
+    
+    Check out this AWS IAM Cheat Sheet:
+    
+    https://tutorialsdojo.com/aws-cheat-sheet-aws-identity-and-access-management-iam/
+    `,
+  },
+  {
+    question: `
+An AI-powered Forex trading application consumes thousands of data sets to train its machine learning model.
+The application’s workload requires a high-performance, 
+parallel hot storage to process the training datasets concurrently.
+It also needs cost-effective cold storage to archive those datasets that yield low profit.
+Which of the following Amazon storage services should the developer use?
+ `,
+    answers: {
+      a: "Using Amazon FSx For Lustre and Amazon EBS Provisioned IOPS SSD (io1) volumes for hot and cold storage respectively ",
+      b: "Use Amazon FSx For Lustre and Amazon S3 for hot and cold storage respectively.",
+      c: "Using Amazon Elastic File System and Amazon S3 for hot and cold storage respectively",
+      d: "Using Amazon FSx For Windows File Server and Amazon S3 for hot and cold storage respectively",
+    },
+    correctAnswer: "b",
+    explanation: `
+Hot storage refers to the storage that keeps frequently accessed data ( hot data ).
+Warm storage refers to the storage that keeps less frequently accessed data ( warm data ). Cold storage refers to the storage that keeps rarely accessed data ( cold data ). In terms of pricing,
+the colder the data, the cheaper it is to store, and the costlier it is to access when needed.
+Amazon FSx For Lustre is a high-performance file system for fast processing of workloads. Lustre is a popular open-source parallel file system which stores data across multiple network file servers to maximize performance and reduce bottlenecks.
+
+Amazon FSx for Windows File Server is a fully managed Microsoft Windows file system with full support for the SMB protocol, Windows NTFS, Microsoft Active Directory ( AD ) Integration.
+
+Amazon Elastic File System is a fully-managed file storage service that makes it easy to set up and scale file storage in the Amazon Cloud.
+
+Amazon S3 is an object storage service that offers industry-leading scalability, data availability, security, and performance. S3 offers different storage tiers for different use cases ( frequently accessed data, infrequently accessed data, and rarely accessed data ).
+
+The question has two requirements:
+
+High-performance, parallel hot storage to process the training datasets concurrently.
+
+Cost-effective cold storage to keep the archived datasets that are accessed infrequently
+
+In this case, we can use Amazon FSx For Lustre for the first requirement, as it provides a high-performance, parallel file system for hot data. On the second requirement, we can use Amazon S3 for storing the cold data. Amazon S3 supports a cold storage system via Amazon S3 Glacier / Glacier Deep Archive.
+
+Hence, the correct answer is Use Amazon FSx For Lustre and Amazon S3 for hot and cold storage respectively.
+
+Using Amazon FSx For Lustre and Amazon EBS Provisioned IOPS SSD (io1) volumes for hot and cold storage respectively is incorrect because the Provisioned IOPS SSD ( io1 ) volumes are designed as a hot storage to meet the needs of I/O-intensive workloads. EBS has a storage option called Cold HDD but it is not used for storing cold data. In addition, EBS Cold HDD is a lot more expensive than using Amazon S3 Glacier / Glacier Deep Archive.
+
+Using Amazon Elastic File System and Amazon S3 for hot and cold storage respectively is incorrect because although EFS supports concurrent access to data, it does not have the high-performance ability that is required for machine learning workloads.
+
+Using Amazon FSx For Windows File Server and Amazon S3 for hot and cold storage respectively is incorrect because Amazon FSx For Windows File Server does not have a parallel file system, unlike Lustre.
+
+
+References:
+
+https://aws.amazon.com/fsx/
+
+https://docs.aws.amazon.com/whitepapers/latest/cost-optimization-storage-optimization/aws-storage-services.html
+
+https://aws.amazon.com/blogs/startups/picking-the-right-data-store-for-your-workload/
+
+
+Check out this Amazon FSx Cheat Sheet:
+
+https://tutorialsdojo.com/amazon-fsx/
+`,
+  },
+  {
+    question: `
+An organization needs to provision a new Amazon EC2 instance with a persistent
+block storage volume to migrate data from its on-premises network to AWS. 
+The required maximum performance for the storage volume is 64,000 IOPS.
+In this scenario, which of the following can be used to fulfill this requirement?
+
+Amazon EBS is a persistent block storage volume. It can persist independently from the life of an instance. Since the scenario requires you to have an EBS volume with up to 64,000 IOPS, you have to launch a Nitro-based EC2 instance.
+
+Hence, the correct answer in this scenario is: Launch a Nitro-based EC2 instance and attach a Provisioned IOPS SSD EBS volume (io1) with 64,000 IOPS.
+
+The option that says: Directly attach multiple Instance Store volumes in an EC2 instance to deliver maximum IOPS performance is incorrect. Although an Instance Store is a block storage volume, it is not persistent and the data will be gone if the instance is restarted. An instance store provides temporary block-level storage for your instance. It means that the data in the instance store can be lost if the underlying disk drive fails, if the instance stops, and if the instance terminates.
+
+The option that says: Launch an Amazon EFS file system and mount it to a Nitro-based Amazon EC2 instance and set the performance mode to Max I/O is incorrect. Although Amazon EFS can provide over 64,000 IOPS, this solution uses a file system and not a block storage volume which is what is asked in the scenario.
+
+The option that says: Launch an EC2 instance and attach an io1 EBS volume with 64,000 IOPS is incorrect. In order to achieve the 64,000 IOPS for a provisioned IOPS SSD, you must provision a Nitro-based EC2 instance. The maximum IOPS and throughput are guaranteed only on Instances built on the Nitro System provisioned with more than 32,000 IOPS. Other instances guarantee up to 32,000 IOPS only.
+
+
+References:
+
+https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volume-types.html#EBSVolumeTypes_piops
+
+https://aws.amazon.com/s3/storage-classes/
+
+https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html
+
+
+Check out this Amazon EBS Cheat Sheet:
+
+https://tutorialsdojo.com/amazon-ebs/
+
+
+Amazon S3 vs EFS vs EBS Cheat Sheet:
+
+https://tutorialsdojo.com/amazon-s3-vs-ebs-vs-efs/
+ `,
+    answers: {
+      a: "Directly attach multiple Instance Store volumes in an EC2 instance to deliver maximum IOPS performance",
+      b: "Launch an Amazon EFS file system and mount it to a Nitro-based Amazon EC2 instance and set the performance mode to Max I/O",
+      c: "Launch an EC2 instance and attach an io1 EBS volume with 64,000 IOPS",
+      d: "Launch a Nitro-based EC2 instance and attach a Provisioned IOPS SSD EBS volume (io1) with 64,000 IOPS",
+    },
+    correctAnswer: "d",
+    explanation: `
+An Amazon EBS volume is a durable, block-level storage device that you can attach to your instances.
+ After you attach a volume to an instance, you can use it as you would use a physical hard drive.
+  EBS volumes are flexible.
+The AWS Nitro System is the underlying platform for the latest generation of EC2 
+instances that enables AWS to innovate faster, further reduce the cost of the customers, 
+and deliver added benefits like increased security and new instance types.
+Amazon EBS is a persistent block storage volume. It can persist independently from the life of an instance. Since the scenario requires you to have an EBS volume with up to 64,000 IOPS, you have to launch a Nitro-based EC2 instance.
+
+Hence, the correct answer in this scenario is: Launch a Nitro-based EC2 instance and attach a Provisioned IOPS SSD EBS volume (io1) with 64,000 IOPS.
+
+The option that says: Directly attach multiple Instance Store volumes in an EC2 instance to deliver maximum IOPS performance is incorrect. Although an Instance Store is a block storage volume, it is not persistent and the data will be gone if the instance is restarted. An instance store provides temporary block-level storage for your instance. It means that the data in the instance store can be lost if the underlying disk drive fails, if the instance stops, and if the instance terminates.
+
+The option that says: Launch an Amazon EFS file system and mount it to a Nitro-based Amazon EC2 instance and set the performance mode to Max I/O is incorrect. Although Amazon EFS can provide over 64,000 IOPS, this solution uses a file system and not a block storage volume which is what is asked in the scenario.
+
+The option that says: Launch an EC2 instance and attach an io1 EBS volume with 64,000 IOPS is incorrect. In order to achieve the 64,000 IOPS for a provisioned IOPS SSD, you must provision a Nitro-based EC2 instance. The maximum IOPS and throughput are guaranteed only on Instances built on the Nitro System provisioned with more than 32,000 IOPS. Other instances guarantee up to 32,000 IOPS only.
+
+
+References:
+
+https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volume-types.html#EBSVolumeTypes_piops
+
+https://aws.amazon.com/s3/storage-classes/
+
+https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html
+
+
+Check out this Amazon EBS Cheat Sheet:
+
+https://tutorialsdojo.com/amazon-ebs/
+
+
+Amazon S3 vs EFS vs EBS Cheat Sheet:
+
+https://tutorialsdojo.com/amazon-s3-vs-ebs-vs-efs/
+
+
+`,
+  },
+  {
+    question: `
+A Solutions Architect designed a serverless architecture that allows AWS Lambda to access
+an Amazon DynamoDB table named tutorialsdojo in the US East (N. Virginia) region. 
+The IAM policy attached to a Lambda function allows it to put and delete items in the table. 
+The policy must be updated to only allow two operations in the tutorialsdojo table and prevent
+other DynamoDB tables from being modified.
+Which of the following IAM policies fulfill this requirement and follows the principle of granting the least privilege? 
+ `,
+    answers: {
+      a: `
+      {
+        "Version": "2012-10-17",
+        "Statement": [
+          {
+            "Sid": "TutorialsdojoTablePolicy1",
+            "Effect": "Allow",
+            "Action": [ "dynamodb:PutItem", "dynamodb:DeleteItem" ],
+            "Resource": "arn:aws:dynamodb:us-east-1:1206189812061898:table/tutorialsdojo"
+          },
+          {
+            "Sid": "TutorialsdojoTablePolicy2",
+            "Effect": "Allow",
+            "Action": "dynamodb:*",
+            "Resource": "arn:aws:dynamodb:us-east-1:1206189812061898:table/tutorialsdojo"
+          }
+        ]
+      }
+      `,
+      b: `
+      {
+        {
+         "Version": "2012-10-17",
+         "Statement": [
+           {
+             "Sid": "TutorialsdojoTablePolicy",
+             "Effect": "Allow",
+             "Action": [
+               "dynamodb:PutItem",
+               "dynamodb:DeleteItem"
+             ],
+             "Resource": "arn:aws:dynamodb:us-east-1:120618981206:table/*"
+           }
+         ]
+       }
+      `,
+      c: `
+      {
+        "Version": "2012-10-17",
+        "Statement": [
+          {
+            "Sid": "TutorialsdojoTablePolicy",
+            "Effect": "Allow",
+            "Action": [
+              "dynamodb:PutItem",
+              "dynamodb:DeleteItem"
+             ],
+             "Resource": "arn:aws:dynamodb:us-east-1:120618981206:table/tutorialsdojo"
+          }
+        ]
+       }
+       
+       
+      `,
+      d: `
+      {
+        "Version": "2012-10-17",
+        "Statement": [
+          {
+            "Sid": "TutorialsdojoTablePolicy1",
+            "Effect": "Allow",
+            "Action": [
+              "dynamodb:PutItem",
+              "dynamodb:DeleteItem"
+            ],
+            "Resource": "arn:aws:dynamodb:us-east-1:1206189812061898:table/tutorialsdojo"
+          },
+          {
+            "Sid": "TutorialsdojoTablePolicy2",
+            "Effect": "Deny",
+            "Action": "dynamodb:*",
+            "Resource": "arn:aws:dynamodb:us-east-1:1206189812061898:table/*"
+          }
+        ]
+      }
+       `,
+    },
+    correctAnswer: "c",
+    explanation: `
+    Every AWS resource is owned by an AWS account, and permissions to create or access a resource are governed by permissions policies. An account administrator can attach permissions policies to IAM identities (that is, users, groups, and roles), and some services (such as AWS Lambda) also support attaching permissions policies to resources.
+
+    In DynamoDB, the primary resources are tables. DynamoDB also supports additional resource types, indexes, and streams. However, you can create indexes and streams only in the context of an existing DynamoDB table. These are referred to as subresources. These resources and subresources have unique Amazon Resource Names (ARNs) associated with them.
+    
+    For example, an AWS Account (123456789012) has a DynamoDB table named Books in the US East (N. Virginia) (us-east-1) region. The ARN of the Books table would be:
+    
+    arn:aws:dynamodb:us-east-1:123456789012:table/Books
+    
+    A policy is an entity that, when attached to an identity or resource, defines their permissions. By using an IAM policy and role to control access, it will grant a Lambda function access to a DynamoDB table.
+
+    It is stated in the scenario that a Lambda function will be used to modify the DynamoDB table named tutorialsdojo. Since you only need to access one table, you will need to indicate that table in the resource element of the IAM policy. Also, you must specify the effect and action elements that will be generated in the policy.
+
+    Hence, the correct answer in this scenario is:
+    
+    {
+     "Version": "2012-10-17",
+     "Statement": [
+       {
+         "Sid": "TutorialsdojoTablePolicy",
+         "Effect": "Allow",
+         "Action": [
+           "dynamodb:PutItem",
+           "dynamodb:DeleteItem"
+          ],
+          "Resource": "arn:aws:dynamodb:us-east-1:120618981206:table/tutorialsdojo"
+       }
+     ]
+    }
+    
+    The IAM policy below is incorrect because the scenario only requires you to allow the permissions in the tutorialsdojo table. Having a wildcard: table/* in this policy would allow the Lambda function to modify all the DynamoDB tables in your account.
+    
+    {
+     {
+      "Version": "2012-10-17",
+      "Statement": [
+        {
+          "Sid": "TutorialsdojoTablePolicy",
+          "Effect": "Allow",
+          "Action": [
+            "dynamodb:PutItem",
+            "dynamodb:DeleteItem"
+          ],
+          "Resource": "arn:aws:dynamodb:us-east-1:120618981206:table/*"
+        }
+      ]
+    }
+    
+    The IAM policy below is incorrect. The first statement is correctly allowing PUT and DELETE actions to the tutorialsdojo DynamoDB table. However, the second statement counteracts the first one as it allows all DynamoDB actions in the tutorialsdojo table.
+    
+    {
+      "Version": "2012-10-17",
+      "Statement": [
+        {
+          "Sid": "TutorialsdojoTablePolicy1",
+          "Effect": "Allow",
+          "Action": [ "dynamodb:PutItem", "dynamodb:DeleteItem" ],
+          "Resource": "arn:aws:dynamodb:us-east-1:1206189812061898:table/tutorialsdojo"
+        },
+        {
+          "Sid": "TutorialsdojoTablePolicy2",
+          "Effect": "Allow",
+          "Action": "dynamodb:*",
+          "Resource": "arn:aws:dynamodb:us-east-1:1206189812061898:table/tutorialsdojo"
+        }
+      ]
+    }
+    
+    The IAM policy below is incorrect. Just like the previous option, the first statement of this policy is correctly allowing PUT and DELETE actions to the tutorialsdojo DynamoDB table. However, the second statement counteracts the first one as it denies all DynamoDB actions. Therefore, this policy will not allow any actions on all DynamoDB tables of the AWS account.
+    
+    {
+      "Version": "2012-10-17",
+      "Statement": [
+        {
+          "Sid": "TutorialsdojoTablePolicy1",
+          "Effect": "Allow",
+          "Action": [
+            "dynamodb:PutItem",
+            "dynamodb:DeleteItem"
+          ],
+          "Resource": "arn:aws:dynamodb:us-east-1:1206189812061898:table/tutorialsdojo"
+        },
+        {
+          "Sid": "TutorialsdojoTablePolicy2",
+          "Effect": "Deny",
+          "Action": "dynamodb:*",
+          "Resource": "arn:aws:dynamodb:us-east-1:1206189812061898:table/*"
+        }
+      ]
+    }
+     
+    
+    References:
+    
+    https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/using-identity-based-policies.html
+    
+    https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_examples_lambda-access-dynamodb.html
+    
+    https://aws.amazon.com/blogs/security/how-to-create-an-aws-iam-policy-to-grant-aws-lambda-access-to-an-amazon-dynamodb-table/
+    
+    
+    Check out this AWS IAM Cheat Sheet:
+    
+    https://tutorialsdojo.com/aws-identity-and-access-management-iam/
+    `,
+  },
+  {
+    question: `
+A Solutions Architect is working for a company which has multiple VPCs in various AWS regions.
+The Architect is assigned to set up a logging system which will track all of the changes made 
+to their AWS resources in all regions, including the configurations made in IAM, CloudFront, AWS WAF, and Route 53.
+ In order to pass the compliance requirements, the solution must ensure the security,
+  integrity, and durability of the log data. It should also provide an event history 
+of all API calls made in AWS Management Console and AWS CLI.
+Which of the following solutions is the best fit for this scenario?
+ `,
+    answers: {
+      a: `
+      Set up a new CloudWatch trail in a new S3 bucket using the AWS CLI and also pass both the --is-multi-region-trail and --include-global-service-events parameters then encrypt log files using KMS encryption.
+       Apply Multi Factor Authentication (MFA) Delete on the S3 bucket and
+       ensure that only authorized users can access the logs by configuring the bucket policies
+      `,
+      b: `
+      Set up a new CloudWatch trail in a new S3 bucket using the CloudTrail console and also pass the --is-multi-region-trail parameter then encrypt log files using KMS encryption. 
+      Apply Multi Factor Authentication (MFA) Delete on 
+      the S3 bucket and ensure that only authorized users can access the logs by configuring the bucket policies 
+      `,
+      c: `Set up a new CloudTrail trail in a new S3 bucket using the AWS CLI and also pass both the --is-multi-region-trail and --include-global-service-events parameters
+       then encrypt log files using KMS encryption. 
+      Apply Multi Factor Authentication (MFA) Delete on the S3 bucket and ensure that only authorized users can access the logs by configuring the bucket policies`,
+      d: `
+      Set up a new CloudTrail trail in a new S3 bucket using the AWS CLI and also pass both the --is-multi-region-trail and --no-include-global-service-events parameters then encrypt log files using KMS encryption.
+       Apply Multi Factor Authentication (MFA) Delete on the S3 bucket
+       and ensure that only authorized users can access the logs by configuring the bucket policies
+      `,
+    },
+    correctAnswer: "c",
+    explanation: `
+  An event in CloudTrail is the record of an activity in an AWS account.
+  This activity can be an action taken by a user, role, or service that is monitorable by CloudTrail.
+  CloudTrail events provide a history of both API and non-API account activity made through the AWS Management Console,
+   AWS SDKs, command-line tools, and other AWS services.
+   There are two types of events that can be logged in CloudTrail:
+  management events and data events. By default, trails log management events, but not data events.
+
+A trail can be applied to all regions or a single region. As a best practice, create a trail that applies to all regions in the AWS partition in which you are working.
+ This is the default setting when you create a trail in the CloudTrail console.
+
+For most services, events are recorded in the region where the action occurred. 
+For global services such as AWS Identity and Access Management (IAM), AWS STS, Amazon CloudFront, and Route 53,
+ events are delivered to any trail that includes global services, and are logged as occurring in US East (N. Virginia) Region.
+
+In this scenario, the company requires a secure and durable logging solution that will track all of the activities of all AWS resources in all regions. CloudTrail can be used for this case with multi-region trail enabled, however, it will only cover the activities of the regional services (EC2, S3, RDS etc.) and not for global services such as IAM, CloudFront, AWS WAF, and Route 53. In order to satisfy the requirement, you have to add the --include-global-service-events parameter in your AWS CLI command.
+
+The option that says:
+ Set up a new CloudTrail trail in a new S3 bucket using the AWS CLI 
+ and also pass both the --is-multi-region-trail and --include-global-service-events parameters 
+ then encrypt log files using KMS encryption. 
+ Apply Multi Factor Authentication (MFA) Delete on the S3 bucket and 
+ ensure that only authorized users can access the logs by configuring the bucket policies 
+ is correct because it provides security, integrity, and durability to your log data and in addition,
+it has the -include-global-service-events parameter enabled which will also
+  include activity from global services such as IAM, Route 53, AWS WAF, and CloudFront.
+
+The option that says: Set up a new CloudWatch trail in a new S3 bucket using the AWS CLI and also pass both the --is-multi-region-trail and --include-global-service-events parameters then encrypt log files using KMS encryption. Apply Multi Factor Authentication (MFA) Delete on the S3 bucket and ensure that only authorized users can access the logs by configuring the bucket policies is incorrect because you need to use CloudTrail instead of CloudWatch.
+
+The option that says: Set up a new CloudWatch trail in a new S3 bucket using the CloudTrail console and also pass the --is-multi-region-trail parameter then encrypt log files using KMS encryption. Apply Multi Factor Authentication (MFA) Delete on the S3 bucket and ensure that only authorized users can access the logs by configuring the bucket policies is incorrect because you need to use CloudTrail instead of CloudWatch. In addition, the --include-global-service-events parameter is also missing in this setup.
+
+The option that says: Set up a new CloudTrail trail in a new S3 bucket using the AWS CLI and also pass both the --is-multi-region-trail and --no-include-global-service-events parameters then encrypt log files using KMS encryption. Apply Multi Factor Authentication (MFA) Delete on the S3 bucket and ensure that only authorized users can access the logs by configuring the bucket policies is incorrect because the --is-multi-region-trail is not enough as you also need to add the --include-global-service-events parameter and not --no-include-global-service-events.
+
+
+References:
+
+https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-concepts.html#cloudtrail-concepts-global-service-events
+
+http://docs.aws.amazon.com/IAM/latest/UserGuide/cloudtrail-integration.html
+
+https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-create-and-update-a-trail-by-using-the-aws-cli.html
+
+
+Check out this AWS CloudTrail Cheat Sheet:
+
+https://tutorialsdojo.com/aws-cloudtrail/
+
+`,
+  },
+  {
+    question: `
+A company hosted a web application in an Auto Scaling group of EC2 instances. 
+The IT manager is concerned about the over-provisioning of the resources that can cause higher operating costs.
+ A Solutions Architect has been instructed to create a cost-effective solution without affecting the performance of the application.
+Which dynamic scaling policy should be used to satisfy this requirement?
+ `,
+    answers: {
+      a: "Use simple scaling",
+      b: "Use scheduled scaling",
+      c: " Use suspend and resume scaling ",
+      d: "Use target tracking scaling",
+    },
+    correctAnswer: "d",
+    explanation: `
+An Auto Scaling group contains a collection of Amazon EC2 instances that are treated as a logical grouping for the purposes of automatic scaling and management.
+An Auto Scaling group also enables you to use Amazon EC2 Auto Scaling features such as health check replacements and scaling policies. 
+Both maintaining the number of instances in an Auto Scaling group and automatic scaling are the core functionality of the Amazon EC2 Auto Scaling service. The size of an Auto Scaling group depends on the number of instances that you set as the desired capacity. You can adjust its size to meet demand, either manually or by using automatic scaling.
+Step scaling policies and simple scaling policies are two of the dynamic scaling options available for you to use.
+Both require you to create CloudWatch alarms for the scaling policies.
+Both require you to specify the high and low thresholds for the alarms.
+Both require you to define whether to add or remove instances, 
+and how many, or set the group to an exact size. 
+The main difference between the policy types is the step adjustments that you get with step scaling policies.
+When step adjustments are applied, and they increase or decrease the current capacity of your Auto Scaling group,
+the adjustments vary based on the size of the alarm breach.
+The primary issue with simple scaling is that after a scaling activity is started, the policy must wait for the scaling activity or health check replacement to complete and the cooldown period to expire before responding to additional alarms.
+Cooldown periods help to prevent the initiation of additional scaling activities before the effects of previous activities are visible.
+With a target tracking scaling policy, you can increase or decrease the current capacity of the group based on a target value for a specific metric. This policy will help resolve the over-provisioning of your resources. 
+The scaling policy adds or removes capacity as required to keep the metric at, or close to, the specified target value. In addition to keeping the metric close to the target value, 
+a target tracking scaling policy also adjusts to changes in the metric due to a changing load pattern.
+Hence, the correct answer is: Use target tracking scaling.
+The option that says: Use simple scaling is incorrect because you need to wait for the cooldown period to complete before initiating additional scaling activities. 
+Target tracking or step scaling policies can trigger a scaling activity immediately without waiting for the cooldown period to expire.
+The option that says: Use scheduled scaling is incorrect because this policy is mainly used for predictable traffic patterns. 
+You need to use the target tracking scaling policy to optimize the cost of your infrastructure without affecting the performance.
+The option that says: Use suspend and resume scaling is incorrect because this type is used to temporarily pause scaling activities triggered by your scaling policies and scheduled actions.
+References:
+        
+        https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-scaling-target-tracking.html
+        
+        https://docs.aws.amazon.com/autoscaling/ec2/userguide/AutoScalingGroup.html
+        
+        
+        Check out this AWS Auto Scaling Cheat Sheet:
+        
+        https://tutorialsdojo.com/aws-auto-scaling/
+    
+`,
+  },
+  {
+    question: `
+In a government agency that you are working for, you have been assigned to put 
+confidential tax documents on AWS cloud.
+However, there is a concern from a security perspective on what can be put on AWS. 
+What are the features in AWS that can ensure data security for your confidential documents? (Select TWO.)
+ `,
+    answers: {
+      a: "client-side and server-side encryption.",
+      b: "Public Data Set Volume Encryption",
+      c: "EBS On-Premises Data Encryption",
+      d: "S3 On-Premises Data Encryption",
+    },
+    correctAnswer: "a",
+    explanation: `
+    Explanation
+
+    You can secure the privacy of your data in AWS, both at rest and in-transit, through encryption.
+     If your data is stored in EBS Volumes, you can enable EBS Encryption and if it is stored on Amazon S3,
+      you can enable client-side and server-side encryption.
+    
+    Public Data Set Volume Encryption is incorrect as public data sets are designed to be publicly accessible.
+    
+    EBS On-Premises Data Encryption and S3 On-Premises Data Encryption are 
+    both incorrect as there is no such thing as On-Premises Data Encryption for S3 and EBS as 
+    these services are in the AWS cloud and not on your on-premises network.
+    
+    
+    References:
+    
+    https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingEncryption.html
+    
+    https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html
+    
+    https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-public-data-sets.html
+    
+    
+    Check out this Amazon EC2 Cheat Sheet:
+    
+    https://tutorialsdojo.com/amazon-elastic-compute-cloud-amazon-ec2/
+    
+    
+    Check out this Amazon S3 Cheat Sheet:
+    
+    https://tutorialsdojo.com/amazon-s3/
+
+`,
+  },
+  {
+    question: `
+A company hosts multiple applications in their VPC. 
+While monitoring the system, they noticed that multiple port scans are coming in from a specific IP address block that is trying to connect to several AWS resources inside their VPC. 
+The internal security team has requested that all offending IP addresses be denied for the next 24 hours for security purposes.
+Which of the following is the best method to quickly and temporarily deny access from the specified IP addresses?
+ `,
+    answers: {
+      a: "network access control list (ACL)",
+      b: "Creating a policy in IAM to deny access from the IP Address block",
+      c: "Adding a rule in the Security Group of the EC2 instances to deny access from the IP Address block",
+      d: "Configuring the firewall in the operating system of the EC2 instances to deny access from the IP address block",
+    },
+    correctAnswer: "a",
+    explanation: `
+    To control the traffic coming in and out of your VPC network, you can use the network access control list (ACL).
+     It is an optional layer of security for your VPC that acts as a firewall for controlling traffic in and out of one or more subnets.
+      This is the best solution among other options as you can easily add and remove the restriction in a matter of minutes.
+
+    Creating a policy in IAM to deny access from the IP Address block is incorrect as an IAM policy does not control the inbound and outbound traffic of your VPC.
+    
+    Adding a rule in the Security Group of the EC2 instances to deny access from the IP Address block is incorrect as although a Security Group acts as a firewall,
+     it will only control both inbound and outbound traffic at the instance level and not on the whole VPC.
+    
+    Configuring the firewall in the operating system of the EC2 instances to deny access from the IP address block
+     is incorrect because adding a firewall in the underlying operating system of the EC2 instance is not enough; 
+    the attacker can just connect to other AWS resources since the network access control list still allows them to do so.
+    
+    
+    Reference:
+    
+    http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_ACLs.html
+    
+    
+    Check out this Amazon VPC Cheat Sheet:
+    
+    https://tutorialsdojo.com/amazon-vpc/
+    
+
+`,
+  },
+  {
+    question: `
+A company is in the process of migrating their applications to AWS. 
+One of their systems requires a database that can scale globally and handle frequent schema changes. 
+The application should not have any downtime or performance issues whenever there is a schema change in the database. 
+It should also provide a low latency response to high-traffic queries.
+Which is the most suitable database solution to use to achieve this requirement?
+ `,
+    answers: {
+      a: "An Amazon RDS instance in Multi-AZ Deployments configuration",
+      b: "Amazon DynamoDB",
+      c: "an Amazon Aurora database with Read Replicas",
+      d: "Redshift",
+    },
+    correctAnswer: "b",
+    explanation: `
+Before we proceed in answering this question, we must first be clear with the actual definition of a "schema".
+Basically, the english definition of a schema is: a representation of a plan or theory in the form of an outline or model.
+Just think of a schema as the "structure" or a "model" of your data in your database. 
+Since the scenario requires that the schema, or the structure of your data, changes frequently, 
+then you have to pick a database which provides a non-rigid and flexible way of adding or removing new types of data. 
+This is a classic example of choosing between a relational database and non-relational (NoSQL) database.
+A relational database is known for having a rigid schema, with a lot of constraints and limits as to which (and what type of ) data can be inserted or not. It is primarily used for scenarios where you have to support complex queries which fetch data across a number of tables. It is best for scenarios where you have complex table relationships but for use cases where you need to have a flexible schema, this is not a suitable database to use.
+
+For NoSQL, it is not as rigid as a relational database because you can easily add or remove rows or elements in your table/collection entry. It also has a more flexible schema because it can store complex hierarchical data within a single item which, unlike a relational database, does not entail changing multiple related tables. Hence, the best answer to be used here is a NoSQL database, like DynamoDB. When your business requires a low-latency response to high-traffic queries, taking advantage of a NoSQL system generally makes technical and economic sense.
+
+Amazon DynamoDB helps solve the problems that limit the relational system scalability by avoiding them. In DynamoDB, you design your schema specifically to make the most common and important queries as fast and as inexpensive as possible. Your data structures are tailored to the specific requirements of your business use cases.
+
+Remember that a relational database system does not scale well for the following reasons:
+
+- It normalizes data and stores it on multiple tables that require multiple queries to write to disk.
+
+- It generally incurs the performance costs of an ACID-compliant transaction system.
+
+- It uses expensive joins to reassemble required views of query results.
+
+
+For DynamoDB, it scales well due to these reasons:
+
+- Its schema flexibility lets DynamoDB store complex hierarchical data within a single item. DynamoDB is not a totally schemaless database since the very definition of a schema is just the model or structure of your data.
+
+- Composite key design lets it store related items close together on the same table.
+
+
+An Amazon RDS instance in Multi-AZ Deployments configuration and an Amazon Aurora database with Read Replicas are incorrect because both of them are a type of relational database.
+
+Redshift is incorrect because it is primarily used for OLAP systems.
+
+
+References:
+
+https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/bp-general-nosql-design.html
+
+https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/bp-relational-modeling.html
+
+https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/SQLtoNoSQL.html
+
+
+Also check the AWS Certified Solutions Architect Official Study Guide: Associate Exam 1st Edition and turn to page 161 which talks about NoSQL Databases.
+
+
+Check out this Amazon DynamoDB Cheat Sheet:
+
+https://tutorialsdojo.com/amazon-dynamodb/
+
+
+Tutorials Dojo's AWS Certified Solutions Architect Associate Exam Study Guide:
+
+https://tutorialsdojo.com/aws-certified-solutions-architect-associate/
+
+`,
+  },
+  {
+    question: `
+ `,
+    answers: {
+      a: `
+      Reserved Instances don't get interrupted unlike Spot instances in the event that there are not enough unused EC2 instances to meet the demand
+      `,
+      b: `
+      You can have capacity reservations that recur on a daily, weekly, or monthly basis, 
+      with a specified start time and duration, for a one-year term through Scheduled Reserved Instances 
+      `,
+      c: "a and b",
+      d: `
+      Standard Reserved Instances can be later exchanged for other Convertible Reserved Instances
+      and 
+      It can enable you to reserve capacity for your Amazon EC2 instances in multiple Availability Zones and multiple AWS Regions for any duration
+      `,
+      e:" It runs in a VPC on hardware that's dedicated to a single customer "
+    },
+    correctAnswer: "c",
+    explanation: `
+A company conducted a surprise IT audit on all of the AWS resources being used in the production environment.
+During the audit activities, it was noted that you are using a combination of Standard and Scheduled Reserved EC2 instances in your applications.
+They argued that you should have used Spot EC2 instances instead as it is cheaper than the Reserved Instance.
+Which of the following are the characteristics and benefits of using these two types of Reserved EC2 instances, which you can use as justification? (Select TWO.)
+Reserved Instances (RIs) provide you with a significant discount (up to 75%) compared to On-Demand instance pricing. You have the flexibility to change families, OS types, and tenancies while benefiting from RI pricing when you use Convertible RIs. One important thing to remember here is that Reserved Instances are not physical instances, but rather a billing discount applied to the use of On-Demand Instances in your account.
+
+When your computing needs change, you can modify your Standard or Convertible Reserved Instances and continue to take advantage of the billing benefit. You can modify the Availability Zone, scope, network platform, or instance size (within the same instance type) of your Reserved Instance. You can also sell your unused instance on the Reserved Instance Marketplace.
+
+The option that says: Reserved Instances don't get interrupted unlike Spot instances in the event that there are not enough unused EC2 instances to meet the demand is correct. Likewise, the option that says: You can have capacity reservations that recur on a daily, weekly, or monthly basis, with a specified start time and duration, for a one-year term through Scheduled Reserved Instances is correct. You reserve the capacity in advance, so that you know it is available when you need it. You pay for the time that the instances are scheduled, even if you do not use them.
+
+The option that says: Standard Reserved Instances can be later exchanged for other Convertible Reserved Instances is incorrect because only Convertible Reserved Instances can be exchanged for other Convertible Reserved Instances.
+
+The option that says: It can enable you to reserve capacity for your Amazon EC2 instances in multiple Availability Zones and multiple AWS Regions for any duration is incorrect because you can reserve capacity to a specific AWS Region (regional Reserved Instance) or specific Availability Zone (zonal Reserved Instance) only. You cannot reserve capacity to multiple AWS Regions in a single RI purchase.
+
+The option that says: It runs in a VPC on hardware that's dedicated to a single customer is incorrect because that is the description of a Dedicated instance and not a Reserved Instance. A Dedicated instance runs in a VPC on hardware that's dedicated to a single customer.
+
+
+References:
+
+https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ri-modifying.html
+
+https://aws.amazon.com/ec2/pricing/reserved-instances/
+
+https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-reserved-instances.html
+
+https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/reserved-instances-types.html
+
+
+Check out this Amazon EC2 Cheat Sheet:
+
+https://tutorialsdojo.com/amazon-elastic-compute-cloud-amazon-ec2/
+
+`,
+  },
+  {
+    question: `
+An online medical system hosted in AWS stores sensitive Personally Identifiable Information (PII) of the users in an Amazon S3 bucket.
+ Both the master keys and the unencrypted data should never be sent to AWS to comply with the strict compliance and regulatory requirements of the company.
+Which S3 encryption technique should the Architect use?
+ `,
+    answers: {
+      a: "use S3 client-side encryption with a client-side master key.",
+      b: "Using S3 client-side encryption with a KMS-managed customer master key",
+      c: "Using S3 server-side encryption with a KMS managed key ",
+      d: "Using S3 server-side encryption with customer provided key",
+    },
+    correctAnswer: "a",
+    explanation: `
+    Client-side encryption is the act of encrypting data before sending it to Amazon S3. To enable client-side encryption, you have the following options:
+
+    - Use an AWS KMS-managed customer master key.
+    
+    - Use a client-side master key.
+    
+  When using an AWS KMS-managed customer master key to enable client-side data encryption, you provide an AWS KMS customer master key ID (CMK ID) to AWS. On the other hand, when you use client-side master key for client-side data encryption, your client-side master keys and your unencrypted data are never sent to AWS. It's important that you safely manage your encryption keys because if you lose them, you can't decrypt your data.
+  This is how client-side encryption using client-side master key works:
+
+  When uploading an object - You provide a client-side master key to the Amazon S3 encryption client. The client uses the master key only to encrypt the data encryption key that it generates randomly. The process works like this:
+  
+  1. The Amazon S3 encryption client generates a one-time-use symmetric key (also known as a data encryption key or data key) locally. It uses the data key to encrypt the data of a single Amazon S3 object. The client generates a separate data key for each object.
+  
+  2. The client encrypts the data encryption key using the master key that you provide. The client uploads the encrypted data key and its material description as part of the object metadata. The client uses the material description to determine which client-side master key to use for decryption.
+  
+  3. The client uploads the encrypted data to Amazon S3 and saves the encrypted data key as object metadata (x-amz-meta-x-amz-key) in Amazon S3.
+  
+  
+  When downloading an object - The client downloads the encrypted object from Amazon S3. Using the material description from the object's metadata, the client determines which master key to use to decrypt the data key. The client uses that master key to decrypt the data key and then uses the data key to decrypt the object.
+  
+  Hence, the correct answer is to use S3 client-side encryption with a client-side master key.
+  
+  Using S3 client-side encryption with a KMS-managed customer master key is incorrect because in client-side encryption with a KMS-managed customer master key, you provide an AWS KMS customer master key ID (CMK ID) to AWS. The scenario clearly indicates that both the master keys and the unencrypted data should never be sent to AWS.
+  
+  Using S3 server-side encryption with a KMS managed key is incorrect because the scenario mentioned that the unencrypted data should never be sent to AWS, which means that you have to use client-side encryption in order to encrypt the data first before sending to AWS. In this way, you can ensure that there is no unencrypted data being uploaded to AWS. In addition, the master key used by Server-Side Encryption with AWS KMS–Managed Keys (SSE-KMS) is uploaded and managed by AWS, which directly violates the requirement of not uploading the master key.
+  
+  Using S3 server-side encryption with customer provided key is incorrect because just as mentioned above, you have to use client-side encryption in this scenario instead of server-side encryption. For the S3 server-side encryption with customer-provided key (SSE-C), you actually provide the encryption key as part of your request to upload the object to S3. Using this key, Amazon S3 manages both the encryption (as it writes to disks) and decryption (when you access your objects).
+  
+  
+  References:
+  
+  https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingEncryption.html
+  
+  https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingClientSideEncryption.html
+  
+    
+    
+
+`,
+  },
+  {
+    question: `
+A Solutions Architect identified a series of DDoS attacks while monitoring the VPC.
+The Architect needs to fortify the current cloud infrastructure to protect the data of the clients.
+Which of the following is the most suitable solution to mitigate these kinds of attacks?
+ `,
+    answers: {
+      a: "Use AWS Shield Advanced to detect and mitigate DDoS attacks.",
+      b: "Using the AWS Firewall Manager, set up a security layer that will prevent SYN floods, UDP reflection attacks and other DDoS attacks",
+      c: "Set up a web application firewall using AWS WAF to filter, monitor, and block HTTP traffic",
+      d: "A combination of Security Groups and Network Access Control Lists to only allow authorized traffic to access your VPC",
+    },
+    correctAnswer: "a",
+    explanation: `
+    For higher levels of protection against attacks targeting your applications 
+    running on Amazon Elastic Compute Cloud (EC2), Elastic Load Balancing(ELB), 
+    Amazon CloudFront, and Amazon Route 53 resources, you can subscribe to AWS Shield Advanced. 
+    In addition to the network and transport layer protections that come with Standard,
+     AWS Shield Advanced provides additional detection and mitigation against large and sophisticated DDoS attacks,
+     near real-time visibility into attacks, and integration with AWS WAF, a web application firewall.
+     AWS Shield Advanced also gives you 24x7 access to the AWS DDoS Response Team (DRT) and protection against DDoS related spikes in your Amazon Elastic Compute Cloud (EC2), Elastic Load Balancing(ELB), Amazon CloudFront, and Amazon Route 53 charges.
+
+     Hence, the correct answer is: Use AWS Shield Advanced to detect and mitigate DDoS attacks.
+     
+     The option that says: Using the AWS Firewall Manager, set up a security layer that will prevent SYN floods, UDP reflection attacks and other DDoS attacks is incorrect because the AWS Firewall Manager is mainly used to simplify your AWS WAF administration and maintenance tasks across multiple accounts and resources. It does not protect your VPC against DDoS attacks.
+     
+     The option that says: Set up a web application firewall using AWS WAF to filter, monitor, and block HTTP traffic is incorrect because even though AWS WAF can help you block common attack patterns to your VPC such as SQL injection or cross-site scripting, this is still not enough to withstand DDoS attacks. It is better to use AWS Shield in this scenario.
+     
+     The option that says: A combination of Security Groups and Network Access Control Lists to only allow authorized traffic to access your VPC is incorrect. Although using a combination of Security Groups and NACLs are valid to provide security to your VPC, this is not enough to mitigate a DDoS attack. You should use AWS Shield for better security protection.
+     
+     
+     References:
+     
+     https://d1.awsstatic.com/whitepapers/Security/DDoS_White_Paper.pdf
+     
+     https://aws.amazon.com/shield/
+     
+     
+     Check out this AWS Shield Cheat Sheet:
+     
+     https://tutorialsdojo.com/aws-shield/
+`,
+  },
+  {
+    question: `
+A cryptocurrency trading platform is using an API built in AWS Lambda and API Gateway.
+Due to the recent news and rumors about the upcoming price surge of Bitcoin, Ethereum and 
+other cryptocurrencies, it is expected that the trading platform would have a 
+significant increase in site visitors and new users in the coming days ahead.
+In this scenario, how can you protect the backend systems of the platform from traffic spikes?
+ `,
+    answers: {
+      a: "enabling throttling limits and result caching in API Gateway",
+      b: "Switch from using AWS Lambda and API Gateway to a more scalable and highly available architecture using EC2 instances, ELB, and Auto Scaling ",
+      c: "Using CloudFront in front of the API Gateway to act as a cache",
+      d: "Moving the Lambda function in a VPC",
+    },
+    correctAnswer: "a",
+    explanation: `
+    Amazon API Gateway provides throttling at multiple levels including global and by service call.
+     Throttling limits can be set for standard rates and bursts. 
+     For example, API owners can set a rate limit of 1,000 requests per second for a 
+     specific method in their REST APIs, 
+     and also configure Amazon API Gateway to handle a burst of 2,000 requests per second for a few seconds. 
+     Amazon API Gateway tracks the number of requests per second. Any request over the limit will receive a 429 HTTP response. 
+     The client SDKs generated by Amazon API Gateway retry calls automatically when met with this response. 
+     Hence, enabling throttling limits and result caching in API Gateway is the correct answer.
+
+    You can add caching to API calls by provisioning an Amazon API Gateway cache and specifying its size in gigabytes.
+     The cache is provisioned for a specific stage of your APIs. This improves performance and reduces the traffic sent to your back end. Cache settings allow you to control the way the cache key is built and the time-to-live (TTL) of the data stored for each method. Amazon API Gateway also exposes management APIs that help you invalidate the cache for each stage.
+    
+     Using CloudFront in front of the API Gateway to act as a cache is incorrect because CloudFront only speeds up content delivery which provides a better latency experience for your users. It does not help much for the backend.
+
+     Moving the Lambda function in a VPC is incorrect because this answer is irrelevant to what is being asked. A VPC is your own virtual private cloud where you can launch AWS services.
+     
+     
+     Reference:
+     
+     https://aws.amazon.com/api-gateway/faqs/
+     
+     
+     Check out this Amazon API Gateway Cheat Sheet:
+     
+     https://tutorialsdojo.com/aws-cheat-sheet-amazon-api-gateway/
+     
+     
+     Here is an in-depth tutorial on Amazon API Gateway:
+     
+     https://youtu.be/XwfpPEFHKtQ
+  
+`,
+  },
+  {
+    question: `
+    A popular social network is hosted in AWS and is using a DynamoDB table as its database. 
+    There is a requirement to implement a 'follow' feature where users can subscribe to certain updates made by a
+     particular user and be notified via email.
+     Which of the following is the most suitable solution that you should implement to meet the requirement?
+ `,
+    answers: {
+      a: `
+      Set up a DAX cluster to access the source DynamoDB table. Create a new DynamoDB trigger and a Lambda function. 
+      For every update made in the user data, the trigger will send data to the Lambda function which will then notify the subscribers via email using SNS
+      `,
+      b: `
+      Create a Lambda function that uses DynamoDB Streams Kinesis Adapter which will fetch data from the DynamoDB Streams endpoint.
+       Set up an SNS Topic that will notify the subscribers via email when there is an update made by a particular user 
+      `,
+      c: `
+      Enable DynamoDB Stream and create an AWS Lambda trigger, as well as the IAM role which contains all of the permissions that the Lambda function will need at runtime.
+       The data from the stream record will be processed by the Lambda function which will then publish a message to SNS Topic that will notify the subscribers via email.
+      `,
+      d: `
+      Using the Kinesis Client Library (KCL), write an application that leverages on DynamoDB Streams Kinesis Adapter that will fetch data from the DynamoDB Streams endpoint. 
+      When there are updates made by a particular user, notify the subscribers via email using SNS
+      `,
+    },
+    correctAnswer: "c",
+    explanation: `
+
+    A DynamoDB stream is an ordered flow of information about changes to items in an Amazon DynamoDB table. When you enable a stream on a table, DynamoDB captures information about every modification to data items in the table.
+
+    Whenever an application creates, updates, or deletes items in the table, DynamoDB Streams writes a stream record with the primary key attribute(s) of the items that were modified. A stream record contains information about a data modification to a single item in a DynamoDB table. You can configure the stream so that the stream records capture additional information, such as the "before" and "after" images of modified items.
+    
+    Amazon DynamoDB is integrated with AWS Lambda so that you can create triggers—pieces of code that automatically respond to events in DynamoDB Streams. With triggers, you can build applications that react to data modifications in DynamoDB tables.
+    
+    If you enable DynamoDB Streams on a table, you can associate the stream ARN with a Lambda function that you write. Immediately after an item in the table is modified, a new record appears in the table's stream. AWS Lambda polls the stream and invokes your Lambda function synchronously when it detects new stream records. The Lambda function can perform any actions you specify, such as sending a notification or initiating a workflow.
+    
+    Hence, the correct answer in this scenario is the option that says: Enable DynamoDB Stream and create an AWS Lambda trigger, as well as the IAM role which contains all of the permissions that the Lambda function will need at runtime. The data from the stream record will be processed by the Lambda function which will then publish a message to SNS Topic that will notify the subscribers via email.
+    
+    The option that says: Using the Kinesis Client Library (KCL), write an application that leverages on DynamoDB Streams Kinesis Adapter that will fetch data from the DynamoDB Streams endpoint. When there are updates made by a particular user, notify the subscribers via email using SNS is incorrect because although this is a valid solution, it is missing a vital step which is to enable DynamoDB Streams. With the DynamoDB Streams Kinesis Adapter in place, you can begin developing applications via the KCL interface, with the API calls seamlessly directed at the DynamoDB Streams endpoint. Remember that the DynamoDB Stream feature is not enabled by default.
+
+The option that says: Create a Lambda function that uses DynamoDB Streams Kinesis Adapter which will fetch data from the DynamoDB Streams endpoint. Set up an SNS Topic that will notify the subscribers via email when there is an update made by a particular user is incorrect because just like in the above, you have to manually enable DynamoDB Streams first before you can use its endpoint.
+
+The option that says: Set up a DAX cluster to access the source DynamoDB table. Create a new DynamoDB trigger and a Lambda function. For every update made in the user data, the trigger will send data to the Lambda function which will then notify the subscribers via email using SNS is incorrect because the DynamoDB Accelerator (DAX) feature is primarily used to significantly improve the in-memory read performance of your database, and not to capture the time-ordered sequence of item-level modifications. You should use DynamoDB Streams in this scenario instead.
+
+
+References:
+
+https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Streams.html
+
+https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Streams.Lambda.Tutorial.html
+
+
+Check out this Amazon DynamoDB Cheat Sheet:
+
+https://tutorialsdojo.com/aws-cheat-sheet-amazon-dynamodb/
+    
+`,
+  },
+  {
+    question: `
+A company requires all the data stored in the cloud to be encrypted at rest. 
+To easily integrate this with other AWS services, they must have full control over
+the encryption of the created keys and also the ability to immediately remove the key material from AWS KMS.
+The solution should also be able to audit the key usage independently of AWS CloudTrail.
+Which of the following options will meet this requirement?
+ `,
+    answers: {
+      a: "Use AWS Key Management Service to create a CMK in a custom key store and store the non-extractable key material in AWS CloudHSM. ",
+      b: "Use AWS Key Management Service to create a CMK in a custom key store and store the non-extractable key material in Amazon S3",
+      c: "Use AWS Key Management Service to create AWS-owned CMKs and store the non-extractable key material in AWS CloudHSM",
+      d: "Use AWS Key Management Service to create AWS-managed CMKs and store the non-extractable key material in AWS CloudHSM",
+    },
+    correctAnswer: "a",
+    explanation: `
+    The AWS Key Management Service (KMS) custom key store feature combines the controls
+     provided by AWS CloudHSM with the integration and ease of use of AWS KMS. 
+     You can configure your own CloudHSM cluster and authorize AWS KMS to use it 
+     as a dedicated key store for your keys rather than the default AWS KMS key store. 
+     When you create keys in AWS KMS you can choose to generate the key material in your CloudHSM cluster.
+      CMKs that are generated in your custom key store never leave the HSMs in the CloudHSM
+     cluster in plaintext and all AWS KMS operations that use those keys are only performed in your HSMs.
+
+
+AWS KMS can help you integrate with other AWS services to encrypt the data that you 
+store in these services and control access to the keys that decrypt it. 
+To immediately remove the key material from AWS KMS, you can use a custom key store. 
+Take note that each custom key store is associated with an AWS CloudHSM cluster in your AWS account.
+Therefore, when you create an AWS KMS CMK in a custom key store, 
+AWS KMS generates and stores the non-extractable key material for 
+the CMK in an AWS CloudHSM cluster that you own and manage. 
+This is also suitable if you want to be able to audit the usage 
+of all your keys independently of AWS KMS or AWS CloudTrail.
+
+Since you control your AWS CloudHSM cluster, you have the option
+ to manage the lifecycle of your CMKs independently of AWS KMS. 
+ There are four reasons why you might find a custom key store useful:
+
+You might have keys that are explicitly required to be protected in
+ a single-tenant HSM or in an HSM over which you have direct control.
+
+You might have keys that are required to be stored in an HSM that 
+has been validated to FIPS 140-2 level 3 overall (the HSMs used in the
+   standard AWS KMS key store are either validated or in the process of 
+   being validated to level 2 with level 3 in multiple categories).
+
+You might need the ability to immediately remove key material from AWS 
+KMS and to prove you have done so by independent means.
+
+You might have a requirement to be able to audit all use 
+of your keys independently of AWS KMS or AWS CloudTrail.
+
+Hence, the correct answer in this scenario is: Use AWS Key 
+Management Service to create a CMK in a custom key store and 
+store the non-extractable key material in AWS CloudHSM.
+
+The option that says: Use AWS Key Management 
+Service to create a CMK in a custom key store and 
+store the non-extractable key material in Amazon S3 is 
+incorrect because Amazon S3 is not a suitable storage service to use in storing encryption keys.
+ You have to use AWS CloudHSM instead.
+
+The options that say: Use AWS Key Management Service to create AWS-owned CMKs and 
+store the non-extractable key material in AWS CloudHSM and Use AWS Key Management Service to 
+create AWS-managed CMKs and store the non-extractable key material 
+in AWS CloudHSM are both incorrect because the scenario requires you to have full control over the encryption of the created key. 
+AWS-owned CMKs and AWS-managed CMKs are managed by AWS. Moreover, these options do not allow you to audit the key usage independently of AWS CloudTrail.
+
+
+References:
+
+https://docs.aws.amazon.com/kms/latest/developerguide/custom-key-store-overview.html
+
+https://aws.amazon.com/kms/faqs/
+
+https://aws.amazon.com/blogs/security/are-kms-custom-key-stores-right-for-you/
+
+
+Check out this AWS KMS Cheat Sheet:
+
+https://tutorialsdojo.com/aws-key-management-service-aws-kms/
+`,
+  },
+  {
+    question: `
+ A company has a hybrid cloud architecture that connects their on-premises data center 
+and cloud infrastructure in AWS. They require a durable storage backup for
+their corporate documents stored on-premises and a local cache that provides 
+low latency access to their recently accessed data to reduce data egress charges. 
+The documents must be stored to and retrieved from AWS via the Server Message Block (SMB) protocol.
+These files must immediately be accessible within minutes for six months and archived for 
+another decade to meet the data compliance.
+Which of the following is the best and most cost-effective approach to implement in this scenario?
+ `,
+    answers: {
+      a: `
+      Use AWS Snowmobile to migrate all of the files from the on-premises network. 
+      Upload the documents to an S3 bucket and set up a lifecycle policy to move the data into Glacier for archival
+      `,
+      b: `
+      Establish a Direct Connect connection to integrate your on-premises network to your VPC. 
+      Upload the documents on Amazon EBS Volumes and use a lifecycle
+       policy to automatically move the EBS snapshots to an S3 bucket, and then later to Glacier for archival
+      `,
+      c: `
+      Launch a new tape gateway that connects to your on-premises data center using AWS Storage Gateway. 
+      Upload the documents to the tape gateway and 
+      set up a lifecycle policy to move the data into Glacier for archival
+      `,
+      d: `
+      Launch a new file gateway that connects to your on-premises data center using AWS Storage Gateway. 
+      Upload the documents
+       to the file gateway and set up a lifecycle policy to move the data into Glacier for data archival.
+      `,
+    },
+    correctAnswer: "d",
+    explanation: `
+A file gateway supports a file interface into Amazon Simple Storage Service (Amazon S3)
+and combines a service and a virtual software appliance. 
+By using this combination, you can store and retrieve objects in Amazon S3 
+using industry-standard file protocols such as Network File System (NFS) and Server Message Block (SMB).
+The software appliance, or gateway, is deployed into your on-premises 
+environment as a virtual machine (VM) running on VMware ESXi, Microsoft Hyper-V, or
+Linux Kernel-based Virtual Machine (KVM) hypervisor.
+The gateway provides access to objects in S3 as files or file share mount points.
+With a file gateway, you can do the following:
+- You can store and retrieve files directly using the NFS version 3 or 4.1 protocol.
+- You can store and retrieve files directly using the SMB file system version, 2 and 3 protocol.
+- You can access your data directly in Amazon S3 from any AWS Cloud application or service.
+- You can manage your Amazon S3 data using lifecycle policies, cross-region replication, and versioning.
+ You can think of a file gateway as a file system mount on S3.
+
+AWS Storage Gateway supports the Amazon S3 Standard, Amazon S3 Standard-Infrequent Access,
+ Amazon S3 One Zone-Infrequent Access and Amazon Glacier storage classes. 
+ When you create or update a file share, you have the option to select a storage class for your objects. 
+ You can either choose the Amazon S3 Standard or any of the infrequent access storage classes such as S3 Standard IA or S3 One Zone IA. 
+ Objects stored in any of these storage classes can be transitioned to Amazon Glacier using a Lifecycle Policy.
+
+Although you can write objects directly from a file share to the S3-Standard-IA or S3-One Zone-IA storage class,
+ it is recommended that you use a Lifecycle Policy to transition your objects 
+ rather than write directly from the file share, especially if you're expecting 
+ to update or delete the object within 30 days of archiving it.
+
+Therefore, the correct answer is: Launch a new file gateway 
+that connects to your on-premises data center using AWS Storage Gateway. 
+Upload the documents to the file gateway and set up a lifecycle policy 
+to move the data into Glacier for data archival.
+
+The option that says: Launch a new tape gateway that connects to your on-premises 
+data center using AWS Storage Gateway. Upload the documents to the tape gateway 
+and set up a lifecycle policy to move the data into Glacier for archival is incorrect 
+because although tape gateways provide cost-effective and durable archive 
+backup data in Amazon Glacier, it does not meet the criteria of being retrievable immediately within minutes.
+It also doesn't maintain a local cache that provides low latency access to the recently
+ accessed data and reduce data egress charges. Thus, it is still better to set up a file gateway instead.
+
+The option that says: Establish a Direct Connect connection to integrate your on-premises network to your VPC. 
+Upload the documents on Amazon EBS Volumes and use a lifecycle policy 
+to automatically move the EBS snapshots to an S3 bucket, and then later 
+to Glacier for archival is incorrect because EBS Volumes are not as durable 
+compared with S3 and it would be more cost-efficient if you directly store the documents to an S3 bucket. 
+An alternative solution is to use AWS Direct Connect with AWS Storage Gateway to 
+create a connection for high-throughput workload needs,
+ providing a dedicated network connection between your on-premises file gateway and AWS. 
+ But this solution is using EBS, hence, this option is still wrong.
+
+The option that says: Use AWS Snowmobile to migrate all of the files from the on-premises network. 
+Upload the documents to an S3 bucket and set up a lifecycle policy to
+ move the data into Glacier for archival is incorrect because Snowmobile
+  is mainly used to migrate the entire data of an on-premises data center to AWS. 
+  This is not a suitable approach as the company still has a hybrid cloud 
+  architecture which means that they will still use their on-premises 
+  data center along with their AWS cloud infrastructure.
+
+
+References:
+
+https://docs.aws.amazon.com/AmazonS3/latest/dev/object-lifecycle-mgmt.html
+
+https://docs.aws.amazon.com/storagegateway/latest/userguide/StorageGatewayConcepts.html
+
+
+Check out this Amazon S3 Cheat Sheet:
+
+https://tutorialsdojo.com/aws-cheat-sheet-amazon-s3/
+
+
+Tutorials Dojo's AWS Certified SysOps Administrator Associate Exam Study Guide:
+
+https://tutorialsdojo.com/aws-cheat-sheet-aws-certified-sysops-administrator-associate/
+
+
+`,
+  },
+  {
+    question: `
+A telecommunications company is planning to give AWS Console access to developers.
+Company policy mandates the use of identity federation and role-based access control. 
+Currently, the roles are already assigned using groups in the corporate Active Directory.
+In this scenario, what combination of the following services can provide developers access to the AWS console? (Select TWO.)
+ `,
+    answers: {
+      a: "Lambda",
+      b: "AWS Directory Service AD Connector",
+      c: "IAM Roles",
+      d: "b and c",
+      e:"AWS Directory Service Simple AD",
+      f:"IAM Groups",
+      
+    },
+    correctAnswer: "d",
+    explanation: `
+Considering that the company is using a corporate Active Directory,
+it is best to use AWS Directory Service AD Connector for easier integration.
+In addition, since the roles are already assigned using groups in the corporate Active Directory,
+it would be better to also use IAM Roles. 
+Take note that you can assign an IAM Role to the users or groups from your
+Active Directory once it is integrated with your VPC via the AWS Directory Service AD Connector.
+AWS Directory Service provides multiple ways to use Amazon Cloud Directory and
+ Microsoft Active Directory (AD) with other AWS services. Directories store information about users, 
+ groups, and devices, and administrators use them to manage access to information and resources. 
+ AWS Directory Service provides multiple directory choices for customers who want to use
+existing Microsoft AD or Lightweight Directory Access Protocol (LDAP)–aware applications in the cloud. 
+It also offers those same choices to developers who need a directory to manage users, groups, devices, and access.
+
+AWS Directory Service Simple AD is incorrect because this just provides a subset of the
+features offered by AWS Managed Microsoft AD, including the ability to manage user
+accounts and group memberships, create and apply group policies, 
+securely connect to Amazon EC2 instances, and provide Kerberos-based single sign-on (SSO).
+In this scenario, the more suitable component to use is the AD Connector since
+it is a directory gateway with which you can redirect directory
+requests to your on-premises Microsoft Active Directory.
+
+IAM Groups is incorrect because this is just a collection of IAM users.
+Groups let you specify permissions for multiple users, which can make
+it easier to manage the permissions for those users. In this scenario,
+the more suitable one to use is IAM Roles in order for permissions to create AWS Directory Service resources.
+Lambda is incorrect because this is primarily used for serverless computing.
+
+
+Reference:
+
+https://aws.amazon.com/blogs/security/how-to-connect-your-on-premises-active-directory-to-aws-using-ad-connector/
+
+
+Check out these AWS IAM and Directory Service Cheat Sheets:
+
+https://tutorialsdojo.com/aws-identity-and-access-management-iam/
+
+https://tutorialsdojo.com/aws-directory-service/
+
+
+Here is a video tutorial on AWS Directory Service:
+
+https://youtu.be/4XeqotTYBtY
+`,
+  },
+ 
+  
+  {
+    question: `
+An organization needs a persistent block storage volume that will be used for mission-critical workloads.
+The backup data will be stored in an object storage service and after 30 days,
+ the data will be stored in a data archiving storage service.
+What should you do to meet the above requirement?
+ `,
+    answers: {
+      a: `
+      Attach an EBS volume in your EC2 instance. 
+      Use Amazon S3 to store your backup data and configure a lifecycle policy to transition your objects to Amazon S3 Glacier
+      `,
+      b: `
+      Attach an EBS volume in your EC2 instance. 
+      Use Amazon S3 to store your backup data and configure a lifecycle policy to transition your objects to Amazon S3 One Zone-IA
+      `,
+      c: `
+      Attach an instance store volume in your existing EC2 instance. 
+      Use Amazon S3 to store your backup data and configure a lifecycle policy to transition your objects to Amazon S3 Glacier
+      `,
+      d: `
+      Attach an instance store volume in your EC2 instance.
+      Use Amazon S3 to store your backup data and configure a lifecycle policy to transition your objects to Amazon S3 One Zone-IA
+      `,
+    },
+    correctAnswer: "a",
+    explanation: `
+Amazon Elastic Block Store (EBS) is an easy to use, 
+high performance block storage service designed for
+use with Amazon Elastic Compute Cloud (EC2) for 
+both throughput and transaction intensive workloads at any scale. 
+A broad range of workloads, such as relational and non-relational databases, 
+enterprise applications, containerized applications, 
+big data analytics engines, file systems, and media workflows are widely deployed on Amazon EBS.
+Amazon Simple Storage Service (Amazon S3) is an object storage service that
+ offers industry-leading scalability, data availability, security, and performance. 
+ This means customers of all sizes and industries can use it to store and protect
+any amount of data for a range of use cases, such as websites, mobile applications,
+ backup and restore, archive, enterprise applications, IoT devices, and big data analytics.
+In an S3 Lifecycle configuration, you can define rules to transition objects from one storage class to another 
+to save on storage costs. 
+Amazon S3 supports a waterfall model for transitioning between storage classes, as shown in the diagram below:
+In this scenario, three services are required to implement this solution. 
+The mission-critical workloads mean that you need to have a persistent block storage volume and 
+the designed service for this is Amazon EBS volumes. 
+The second workload needs to have an object storage service, such as Amazon S3, 
+to store your backup data. 
+Amazon S3 enables you to configure the lifecycle policy from S3 Standard to different storage classes.
+For the last one, it needs archive storage such as Amazon S3 Glacier.
+Hence, the correct answer in this scenario is: 
+Attach an EBS volume in your EC2 instance. 
+Use Amazon S3 to store your backup data and configure
+a lifecycle policy to transition your objects to Amazon S3 Glacier.
+The option that says: Attach an EBS volume in your EC2 instance. 
+Use Amazon S3 to store your backup data and configure a lifecycle
+ policy to transition your objects to Amazon S3 One Zone-IA 
+ is incorrect because this lifecycle policy will transition your
+  objects into an infrequently accessed storage class and not a storage class for data archiving.
+The option that says: Attach an instance store volume in your existing EC2 instance.
+ Use Amazon S3 to store your backup data and configure a lifecycle 
+ policy to transition your objects to Amazon S3 Glacier is incorrect because 
+ an Instance Store volume is simply a temporary block-level storage for EC2 instances. 
+ Also, you can't attach instance store volumes to an instance after you've launched it.
+ You can specify the instance store volumes for your instance only when you launch it.
+The option that says: Attach an instance store volume in your EC2 instance. 
+Use Amazon S3 to store your backup data and configure a lifecycle policy 
+to transition your objects to Amazon S3 One Zone-IA is incorrect. 
+Just like the previous option, 
+the use of instance store volume is not suitable for mission-critical workloads
+ because the data can be lost if the underlying disk drive fails, the instance stops, 
+ or if the instance is terminated. In addition, 
+ Amazon S3 Glacier is a more suitable option for data archival instead of Amazon S3 One Zone-IA.
+    
+    
+    References:
+    
+    https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AmazonEBS.html
+    
+    https://aws.amazon.com/s3/storage-classes/
+    
+    
+    Check out this Amazon S3 Cheat Sheet:
+    
+    https://tutorialsdojo.com/amazon-s3/
+    
+    
+    Tutorials Dojo's AWS Storage Services Cheat Sheets:
+    
+    https://tutorialsdojo.com/aws-cheat-sheets-storage-services/
+    
+
+`,
+  },
+  {
+    question: `
+A company has decided to host its automobile sales website in Amazon EC2 and store the data in Amazon RDS. 
+The listings will be automatically removed once the vehicle is sold. 
+The Solutions Architect must implement a solution that monitors the automated DB snapshots and 
+forwards the data to multiple target groups.
+Which of the following options can satisfy the given requirement?
+ `,
+    answers: {
+      a: `
+      Create an RDS event subscription and send the notifications to AWS Lambda.
+       Configure the Lambda function to fanout the event notifications to multiple
+        Amazon SQS queues to update the target groups
+      `,
+      b: `
+      Create an RDS event subscription and send the notifications to Amazon SQS. 
+      Configure the SQS queues to fanout the event notifications to multiple Amazon SNS topics. 
+      Update the target groups using a Lambda function 
+      `,
+      c: `
+      Create an RDS event subscription and send the notifications to Amazon SNS.
+       Configure the SNS topic to fanout the event notifications to multiple Amazon SQS queues. 
+      Update the target groups using a Lambda function.
+      `,
+      d: `
+      Create a native function or a stored procedure in Amazon RDS that invokes an AWS Lambda function. 
+      Configure the Lambda function to fanout the event notifications 
+      to multiple Amazon SNS topics to update the target groups
+      `,
+    },
+    correctAnswer: "c",
+    explanation: `
+    Amazon SNS works closely with Amazon Simple Queue Service (Amazon SQS). 
+    Both services provide different benefits for developers. 
+    Amazon SNS allows applications to send time-critical messages to 
+    multiple subscribers through a "push" mechanism,
+    eliminating the need to periodically check or "poll" for updates. 
+    Amazon SQS is a message queue service used by distributed applications 
+    to exchange messages through a polling model, and can be used to decouple 
+    sending and receiving components—without requiring each component to be concurrently available.
+    Using Amazon SNS and Amazon SQS together, messages can be delivered to applications that 
+    require immediate notification of an event, 
+    and also persisted in an Amazon SQS queue for other applications to process at a later time.
+    You can create an Amazon RDS event notification subscription so you can be notified when an event occurs for a given DB instance, 
+    DB snapshot, DB security group, or DB parameter group. 
+    The simplest way to create a subscription is with the RDS console. If you choose to create event notification subscriptions using the CLI or API,
+    you must create an Amazon Simple Notification Service topic and subscribe to that topic with the Amazon SNS console or Amazon SNS API.
+    You will also need to retain the Amazon Resource Name (ARN) of the topic because it is used when submitting CLI commands or API operations.
+    Amazon RDS uses Amazon SNS to send notifications of database events. Each event category applies to a source type, which can be a DB instance, DB snapshot, DB security group, or DB parameter group. The notifications can be in any form supported by Amazon SNS for an AWS Region, such as an email, a text message, or a call to an HTTP endpoint.
+
+    In this scenario, you can use Amazon SNS and Amazon SQS to implement fanout messaging. 
+    The messages from both of these services can be pushed to multiple subscribers. For example,
+     you can send a message to a topic whenever the automated DB snapshot has been created. 
+    The SQS queues subscribed to that topic will receive identical notifications for that order. 
+    The Lambda function will process the event notifications and update the target groups.
+    
+    Hence, the correct answer is: Create an RDS event subscription and send the notifications to Amazon SNS. 
+    Configure the SNS topic to fanout the event notifications to multiple Amazon SQS queues. 
+    Update the target groups using a Lambda function.
+    
+    The option that says: Create an RDS event subscription and send the notifications to Amazon SQS.
+     Configure the SQS queues to fanout the event notifications to multiple Amazon SNS topics.
+      Update the target groups using a Lambda function is incorrect because RDS event subscription 
+      can only send notifications to an Amazon SNS topic and not directly to an SQS queue. 
+      You have to set up an SNS topic that will fanout the notifications to multiple Amazon SQS queues.
+    
+    The option that says: Create an RDS event subscription and send the notifications to AWS Lambda. 
+    Configure the Lambda function to fanout the event notifications to multiple Amazon SQS queues 
+    to update the target groups is incorrect because an RDS event notification
+     can only send data to an Amazon SNS topic, and not directly to a Lambda function. 
+     To fanout the notifications to multiple SQS queues, you need to use Amazon SNS. 
+     The SQS queues will invoke the Lambda function to send the information to multiple target groups.
+    
+    The option that says: Create a native function or a stored procedure in 
+    Amazon RDS that invokes an AWS Lambda function. Configure the Lambda function 
+    to fanout the event notifications to multiple Amazon SNS topics to update the target groups is incorrect because you cannot directly invoke a Lambda function in Amazon RDS using a native function such as lambda_sync(). This is only applicable in Amazon Aurora and moreover, this is primarily used for data changes and not for monitoring automated snapshots.
+    
+    
+    References:
+    
+    https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Events.html
+    
+    https://docs.aws.amazon.com/sns/latest/dg/sns-sqs-as-subscriber.html
+    
+    https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/AuroraMySQL.Integrating.Lambda.html
+    
+    
+    Check out this Amazon SNS Cheat Sheet:
+    
+    https://tutorialsdojo.com/amazon-sns/
+     
+`,
+  },
+  {
+    question: `
+A Docker application, which is running on an Amazon ECS cluster behind a load balancer, is heavily using DynamoDB. 
+You are instructed to improve the database performance by distributing the workload evenly and 
+using the provisioned throughput efficiently.   
+Which of the following would you consider to implement for your DynamoDB table?
+ `,
+    answers: {
+      a: "Avoid using a composite primary key, which is composed of a partition key and a sort key",
+      b: "Using partition keys with low-cardinality attributes, which have a few number of distinct values for each item ",
+      c: `use  partition keys with high-cardinality attributes, 
+      which have a large number of distinct values for each item`,
+      d: "Reducing the number of partition keys in the DynamoDB table",
+    },
+    correctAnswer: "c",
+    explanation: `
+    The partition key portion of a table's primary key determines the logical partitions in which a table's data is stored. 
+    This in turn affects the underlying physical partitions. 
+    Provisioned I/O capacity for the table is divided evenly among these physical partitions. 
+    Therefore a partition key design that doesn't distribute I/O requests evenly can create "hot" partitions that result in throttling and use your provisioned I/O capacity inefficiently.
+
+    The optimal usage of a table's provisioned throughput depends not only on the workload patterns of individual items, but also on the partition-key design.
+    This doesn't mean that you must access all partition key values to achieve an efficient throughput level, or even that the percentage of accessed partition key values must be high.
+     It does mean that the more distinct partition key values that your workload accesses, the more those requests will be spread across the partitioned space. 
+     In general, you will use your provisioned throughput more efficiently as the ratio of partition key values accessed to the total number of partition key values increases.
+    
+    One example for this is the use of partition keys with high-cardinality attributes, which have a large number of distinct values for each item.
+    
+    Reducing the number of partition keys in the DynamoDB table is incorrect because instead of doing this, you should actually add more to improve its performance to distribute the I/O requests evenly and not avoid "hot" partitions.
+    
+    Using partition keys with low-cardinality attributes, which have a few number of distinct values for each item is incorrect because this is the exact opposite of the correct answer.
+     Remember that the more distinct partition key values your workload accesses, the more those requests will be spread across the partitioned space. 
+     Conversely, the less distinct partition key values, the less evenly spread it would be across the partitioned space, which effectively slows the performance.
+    
+    The option that says: Avoid using a composite primary key, which is composed of a partition key and a sort key is incorrect because as mentioned, 
+    a composite primary key will provide more partition for the table and in turn, improves the performance. Hence, it should be used and not avoided.
+    
+    
+    References:
+    
+    https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/bp-partition-key-uniform-load.html
+    
+    https://aws.amazon.com/blogs/database/choosing-the-right-dynamodb-partition-key/
+    
+    
+    Check out this Amazon DynamoDB Cheat Sheet:
+    
+    https://tutorialsdojo.com/aws-cheat-sheet-amazon-dynamodb/
+    
+
+`,
+  },
+  {
+    question: `
+ `,
+    answers: {
+      a: `
+      Create an Auto Scaling group of EC2 instances and set the minimum capacity to 2 and the maximum capacity to 4.
+       Deploy 2 instances in Availability Zone A and 2 instances in Availability Zone B
+      `,
+      b: `
+      Create an Auto Scaling group of EC2 instances and set the minimum capacity to 2 and the maximum capacity to 6.
+       Use 2 Availability Zones and deploy 1 instance for each AZ
+      `,
+      c: `
+      Create an Auto Scaling group of EC2 instances and set the minimum capacity to 4 and the maximum capacity to 6.
+       Deploy 2 instances in Availability Zone A and another 2 instances in Availability Zone B.
+      `,
+      d: "Create an Auto Scaling group of EC2 instances and set the minimum capacity to 2 and the maximum capacity to 6. Deploy 4 instances in Availability Zone A ",
+    },
+    correctAnswer: "c",
+    explanation: `
+Amazon EC2 Auto Scaling helps ensure that you have the correct number
+ of Amazon EC2 instances available to handle the load for your application.
+You create collections of EC2 instances, called Auto Scaling groups. 
+You can specify the minimum number of instances in each Auto Scaling group, 
+and Amazon EC2 Auto Scaling ensures that your group never goes below this size. 
+You can also specify the maximum number of instances in each Auto Scaling group,
+and Amazon EC2 Auto Scaling ensures that your group never goes above this size.
+To achieve highly available and fault-tolerant architecture for your applications, 
+you must deploy all your instances in different Availability Zones.
+ This will help you isolate your resources if an outage occurs. 
+ Take note that to achieve fault tolerance, you need to have 
+ redundant resources in place to avoid any system degradation 
+ in the event of a server fault or an Availability Zone outage.
+  Having a fault-tolerant architecture entails an extra cost in running additional
+   resources than what is usually needed. This is to ensure that the mission-critical workloads are processed.
+
+Since the scenario requires at least 2 instances to handle regular traffic,
+ you should have 2 instances running all the time even if an AZ outage occurred.
+  You can use an Auto Scaling Group to automatically 
+  scale your compute resources across two or more Availability Zones. 
+  You have to specify the minimum capacity to 4 instances and the maximum capacity to 6 instances.
+   If each AZ has 2 instances running, even if an AZ fails, your system will still run a minimum of 2 instances.
+
+Hence, the correct answer in this scenario is: 
+Create an Auto Scaling group of EC2 instances 
+and set the minimum capacity to 4 and the maximum capacity to 6.
+ Deploy 2 instances in Availability Zone A and another 2 instances in Availability Zone B.
+
+The option that says: Create an Auto Scaling group of EC2 instances and set the
+ minimum capacity to 2 and the maximum capacity to 6. 
+ Deploy 4 instances in Availability Zone A is incorrect 
+ because the instances are only deployed in a single Availability Zone. 
+ It cannot protect your applications and data from datacenter or AZ failures.
+
+The option that says: Create an Auto Scaling group of EC2 instances 
+and set the minimum capacity to 2 and the maximum capacity to 6. 
+Use 2 Availability Zones and deploy 1 instance for each AZ is incorrect. 
+It is required to have 2 instances running all the time. 
+If an AZ outage happened, ASG will launch a new instance on the unaffected AZ. 
+This provisioning does not happen instantly, which means that for a certain period of time, 
+there will only be 1 running instance left.
+
+The option that says: Create an Auto Scaling group of EC2 instances 
+and set the minimum capacity to 2 and the maximum capacity to 4. 
+Deploy 2 instances in Availability Zone A and 2 instances in Availability Zone B is incorrect. 
+Although this fulfills the requirement of at least 2 EC2 instances and high availability, 
+the maximum capacity setting is wrong. It should be set to 6 to properly handle the peak load. 
+If an AZ outage occurs and the system is at its peak load, 
+the number of running instances in this setup will only be 4 instead of 6 and 
+this will affect the performance of your application.
+
+
+References:
+
+https://docs.aws.amazon.com/autoscaling/ec2/userguide/what-is-amazon-ec2-auto-scaling.html
+
+https://docs.aws.amazon.com/documentdb/latest/developerguide/regions-and-azs.html
+
+
+Check out this AWS Auto Scaling Cheat Sheet:
+
+https://tutorialsdojo.com/aws-auto-scaling/
+`,
+  },
+  {
+    question: `
+There was an incident in your production environment where the user data stored in the S3 bucket has been accidentally deleted by one of the Junior DevOps Engineers. 
+The issue was escalated to your manager and after a few days, you were instructed to improve the security and protection of your AWS resources.   
+What combination of the following options will protect the S3 objects in your bucket from both accidental deletion and overwriting? (Select TWO.)
+ `,
+    answers: {
+      a: "Providing access to S3 data strictly through pre-signed URL only",
+      b: "By using Versioning and enabling MFA (Multi-Factor Authentication) Delete",
+      c: "Disallowing S3 Delete using an IAM bucket policy",
+      d: "Enabling Amazon S3 Intelligent-Tiering",
+    },
+    correctAnswer: "b",
+    explanation: `
+    By using Versioning and enabling MFA (Multi-Factor Authentication) Delete, you can secure and recover your S3 objects from accidental deletion or overwrite.
+
+    Versioning is a means of keeping multiple variants of an object in the same bucket. Versioning-enabled buckets enable you to recover objects from accidental deletion or overwrite. You can use versioning to preserve, retrieve, and restore every version of every object stored in your Amazon S3 bucket. With versioning, you can easily recover from both unintended user actions and application failures.
+    
+    You can also optionally add another layer of security by configuring a bucket to enable MFA (Multi-Factor Authentication) Delete, which requires additional authentication for either of the following operations:
+    
+    - Change the versioning state of your bucket
+    
+    - Permanently delete an object version
+    
+    
+    MFA Delete requires two forms of authentication together:
+    
+    - Your security credentials
+    
+    - The concatenation of a valid serial number, a space, and the six-digit code displayed on an approved authentication device
+    
+    
+    Providing access to S3 data strictly through pre-signed URL only is incorrect since a pre-signed URL gives access to the object identified in the URL. Pre-signed URLs are useful when customers perform an object upload to your S3 bucket, but does not help in preventing accidental deletes.
+    
+    Disallowing S3 Delete using an IAM bucket policy is incorrect since you still want users to be able to delete objects in the bucket, and you just want to prevent accidental deletions. Disallowing S3 Delete using an IAM bucket policy will restrict all delete operations to your bucket.
+    
+    Enabling Amazon S3 Intelligent-Tiering is incorrect since S3 intelligent tiering does not help in this situation.
+    
+    
+    Reference:
+    
+    https://docs.aws.amazon.com/AmazonS3/latest/dev/Versioning.html
+    
+    
+    Check out this Amazon S3 Cheat Sheet:
+    
+    https://tutorialsdojo.com/amazon-s3/
+    
+
+`,
+  },
+  {
+    question: `
+A company is using a combination of API Gateway and Lambda for the web services
+ of the online web portal that is being accessed by hundreds of thousands of clients each day. 
+ They will be announcing a new revolutionary product and it is expected 
+ that the web portal will receive a massive number of visitors all around the globe.
+How can you protect the backend systems and applications from traffic spikes?
+ `,
+    answers: {
+      a: "API Gateway will automatically scale and handle massive traffic spikes so you do not have to do anything ",
+      b: "Manually upgrading the EC2 instances being used by API Gateway ",
+      c: "Deploying Multi-AZ in API Gateway with Read Replica ",
+      d: "Use throttling limits in API Gateway.",
+    },
+    correctAnswer: "d",
+    explanation: `
+    Amazon API Gateway provides throttling at multiple levels including global and by a service call.
+     Throttling limits can be set for standard rates and bursts. 
+     For example, API owners can set a rate limit of 1,000 requests per second for 
+     a specific method in their REST APIs, 
+    and also configure Amazon API Gateway to handle a burst of 2,000 requests per second for a few seconds.
+    
+    Amazon API Gateway tracks the number of requests per second. Any requests over the limit will receive a 429 HTTP response. The client SDKs generated by Amazon API Gateway retry calls automatically when met with this response.
+
+Hence, the correct answer is: Use throttling limits in API Gateway.
+
+The option that says: API Gateway will automatically scale and handle massive traffic spikes so you do not have to do anything is incorrect. Although it can scale using AWS Edge locations, you still need to configure the throttling to further manage the bursts of your APIs.
+
+Manually upgrading the EC2 instances being used by API Gateway is incorrect because API Gateway is a fully managed service and hence, you do not have access to its underlying resources.
+
+Deploying Multi-AZ in API Gateway with Read Replica is incorrect because RDS has Multi-AZ and Read Replica capabilities, and not API Gateway.
+
+
+Reference:
+
+https://aws.amazon.com/api-gateway/faqs/#Throttling_and_Caching
+
+
+Check out this Amazon API Gateway Cheat Sheet:
+
+https://tu
+`,
+  },
+  {
+    question: `
+An application consists of multiple EC2 instances in private subnets in different availability zones. 
+The application uses a single NAT Gateway for downloading software patches from the Internet to the instances. 
+There is a requirement to protect the application from a single point of failure when the NAT Gateway encounters 
+a failure or if its availability zone goes down.
+How should the Solutions Architect redesign the architecture to be more highly available and cost-effective
+ `,
+    answers: {
+      a: `
+      Create a NAT Gateway in each availability zone. Configure the route table in
+       each public subnet to ensure that instances use the NAT Gateway in the same availability zone 
+      `,
+      b: `
+      Create a NAT Gateway in each availability zone.
+       Configure the route table in each private subnet to ensure that instances use the NAT Gateway in the same availability zone
+      `,
+      c: `
+      Create two NAT Gateways in each availability zone.
+       Configure the route table in each public subnet to ensure that instances use the NAT Gateway in the same availability zone
+      `,
+      d: `
+      Create three NAT Gateways in each availability zone.
+       Configure the route table in each private subnet to ensure that instances use the NAT Gateway in the same availability zone
+      `,
+    },
+    correctAnswer: "b",
+    explanation: `
+    A NAT Gateway is a highly available, managed Network Address Translation (NAT) service for your resources in a private subnet to access the Internet.
+     NAT gateway is created in a specific Availability Zone and implemented with redundancy in that zone.
+
+    You must create a NAT gateway on a public subnet to 
+    enable instances in a private subnet to connect to the Internet or other AWS services, 
+    but prevent the Internet from initiating a connection with those instances.
+    If you have resources in multiple Availability Zones and they share one NAT gateway, and if the NAT gateway’s Availability Zone is down, resources in the other Availability Zones lose Internet access. To create an Availability Zone-independent architecture, create a NAT gateway in each Availability Zone and configure your routing to ensure that resources use the NAT gateway in the same Availability Zone.
+
+Hence, the correct answer is: Create a NAT Gateway in each availability zone. Configure the route table in each private subnet to ensure that instances use the NAT Gateway in the same availability zone.
+
+The option that says: Create a NAT Gateway in each availability zone. Configure the route table in each public subnet to ensure that instances use the NAT Gateway in the same availability zone is incorrect because you should configure the route table in the private subnet and not the public subnet to associate the right instances in the private subnet.
+
+The options that say: Create two NAT Gateways in each availability zone. Configure the route table in each public subnet to ensure that instances use the NAT Gateway in the same availability zone and Create three NAT Gateways in each availability zone. Configure the route table in each private subnet to ensure that instances use the NAT Gateway in the same availability zone are both incorrect because a single NAT Gateway in each availability zone is enough. NAT Gateway is already redundant in nature, meaning, AWS already handles any failures that occur in your NAT Gateway in an availability zone.
+
+
+References:
+
+https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html
+
+https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-comparison.html
+
+
+Check out this Amazon VPC Cheat Sheet:
+
+https://tutorialsdojo.com/amazon-vpc/
+`,
+  },
+
+
+
+
+  
 ];
