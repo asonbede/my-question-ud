@@ -2527,23 +2527,7 @@ https://docs.aws.amazon.com/elasticloadbalancing/latest/network/load-balancer-ta
 
  `
 },
-// {
-//   question:  `A leading online gaming company is migrating its flagship application to 
-//   AWS Cloud for delivering its online games to users across the world. 
-//   The company would like to use a Network Load Balancer (NLB) to handle millions of requests per second. 
-//   The engineering team has provisioned multiple instances in a public subnet and specified these instance IDs 
-//   as the targets for the NLB.As a solutions architect, 
-//   can you help the engineering team understand the correct routing mechanism for these target instances?`,
-// answers:  { 
-//       b:  "Traffic is routed to instances using the primary private IP address specified in the primary network interface for the instance",
-//        a: "Traffic is routed to instances using the primary public IP address specified in the primary network interface for the instance",
-//        c: "Traffic is routed to instances using the primary elastic IP address specified in the primary network interface for the instance ",
-//        d: "Traffic is routed to instances using the instance ID specified in the primary network interface for the instance"
-//   },
-//   correctAnswer:"b",
-//   explanation:`
-//   `
-// },
+
 {
   question:  `The business analytics team at a company has been 
   running ad-hoc queries on Oracle and PostgreSQL services on Amazon RDS 
@@ -2637,7 +2621,8 @@ https://aws.amazon.com/dms/
     The company owns thousands of hardware devices like switches, routers, cables, and so on. 
     The status of all these devices has to be fed into an analytics system for real-time processing.
      If a malfunction is detected, communication has to be initiated to the responsible team, to fix the hardware. 
-     Also, another application needs to read this same incoming data in parallel and analyze all the connecting lines that may go down because of the hardware failure.
+     Also, another application needs to read this same incoming data in parallel and 
+     analyze all the connecting lines that may go down because of the hardware failure.
      As a Solutions Architect, can you suggest the right solution to be used for this requirement?`,
 answers: { 
       a:  "Amazon Kinesis Data Streams",
