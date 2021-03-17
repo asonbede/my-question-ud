@@ -1462,10 +1462,1462 @@ It works well, so you decide to deploy your script in us-west-1 as well.
         },
         correctAnswer: "a",
         explanation: `
+        Global Accelerator will provide us with the two static IP, 
+        and the ALB will provide use with the HTTP routing rules
+    
+    `,
+      },
+
+      {
+        question: `
+        What does this S3 bucket policy do?
+
+     {
+       "Version":"2012-10-17",
+       "Id":"Mystery policy",
+       "Statement":[
+         {
+           "Sid":"What could it be?",
+           "Effect":"Allow",
+           "Principal":{"CanonicalUser":"CloudFront Origin Identity Canonical User ID"},
+           "Action":"s3:GetObject",
+           "Resource":"arn:aws:s3:::examplebucket/*"
+         }
+       ]
+    }
+
+
+     `,
+        answers: {
+          a: "Allow the s3 bucket content to be accessed from your cloudFront distribution origin",
+          b: "Only allow getObject type of request from anyWhere",
+          c: "Forces getObject request to be encrypted if comming from cloudFront",
+          d: "none of the above",
+        },
+        correctAnswer: "a",
+        explanation: `
+    not implemented
+    
+    `,
+      },
+
+      {
+        question: `
+        You need to move hundreds of Terabytes into the cloud in S3, 
+        and after that pre-process it using many EC2 instances in order to clean the data. 
+        You have a 1 Gbit/s broadband and would like to optimize the process
+         of moving the data and pre-processing it, in order to save time. What do you recommend?
+     `,
+        answers: {
+          a: "Use the network ",
+          b: "Use Snowball",
+          c: "Use Aws data Migration",
+          d: "Use Snowball Edge",
+        },
+        correctAnswer: "d",
+        explanation: `
+        Snowball Edge is the right answer as it comes with computing capabilities 
+        and allows use to pre-process the data while it's being moved in Snowball, 
+        so we save time on the pre-processing side as well. 
+    
+    `,
+      },
+
+      {
+        question: `
+        You want to expose a virtually infinite storage for your tape backups.
+         You want to keep the same software as today and want a iSCSI compatible interface. What do you use?
+     `,
+        answers: {
+          a: "Snowball ",
+          b: "File Gateway",
+          c: "Volume Gateway",
+          d: "Tape Gateway",
+        },
+        correctAnswer: "d",
+        explanation: `
+   not implemented
+    
+    `,
+      },
+
+      {
+        question: `
+        Your EC2 Windows Servers need to share some data by having 
+        a Network File System mounted, that respect the Windows
+         security mechanisms and has integration with Active Directory. 
+        What do you recommend putting in place as an NFS? 
+     `,
+        answers: {
+          a: "EFS ",
+          b: "FSx ",
+          c: "FSx for lustre",
+          d: "Amazon s3 with File Gateway",
+        },
+        correctAnswer: "FSx",
+        explanation: `
     
     
     `,
       },
+
+      {
+        question: `
+        You would like to have a distributed POSIX compliant file system that will
+         allow you to maximize the IOPS in order to perform some HPC and genomics computational research.
+         That file system will have to scale easily to millions of IOPS. What do you recommend?
+     `,
+        answers: {
+          a: "EFS with Max IO enabled",
+          b: "FSx for Lustre",
+          c: "Amazon s3 mounted on the instances",
+          d: "EC2 instance store",
+        },
+        correctAnswer: "b",
+        explanation: `
+        not implemented
+     `,
+      },
+
+      {
+        question: `
+        You are preparing for the biggest day of sale of the year,
+         where your traffic will increase by 100x. You have already setup SQS standard queue. What should you do?
+
+
+     `,
+        answers: {
+          a: "Do nothing SQS scales automatically ",
+          b: "Enable auto scaling in SQS queue",
+          c: "Increase the capacity of SQS Queue",
+          d: "Open a support ticket to pre-warm SQS queue",
+        },
+        correctAnswer: "a",
+        explanation: `
+    not implemented
+    
+    `,
+      },
+
+      {
+        question: `
+        You would like messages to be 
+        processed by SQS consumers only after 5 minutes of being published to SQS. What should you do?
+     `,
+        answers: {
+          a: "Change the Visibility Timeout ",
+          b: "Increase the DelaySeconds parameters",
+          c: "Enable Long Polling",
+          d: "Use extended SQS client",
+        },
+        correctAnswer: "b",
+        explanation: `
+        Delay queues let you postpone the delivery of new messages to a queue for a number of seconds. 
+        If you create a delay queue, any messages that you send 
+        to the queue remain invisible to consumers for the duration of the delay period. 
+        The default (minimum) delay for a queue is 0 seconds. The maximum is 15 minutes
+    
+    `,
+      },
+
+      {
+        question: `
+        Your consumers poll 10 messages at a time and finish processing them in 1 minute. 
+        You notice that your messages are processed twice, as other consumers also receive the messages.
+         What should you do? 
+     `,
+        answers: {
+          a: "Enable Long Polling ",
+          b: "Add delay to the messages when being produced",
+          c: "Increase the VisibilityTimeout",
+          d: "Decrease the Visibility Timeout",
+        },
+        correctAnswer: "c",
+        explanation: `
+        Immediately after a message is received, it remains in the queue.
+         To prevent other consumers from processing the message again, 
+         Amazon SQS sets a visibility timeout, 
+         a period of time during which Amazon SQS prevents other consumers from receiving and processing the message. 
+         Increasing the timeout gives more time to 
+        the consumer to process that message and will prevent duplicate readings of the message
+    
+    `,
+      },
+
+      {
+        question: `
+        You'd like your messages to be processed exactly once and in order. Which do you need?
+     `,
+        answers: {
+          a: "SQS standard queue ",
+          b: "SQS Dead Letter Queue",
+          c: "SQS Delay Queue",
+          d: "SQS FIFO Queue",
+        },
+        correctAnswer: "d",
+        explanation: `
+        FIFO (First-In-First-Out) queues are designed to enhance messaging 
+        between applications when the order of operations and events is critical, 
+        or where duplicates can't be tolerated. 
+        FIFO queues also provide exactly-once processing but have a limited number of transactions per second (TPS).
+    
+    `,
+      },
+
+      {
+        question: `
+        You'd like to send a message to 3 different applications all using SQS. You should
+     `,
+        answers: {
+          a: "Use SQS Replication features",
+          b: "Use SNS + SQS Fan Out Pattern",
+          c: "Send messages individually to 3 SQS queues",
+          d: "none of the above",
+        },
+        correctAnswer: "b",
+        explanation: `
+    not implemented
+    
+    `,
+      },
+
+      {
+        question: `
+        You have a Kinesis stream usually receiving 5MB/s of data and sending out 8 MB/s of data.
+        You have provisioned 6 shards.
+         Some days, your traffic spikes up to 2 times and you get a throughput exception. You should
+     `,
+        answers: {
+          a: "Enable kinesis replication",
+          b: "Add more shards",
+          c: "Use SQS as a buffer to kinesis",
+          d: "none of the above",
+        },
+        correctAnswer: "b",
+        explanation: `
+        Each shard allows for 1MB/s incoming and 2MB/s outgoing of data
+    `,
+      },
+
+      {
+        question: `
+        You are sending a clickstream for your users navigating your website, all the way to Kinesis.
+         It seems that the users data is not ordered in Kinesis, 
+        and the data for one individual user is spread across many shards. How to fix that problem?
+     `,
+        answers: {
+          a: "There are many shards, you should only use one shard ",
+          b: "You should use a partition key that represent the identity of the user",
+          c: "You shouldn't use multiple consumers, only one and it should re-order data",
+          d: "none of the above",
+        },
+        correctAnswer: "b",
+        explanation: `
+        By providing a partition key we ensure the data is ordered for our users
+     `,
+      },
+
+      {
+        question: `
+        We'd like to perform real time analytics on streams of data. The most appropriate product will be
+     `,
+        answers: {
+          a: "SQS ",
+          b: "SNS",
+          c: "Kinesis",
+          d: "none of the above",
+        },
+        correctAnswer: "c",
+        explanation: `
+    
+    
+    `,
+      },
+
+      {
+        question: `
+        We'd like for our big data to be loaded near real time to S3 or Redshift. 
+        We'd like to convert the data along the way. What should we use?
+     `,
+        answers: {
+          a: "SQS + Lambda",
+          b: "SNS + HTTP Endpoint",
+          c: "Kinesis Streams + kinesis firehose",
+          d: "none of the above",
+        },
+        correctAnswer: "c",
+        explanation: `
+        This is a perfect combo of technology for loading data near real-time in S3 and Redshift
+    `,
+      },
+
+      {
+        question: `
+        You want to send email notifications to your users. You should use
+     `,
+        answers: {
+          a: "SQS + Lambda ",
+          b: "SNS",
+          c: "Kinesis",
+          d: "none of the above",
+        },
+        correctAnswer: "b",
+        explanation: `
+        Has that feature by default
+    `,
+      },
+
+      {
+        question: `
+        You have many microservices running on-premise and they currently communicate 
+        using a message broker that supports the MQTT protocol.
+         You would like to migrate these applications and the
+          message broker to the cloud without changing the application logic. 
+        Which technology allows you to get a managed message broker that supports the MQTT protocol?
+     `,
+        answers: {
+          a: "Amazon MQ",
+          b: "SQS",
+          c: "SNS",
+          d: "Kinesis",
+        },
+        correctAnswer: "a",
+        explanation: `
+        Supports JMS, NMS, AMQP, STOMP, MQTT, and WebSocket
+    
+    `,
+      },
+
+      {
+        question: `
+        You have a Lambda function that will process data for 25 minutes before successfully completing.
+         The code is working fine in your machine, 
+        but in AWS Lambda it just fails with a "timeout" issue after 3 seconds. What should you do?
+     `,
+        answers: {
+          a: "Set Timeout to 25 minutes ",
+          b: "Set memory to 3 GB",
+          c: "Run your code elsewhere than Lambda- the maximum timeout is 15 minutes",
+          d: "none of the above",
+        },
+        correctAnswer: "c",
+        explanation: `
+    
+    
+    `,
+      },
+
+      {
+        question: `
+        You'd like to have a dynamic DB_URL variable loaded in your Lambda code
+     `,
+        answers: {
+          a: "Place it in environmental variable",
+          b: "Place it in the code zip file",
+          c: "place it in the code itself",
+          d: "none of the above",
+        },
+        correctAnswer: "a",
+        explanation: `
+        Environment variables allow for your Lambda to have dynamic variables from within
+    `,
+      },
+
+      {
+        question: `
+        We have to provision the instance type for our DynamoDB database
+     `,
+        answers: {
+          a: "false ",
+          b: "true",
+          
+        },
+        correctAnswer: "a",
+        explanation: `
+    DynamoDB is a serverless service 
+    and as such we don't provision an instance type for our database.
+     We just say how much RCU and WCU we require for our table (or auto scaling)
+    `,
+      },
+
+      {
+        question: `
+        A DynamoDB table has been provisioned with 10 RCU and 10 WCU. 
+        You would like to increase the RCU to sustain more read traffic. What is true about RCU and WCU?
+     `,
+        answers: {
+          a: "RCU and WCU are decoupled, so WCU  can stay the same ",
+          b: "You will also have to increase WCU to match RCU",
+          c: "none of the above",
+          d: "all of the above",
+        },
+        correctAnswer: "a",
+        explanation: `
+        not implemented
+    `,
+      },
+
+      {
+        question: `
+        You are about to enter the Christmas sale and you know
+         a few items in your website are very popular and will be read often. 
+         Last year you had a ProvisionedThroughputExceededException. What should you do this year?
+`,
+        answers: {
+          a: "increase the read capacity unit(RCU) to very, very high value ",
+          b: "Create DAX cluster",
+          c: "Migrate the database away from Dynamodb for the time of sale",
+          d: "none of the above",
+        },
+        correctAnswer: "b",
+        explanation: `
+        A DynamoDB Accelerator (DAX) cluster is a cache that fronts your 
+        DynamoDB tables and caches the most frequently read values. 
+        They help offload the heavy reads on hot keys off of DynamoDB itself,
+         hence preventing the ProvisionedThroughputExceededException
+     `,
+      },
+
+      {
+        question: `
+        You would like to automate sending welcome
+         emails to the users who subscribe to the Users table in DynamoDB. How can you achieve that?
+`,
+        answers: {
+          a: "Create Lambda Function to scan the table every minute looking for new user ",
+          b: "Enable dynamodb stream and have lambda function receive the event in real-time",
+          c: "Enable SNS and DynamoDB integration",
+          d: "none of the above",
+        },
+        correctAnswer: "b",
+        explanation: `
+        This is the best pattern
+    `,
+      },
+
+      {
+        question: `
+        To make a serverless API, I should integrate API Gateway with
+     `,
+        answers: {
+          a: "EC2 ",
+          b: "ELB",
+          c: "Lambda",
+          d: "all of the above",
+        },
+        correctAnswer: "c",
+        explanation: `
+        Lambda is a serverless technology
+    `,
+      },
+
+      {
+        question: `
+        You would like to provide a Facebook login before your users call your API hosted by API Gateway. 
+        You need seamlessly authentication integration, you will use 
+     `,
+        answers: {
+          a: "Cognito Sync",
+          b: "DynamoDB user tables with lambda authorizer",
+          c: "Cognito user pools",
+          d: "none of the above",
+        },
+        correctAnswer: "",
+        explanation: `
+        Cognito User Pools directly integration with Facebook Logins
+    `,
+      },
+
+      {
+        question: `
+        Your production application is leveraging DynamoDB as its backend
+        and is experiencing smooth sustained usage. There is a need to
+        make the application run in development as well, where it will experience unpredictable,
+        sometimes high, sometimes low volume of requests. 
+        You would like to make sure you optimize for cost. What do you recommend?
+     `,
+        answers: {
+          a: "Provision WCU & RCU  and enable autoscaling for production and use on-demand capacity for development ",
+          b: "Provision WCU & RCU  and enable autoscaling for production and use reserved capacity for development",
+          c: "none",
+          d: "all",
+        },
+        correctAnswer: "a",
+        explanation: `
+    not implemented
+    
+    `,
+      },
+
+      {
+        question: `
+    As a solutions architect, you have been tasked
+    to implement a fully Serverless REST API. Which technology choices do you recommend?
+     `,
+        answers: {
+          a: "AWS API Gateway + AWS Lambda ",
+          b: "Application Load Balancer + EC2",
+          c: "ECS + EBS",
+          d: "CloudFront + s3",
+        },
+        correctAnswer: "a",
+        explanation: `
+        This is fully serverless
+`,
+      },
+
+      {
+        question: `
+        Which technology does not have an out of the box caching feature?
+     `,
+        answers: {
+          a: "API Gateway",
+          b: "Lambda",
+          c: "DynamoDB",
+          d: "none of the above",
+        },
+        correctAnswer: "b",
+        explanation: `
+    Lambda does not have an out of the box caching feature (it's often paired with API gateway for that)
+    
+    `,
+      },
+
+      {
+        question: `
+        Which service allows to federate mobile users and generate temporary credentials 
+        so that they can access their own S3 bucket sub-folder?
+     `,
+        answers: {
+          a: "Cognito",
+          b: "IAM",
+          c: "SSO",
+          d: "CloudFront",
+        },
+        correctAnswer: "a",
+        explanation: `
+        in combination with STS
+    `,
+      },
+
+      {
+        question: `
+        You would like to distribute your static content which currently lives in Amazon S3 to 
+        multiple regions around the world, such as the US, France and Australia. What do you recommend?
+     `,
+        answers: {
+          a: "S3 cross region replication",
+          b: "CloudFront",
+          c: "Route53",
+          d: "API Gateway",
+        },
+        correctAnswer: "b",
+        explanation: `
+        This is a perfect use case for CloudFront
+    `,
+      },
+
+      {
+        question: `
+        You have hosted a DynamoDB table in ap-northeast-1 and would like to make it available in eu-west-1.
+         What must be enabled first to create a DynamoDB Global Table?
+     `,
+        answers: {
+          a: "DynamoDB  Streams",
+          b: "DynamoDB DAX",
+          c: "DynamoDB Versioning",
+          d: "DynamoDB Backups",
+        },
+        correctAnswer: "a",
+        explanation: `
+        Streams enable DynamoDB to get a changelog and use that changelog to replicate data across regions
+    `,
+      },
+
+      {
+        question: `
+        A Lambda function is triggered by a DynamoDB stream and is meant to
+         insert data into SQS for further long processing jobs. The Lambda function does seem able to read from 
+        the DynamoDB stream but isn't able to store messages in SQS. What's the problem?
+     `,
+        answers: {
+          a: "The Lambda IAM role is missing permissions ",
+          b: "Lambda security group must allow outbound access to SQS",
+          c: "The flow DynamoDB => Lambda => SQS is not authorised",
+          d: "SQS security group must be edited to allow lambda",
+        },
+        correctAnswer: "a",
+        explanation: `
+    not implemented
+    
+    `,
+      },
+
+      {
+        question: `
+        You would like to create a micro service whose sole purpose is 
+        to encode video files with your specific algorithm from S3 back into S3. 
+        You would like to make that micro-service reliable and retry upon failure.
+        Processing a video may take over 25 minutes. The service is asynchronous and it
+        should be possible for the service to be stopped for a day and resume the next
+        day from the videos that haven't been encoded yet.
+         Which of the following service would you recommend to implement this service?
+     `,
+        answers: {
+          a: "S3 + Lambda",
+          b: "SQS + EC2",
+          c: "SNS + EC2",
+          d: "SQS + Lambda",
+        },
+        correctAnswer: "b",
+        explanation: `
+        SQS allows you to retain messages for days and process them later, while we take down our EC2 instance
+    `,
+      },
+
+      {
+        question: `
+        You would like to distribute paid software installation files globally 
+        for your customers that have indeed purchased the content. 
+        The software may be purchased by different users, and you want to protect the
+         download URL with security including IP restriction. Which solution do you recommend?
+     `,
+        answers: {
+          a: "s3 pre-signed url",
+          b: "CloudFront Signed URL",
+          c: "EFS",
+          d: "S3 public bucket",
+        },
+        correctAnswer: "b",
+        explanation: `
+        This will have security including IP restriction
+    `,
+      },
+
+      {
+        question: `
+        You are a photo hosting service and publish every month a master pack of
+         beautiful mountains images, that are over 50 GB in size and downloaded from all around the world.
+          The content is currently hosted on EFS and distributed by ELB and EC2 instances. 
+          You are experiencing high load each month and very high network costs. What can you recommend
+         that won't force an application refactor and reduce network costs and EC2 load dramatically?
+     `,
+        answers: {
+          a: "Hosts the master pack into s3 ",
+          b: "Create a Cloudfront distribution",
+          c: "upgrade the EC2 Instance",
+          d: "Enable ELB caching",
+        },
+        correctAnswer: "b",
+        explanation: `
+        CloudFront can be used in front of an ELB
+    `,
+      },
+
+      {
+        question: `
+        You would like to deliver big data streams in real time to multiple 
+        consuming applications, with replay features. Which technology do you recommend?
+     `,
+        answers: {
+          a: "Kinesis Data Streams",
+          b: "Kinesis firehose",
+          c: "SQS",
+          d: "Amazon MQ",
+        },
+        correctAnswer: "a",
+        explanation: `
+        Kinesis Data Streams has all these features
+    `,
+      },
+
+      {
+        question: `
+        Which database helps you store data in a relational format, 
+        with SQL language compatibility and capability of processing transactions? 
+     `,
+        answers: {
+          a: "RDS",
+          b: "Redshift",
+          c: "DynamoDB",
+          d: "ElastiCache",
+        },
+        correctAnswer: "a",
+        explanation: `
+    not implemented
+    
+    `,
+      },
+
+      {
+        question: `
+        Which database do you suggest to have caching capability with a Redis compatible API?
+     `,
+        answers: {
+          a: "RDS ",
+          b: "DynamoDB",
+          c: "ElastiCache",
+          d: "ElastiSearch",
+        },
+        correctAnswer: "c",
+        explanation: `
+        ElastiCache can create a Redis cache or a Memcached cache
+    `,
+      },
+
+      {
+        question: `
+        You are looking to perform OLTP, and would like to have the underlying storage 
+        with the maximum amount of replication and auto-scaling capability. What do you recommend?
+     `,
+        answers: {
+          a: "ElastiCache ",
+          b: "Redshift",
+          c: "Aurora",
+          d: "RDS",
+        },
+        correctAnswer: "c",
+        explanation: `
+    not implemented
+`,
+      },
+
+      {
+        question: `
+        As a solution architect, you plan on creating a social 
+        media website where users can be friends with each other, and like each other's posts.
+         You plan on performing some complicated queries such as "What are the number 
+        of likes on the posts that have been posted by the friends of Mike?". What database do you suggest?
+     `,
+        answers: {
+          a: "Neptune ",
+          b: "RDS",
+          c: "Redshift",
+          d: "ElasticSearch",
+        },
+        correctAnswer: "a",
+        explanation: `
+        This is AWS' managed graph database
+    `,
+      },
+
+      {
+        question: `
+        You would like to store big objects of 100 MB into a reliable and durable Key Value store.
+         What do you recommend? 
+     `,
+        answers: {
+          a: "Athena",
+          b: "S3",
+          c: "DynamoDB",
+          d: "ElastiCache",
+        },
+        correctAnswer: "b",
+        explanation: `
+        S3 is indeed a key value store! (where the key is the full path of the object in the bucket)
+     `,
+      },
+
+      {
+        question: `
+        You would like to have a database which is efficient
+         at performing analytical queries on large sets of columnar data.
+          You would like to connect that Data Warehouse to a reporting and
+         dashboard tool such as Amazon Quicksight. Which technology do you recommend?
+     `,
+        answers: {
+          a: "RDS",
+          b: "S3",
+          c: "Redshift",
+          d: "Neptune",
+        },
+        correctAnswer: "c",
+        explanation: `
+        not implemented
+    `,
+      },
+
+      {
+        question: `
+        Your log data is currently stored in S3 and you would 
+        like to perform a quick analysis if possible serverless to filter the logs and find a
+         user which may have completed an unauthorized action. Which technology do you recommend?
+     `,
+        answers: {
+          a: "DynamoDB ",
+          b: "Redshift",
+          c: "Athena",
+          d: "Glacier",
+        },
+        correctAnswer: "c",
+        explanation: `
+    not implemented
+    
+    `,
+      },
+
+      {
+        question: `
+        Your gaming website is currently running on top of DynamoDB. 
+        Users have been asking for a search feature to find other gamers by name, with partial matches if possible. 
+        Which technology do you recommend to implement that feature?
+     `,
+        answers: {
+          a: "DynamoDB ",
+          b: "ElasticSearch",
+          c: "Neptune",
+          d: "Redshift",
+        },
+        correctAnswer: "b",
+        explanation: `
+        Anytime you see "search", think ElasticSearch
+    `,
+      },
+
+      {
+        question: `
+        We'd like to have CloudWatch Metrics for EC2 at a 1 minute rate. What should we do?
+     `,
+        answers: {
+          a: "Enable custom metrics ",
+          b: "Enable High Resolution",
+          c: "Enable Basic Monitoring",
+          d: "Enable Detailed Monitoring",
+        },
+        correctAnswer: "d",
+        explanation: `
+        This is a paid offering and gives you EC2 metrics at a 1 minute rate
+    `,
+      },
+
+      {
+        question: `
+        Your CloudWatch alarm is triggered and controls an ASG.
+         The alarm should trigger 1 instance being deleted from your ASG,
+         but your ASG has already 2 instances running and the minimum capacity is 2. What will happen?
+     `,
+        answers: {
+          a: "One instance will be deleted and the ASG capacity and minimum will go to 1 ",
+          b: "The alarm will remain in the Alarm state but never decrease the number of instances in my ASG",
+          c: "The alarm will be detached from the ASG",
+          d: "The alarm will go into ok state",
+        },
+        correctAnswer: "b",
+        explanation: `
+        The number of instances in an ASG cannot go below the minimum, 
+        even if the alarm would in theory trigger an instance termination
+    `,
+      },
+
+      {
+        question: `
+        You have made a configuration change and would like to evaluate
+         the impact of it on the performance of your application. Which service do you use?
+     `,
+        answers: {
+          a: "CloudWatch",
+          b: "CloudTrail",
+          c: "none of the above",
+          d: "All of the above",
+        },
+        correctAnswer: "a",
+        explanation: `
+        CloudWatch is used to monitor the applications performance / metrics
+    `,
+      },
+
+      {
+        question: `
+        Someone has terminated an EC2 instance in your account last week, which was hosting a critical database. 
+        You would like to understand who did it and when, how can you achieve that?
+     `,
+        answers: {
+          a: "Look at CloudWatch Metrics",
+          b: "Look at CloudWatch Alarm",
+          c: "Look at CloudWatch Events",
+          d: "Look at CloudTrail",
+        },
+        correctAnswer: "d",
+        explanation: `
+        CloudTrail helps audit the API calls made within your account, so the database deletion 
+        API call will appear here (regardless if made from the console, the CLI, or an SDK)
+    `,
+      },
+
+      {
+        question: `
+        You would like to ensure that over time,
+         none of your EC2 instances expose the port 84 as it 
+         is known to have vulnerabilities with the OS you are using. What can you do to monitor this?
+`,
+        answers: {
+          a: "Setup CloudWatch Metrics",
+          b: "Setup CloudTrails trail",
+          c: "Setup config rules",
+          d: "create an aws lambda cron job",
+        },
+        correctAnswer: "c",
+        explanation: `
+    not implemented
+    
+    `,
+      },
+
+      {
+        question: `
+        You would like to evaluate the
+         compliance of your resource's configurations over time. Which technology do you choose?
+     `,
+        answers: {
+          a: "CloudWatch",
+          b: "CloudTrail",
+          c: "Config",
+          d: "None of the above",
+        },
+        correctAnswer: "c",
+        explanation: `
+   Not implemented
+    
+    `,
+      },
+
+      {
+        question: `
+        High Resolution Custom Metrics can have a minimum resolution of 
+     `,
+        answers: {
+          a: "1 seconds",
+          b: "10 seconds",
+          c: "30 seconds",
+          d: "1 minute",
+        },
+        correctAnswer: "a",
+        explanation: `
+    Not implemented
+    
+    `,
+      },
+
+      {
+        question: `
+        An Alarm on a High Resolution Metric can be triggered as often as
+     `,
+        answers: {
+          a: "1 second",
+          b: "10 seconds",
+          c: "30 seconds",
+          d: "1 minute",
+        },
+        correctAnswer: "b",
+        explanation: `
+    note implemented
+    
+    `,
+      },
+
+      {
+        question: `
+        We need to gain access to a Role in another AWS account. How is it done?
+     `,
+        answers: {
+          a: "You should ask them to create a user for you",
+          b: "You should ask them to send us access key",
+          c: "We should us STS service to gain temporary credentials",
+          d: "None of the above",
+        },
+        correctAnswer: "c",
+        explanation: `
+        STS will allow us to get cross account access through the
+         creation of a role in our account authorized to access a role in another account. 
+        See more here: https://docs.aws.amazon.com/IAM/latest/UserGuide/tutorial_cross-account-with-roles.html
+    
+    `,
+      },
+
+      {
+        question: `
+        You have a mobile application and would like to give
+         your users access to their own personal space in Amazon S3. How do you achieve that?
+     `,
+        answers: {
+          a: "Generate IAM user credential for each of your application's user ",
+          b: "Use Cognito Identity Federation",
+          c: "Use SAML Identity Fedration",
+          d: "Use a bucket policy to make your bucket public",
+        },
+        correctAnswer: "b",
+        explanation: `
+        Cognito is made to federate mobile user accounts and provide them with their own IAM policy. 
+        As such, they should be able thanks to that policy to access their own personal space in Amazon S3. 
+    
+    `,
+      },
+
+      {
+        question: `
+        You have strong regulatory requirements to only allow fully internally audited AWS Services in production. 
+        You still want to allow your teams to experiment
+         in development environments while services are being audited. How can you best set this up?
+     `,
+        answers: {
+          a: "Provide the dev team with a completely independent account",
+          b: "Create an AWS Organisation and create two prod and Dev OU. Apply a SCP on Prod",
+          c: "Apply a Global IAM policy on your production account",
+          d: "Create an aws config rule",
+        },
+        correctAnswer: "b",
+        explanation: `
+        not implemented
+     `,
+      },
+
+      {
+        question: `
+        You have an on-premise active directory setup and would like 
+        to provide access for your on-premise users to the multiple accounts you have in AWS.
+         The solution should scale to adding accounts in the future. What do you recommend?
+     `,
+        answers: {
+          a: "Setup SAML 2.0 integration between each aws account and your on-premise AD",
+          b: "Set up aws Single Sign-on",
+          c: "Set up web identity federation through cognito",
+          d: "Create a Lambda function that automatically creates IAM user in every aws account  for each user in yourr AD",
+        },
+        correctAnswer: "",
+        explanation: `
+    not implemented
+    `,
+      },
+
+      {
+        question: `
+        Which AWS Directory Service allows you to proxy requests to your on-premise active directory?
+     `,
+        answers: {
+          a: "AD on EC2 ",
+          b: "Managed microsoft AD",
+          c: "AD connector",
+          d: "Simple AD",
+        },
+        correctAnswer: "c",
+        explanation: `
+    Not implemented
+    `,
+      },
+
+      {
+        question: `
+        To enable encryption in flight, we need to have
+`,
+        answers: {
+          a: "An HTTP endpoint with ssl certificate",
+          b: "An HTTPs endpoint with ssl certificate",
+          c: "A TCP endpoint",
+          d: "None of the above",
+        },
+        correctAnswer: "b",
+        explanation: `
+        encryption in flight = HTTPS, and HTTPs cannot be enabled without an SSL certificate
+    `,
+      },
+
+      {
+        question: `
+        Server side encryption means that the data is sent encrypted to the server first
+     `,
+        answers: {
+          a: "true",
+          b: "false",
+          
+        },
+        correctAnswer: "b",
+        explanation: `
+        Server side encryptions means the server will encrypt the data for us.
+         We don't need to encrypt it beforehand
+    `,
+      },
+
+      {
+        question: `
+        In server side encryption, only the encryption happens on the server. Where does the decryption happen?
+     `,
+        answers: {
+          a: "The server",
+          b: "The client",
+          c: "both client and server",
+          d: "either client or server",
+        },
+        correctAnswer: "a",
+        explanation: `
+        In server side encryption, the decryption also happens on
+         the server (in AWS, we wouldn't be able to decrypt the 
+        data ourselves as we can't have access to the corresponding encryption key)
+     `,
+      },
+
+      {
+        question: `
+        In client side encryption, the server must know our encryption scheme to accept the data
+     `,
+        answers: {
+          a: "true",
+          b: "false",
+         
+        },
+        correctAnswer: "b",
+        explanation: `
+        With client side encryption, the server does not need to know any information about the encryption being used,
+         as the server won't perform any encryption or decryption tasks
+    
+    `,
+      },
+
+      {
+        question: `
+        We need to create User Keys in KMS before using the encryption features for EBS, S3, etc...
+     `,
+        answers: {
+          a: "false",
+          b: "true",
+         
+        },
+        correctAnswer: "a",
+        explanation: `
+        we can use the AWS Managed Service Keys in KMS, therefore we don't need to create our own keys
+     `,
+      },
+
+      {
+        question: `
+        We'd like our Lambda function to have access to a database password. We should
+     `,
+        answers: {
+          a: "Embed it in code",
+          b: "Have it as plain text environment variable",
+          c: "Have it as encrypted variable and decrypt it at runtime",
+          d: "None of the above",
+        },
+        correctAnswer: "c",
+        explanation: `
+    This is the most secure solution amongst the options
+    
+    `,
+      },
+
+      {
+        question: `
+        We would like to audit the values of an encryption value over time
+     `,
+        answers: {
+          a: "We should use AWS KMS versioning feature",
+          b: "We should use s3",
+          c: "We should use SSM Parameter store",
+          d: "none of the above",
+        },
+        correctAnswer: "c",
+        explanation: `
+        SSM Parameter Store has versioning and audit of values built-in directly
+    `,
+      },
+
+      {
+        question: `
+        Under the shared responsibility model, what are your responsible for in RDS?
+     `,
+        answers: {
+          a: "Security group rules",
+          b: "OS patching",
+          c: "Database patching",
+          d: "none of the above",
+        },
+        correctAnswer: "a",
+        explanation: `
+        This are configured by us and we've done that extensively in the course
+    `,
+      },
+
+      {
+        question: `
+        Your user-facing website is a high risk target for DDoS attack and
+         you would like to get 24/7 support in case they happen,
+         as well as AWS bill reimbursement for the incurred costs during the attacks. What service should you use?
+     `,
+        answers: {
+          a: "AWS Shield Advanced ",
+          b: "AWS WAF",
+          c: "AWS Shield",
+          d: "AWS DDOs Oops Team",
+        },
+        correctAnswer: "a",
+        explanation: `
+        Your user-facing website is a high risk target for DDoS attack and
+         you would like to get 24/7 support in case they happen, as well as
+         AWS bill reimbursement for the incurred costs during the attacks. What service should you use?
+    `,
+      },
+
+      {
+        question: `
+        You need an encryption service that supports asymmetric encryption schemes, 
+        and you want to manage the security keys yourself. Which service could you use?
+`,
+        answers: {
+          a: "CloudHSM",
+          b: "KMS",
+          c: "Parameter store",
+          d: "none of the above",
+        },
+        correctAnswer: "a",
+        explanation: `
+    not implemented
+    
+    `,
+      },
+
+      {
+        question: `
+        What does this CIDR correspond to?
+     `,
+        answers: {
+          a: "10.0.4.0  to  10.0.4.15",
+          b: "10.0.4.0  to  10.0.32.0",
+          c: "10.0.4.0  to  10.0.4.28 ",
+          d: "10.0.0.0  to  10.0.16.0 ",
+        },
+        correctAnswer: "a",
+        explanation: `
+        /28 means 16 IPs (=2^(32-28) = 2^4), means only the last digit can change. 
+    `,
+      },
+      {
+        question: `
+        You plan on creating a subnet and want it to have at least capacity for 28 EC2 instances. 
+        What's the minimum size you need to have for your subnet?
+     `,
+        answers: {
+          a: "/28",
+          b: "/27",
+          c: "/26",
+          d: "/25",
+        },
+        correctAnswer: "c",
+        explanation: `
+        perfect size (64 IP)
+    `,
+      },
+
+      {
+        question: `
+        You would like to provide internet access to your instances in private subnets with IPv4, 
+        while making sure this solution
+         requires the least amount of administration and scales seamlessly. What should you use?
+     `,
+        answers: {
+          a: "NAT Instances with Source/Destination flag off",
+          b: "NAT Gatway",
+          c: "Egress Only Internet Gateway",
+          d: "None of the above",
+        },
+        correctAnswer: "b",
+        explanation: `
+   Not implemented
+    `,
+      },
+
+      {
+        question: `
+        VPC Peering has been enabled between VPC A and VPC B, and the route tables have been updated for VPC A. 
+        Still, your instances cannot communicate. What is the likely issue?
+     `,
+        answers: {
+          a: "Check the NACL",
+          b: "Check the table in VPC B",
+          c: "Check the instance security group",
+          d: "Check if DNS Security Group is enabled",
+        },
+        correctAnswer: "b",
+        explanation: `
+        Route tables must be updated in both VPC that are peered
+    `,
+      },
+
+      {
+        question: `
+        Which are the only two services that have a Gateway Endpoint instead of an Interface Endpoint as a VPC endpoint? 
+     `,
+        answers: {
+          a: "Amazon s3 & Amazon SQS",
+          b: "Amazon s3 & Amazon DynamoDB",
+          c: "Amazon SQS & Amazon DynamoDB",
+          d: "Amazon RDS & Amazon Redshift",
+        },
+        correctAnswer: "b",
+        explanation: `
+        these two services have a Gateway endpoint (remember it),
+         all the other ones have an interface endpoint (powered by Private Link - means a private IP)
+    `,
+      },
+
+      {
+        question: `
+        Your company has created a REST API that it will sell to hundreds of customers as a SaaS.
+        Your customers are on AWS and are using their own VPC. 
+         You would like to allow your customers to access your SaaS without going through the public internet while 
+        ensuring your infrastructure is not left exposed to network attacks. What do you recommend?
+     `,
+        answers: {
+          a: "Create  a VPC Endpoint",
+          b: "Create  a VPC Peering Connection",
+          c: "Create  a PrivateLink",
+          d: "Create  a ClassicLink",
+        },
+        correctAnswer: "c",
+        explanation: `
+    not  implemented
+     `,
+      },
+
+
+
+      {
+        question: `
+        You have a corporate network of size 10.0.0.0/8  and a satellite office of size 192.168.0.0/16. 
+        Which CIDR is acceptable for your AWS VPC if you plan on connecting your networks later on?
+     `,
+        answers: {
+          a: "172.16.0.0/12",
+          b: "172.16.0.0/16",
+          c: "10.0.16.0/16",
+          d: "192.168.4.0/18",
+        },
+        correctAnswer: "c",
+        explanation: `
+        CIDR not should overlap, and the max CIDR size in AWS is /16
+    `,
+      },
+
+
+
+      {
+        question: `
+        You have set up an internet gateway in your VPC,
+         but your EC2 instances still don't have access to the internet. What is NOT a possible issue?
+     `,
+        answers: {
+          a: "Route Tables are missing entries ",
+          b: "Security groups does not allow network in",
+          c: "NACL does not allow network out",
+          d: "None of the above",
+        },
+        correctAnswer: "b",
+        explanation: `
+        security groups are stateful and if traffic can go out, then it can go back in
+    `,
+      },
+
+
+
+      {
+        question: `
+        You have set-up a direct connection between your Corporate Data Center and your VPC A. 
+        You need to access VPC B in another region from your Corporate Data Center as well. What should you do?
+     `,
+        answers: {
+          a: "Enable VPC peering",
+          b: "Use Direct Connect Gateway",
+          c: "Use a Direct Connect",
+          d: "Setup a NAT Gateway",
+        },
+        correctAnswer: "b",
+        explanation: `
+        This is the main use case of Direct Connect Gateways
+    `,
+      },
+
+
+
+      {
+        question: `
+        Your company has several on-premise sites across the USA.
+        These sites are currently linked using a private connection,
+        but your private connection provider has been recently quite unstable,
+        making your IT architecture partially offline. 
+        You would like to create a backup connection 
+        that will use the public internet to link your on-premise sites,
+         that you can failover in case of issues with your provider. What do you recommend?
+     `,
+        answers: {
+          a: "Site-to-site VPN",
+          b: "Direct Connect",
+          c: "VPN CloudHub",
+          d: "PrivateLink",
+        },
+        correctAnswer: "c",
+        explanation: `
+    not implemented
+    `,
+      },
+
+
+
+      {
+        question: `
+        As part of your disaster recovery strategy, you would like to have only the critical systems up
+         and running in AWS. You don't mind a longer RTO. Which DR strategy do you recommend?
+     `,
+        answers: {
+          a: "Backup and Restore",
+          b: "Pilot Light",
+          c: "Warm Standby",
+          d: "Multi site",
+        },
+        correctAnswer: "b",
+        explanation: `
+        If you're interested into reading more about disaster recovery, the whitepaper is here
+        : https://d1.awsstatic.com/asset-repository/products/CloudEndure/CloudEndure_Affordable_Enterprise-Grade_Disaster_Recovery_Using_AWS.pdf
+    `,
+      },
+
+
+
+      {
+        question: `
+        You would like to get the DR strategy
+         with the lowest RTO and RPO, regardless of the cost, which one do you recommend?
+     `,
+     answers: {
+        a: "Backup and Restore",
+        b: "Pilot Light",
+        c: "Warm Standby",
+        d: "Multi site",
+      },
+        correctAnswer: "d",
+        explanation: `
+        If you're interested into reading more about disaster recovery, the whitepaper is here:
+         https://d1.awsstatic.com/asset-repository/products/CloudEndure/CloudEndure_Affordable_Enterprise-Grade_Disaster_Recovery_Using_AWS.pdf
+    `,
+      },
+
+
+
+      {
+        question: `
+        Which of the following strategies has a potentially high RPO and RTO?
+     `,
+     answers: {
+        a: "Backup and Restore",
+        b: "Pilot Light",
+        c: "Warm Standby",
+        d: "Multi site",
+      },
+        correctAnswer: "d",
+        explanation: `
+        If you're interested into reading more about disaster recovery, the whitepaper is here:
+         https://d1.awsstatic.com/asset-repository/products/CloudEndure/CloudEndure_Affordable_Enterprise-Grade_Disaster_Recovery_Using_AWS.pdf
+    `,
+      },
+
+
 
       {
         question: `
@@ -1483,21 +2935,7 @@ It works well, so you decide to deploy your script in us-west-1 as well.
     `,
       },
 
-      {
-        question: `
-     `,
-        answers: {
-          a: " ",
-          b: "",
-          c: "",
-          d: "",
-        },
-        correctAnswer: "",
-        explanation: `
-    
-    
-    `,
-      },
+
 
       {
         question: `
@@ -1515,21 +2953,7 @@ It works well, so you decide to deploy your script in us-west-1 as well.
     `,
       },
 
-      {
-        question: `
-     `,
-        answers: {
-          a: " ",
-          b: "",
-          c: "",
-          d: "",
-        },
-        correctAnswer: "",
-        explanation: `
-    
-    
-    `,
-      },
+
 
       {
         question: `
@@ -1547,21 +2971,7 @@ It works well, so you decide to deploy your script in us-west-1 as well.
     `,
       },
 
-      {
-        question: `
-     `,
-        answers: {
-          a: " ",
-          b: "",
-          c: "",
-          d: "",
-        },
-        correctAnswer: "",
-        explanation: `
-    
-    
-    `,
-      },
+
 
       {
         question: `
@@ -1579,21 +2989,7 @@ It works well, so you decide to deploy your script in us-west-1 as well.
     `,
       },
 
-      {
-        question: `
-     `,
-        answers: {
-          a: " ",
-          b: "",
-          c: "",
-          d: "",
-        },
-        correctAnswer: "",
-        explanation: `
-    
-    
-    `,
-      },
+
 
       {
         question: `
@@ -1611,21 +3007,7 @@ It works well, so you decide to deploy your script in us-west-1 as well.
     `,
       },
 
-      {
-        question: `
-     `,
-        answers: {
-          a: " ",
-          b: "",
-          c: "",
-          d: "",
-        },
-        correctAnswer: "",
-        explanation: `
-    
-    
-    `,
-      },
+
 
       {
         question: `
@@ -1643,21 +3025,7 @@ It works well, so you decide to deploy your script in us-west-1 as well.
     `,
       },
 
-      {
-        question: `
-     `,
-        answers: {
-          a: " ",
-          b: "",
-          c: "",
-          d: "",
-        },
-        correctAnswer: "",
-        explanation: `
-    
-    
-    `,
-      },
+
 
       {
         question: `
@@ -1675,21 +3043,7 @@ It works well, so you decide to deploy your script in us-west-1 as well.
     `,
       },
 
-      {
-        question: `
-     `,
-        answers: {
-          a: " ",
-          b: "",
-          c: "",
-          d: "",
-        },
-        correctAnswer: "",
-        explanation: `
-    
-    
-    `,
-      },
+
 
       {
         question: `
@@ -1707,21 +3061,7 @@ It works well, so you decide to deploy your script in us-west-1 as well.
     `,
       },
 
-      {
-        question: `
-     `,
-        answers: {
-          a: " ",
-          b: "",
-          c: "",
-          d: "",
-        },
-        correctAnswer: "",
-        explanation: `
-    
-    
-    `,
-      },
+
 
       {
         question: `
@@ -1739,21 +3079,7 @@ It works well, so you decide to deploy your script in us-west-1 as well.
     `,
       },
 
-      {
-        question: `
-     `,
-        answers: {
-          a: " ",
-          b: "",
-          c: "",
-          d: "",
-        },
-        correctAnswer: "",
-        explanation: `
-    
-    
-    `,
-      },
+
 
       {
         question: `
@@ -1771,21 +3097,7 @@ It works well, so you decide to deploy your script in us-west-1 as well.
     `,
       },
 
-      {
-        question: `
-     `,
-        answers: {
-          a: " ",
-          b: "",
-          c: "",
-          d: "",
-        },
-        correctAnswer: "",
-        explanation: `
-    
-    
-    `,
-      },
+
 
       {
         question: `
@@ -1803,21 +3115,7 @@ It works well, so you decide to deploy your script in us-west-1 as well.
     `,
       },
 
-      {
-        question: `
-     `,
-        answers: {
-          a: " ",
-          b: "",
-          c: "",
-          d: "",
-        },
-        correctAnswer: "",
-        explanation: `
-    
-    
-    `,
-      },
+
 
       {
         question: `
@@ -1835,21 +3133,7 @@ It works well, so you decide to deploy your script in us-west-1 as well.
     `,
       },
 
-      {
-        question: `
-     `,
-        answers: {
-          a: " ",
-          b: "",
-          c: "",
-          d: "",
-        },
-        correctAnswer: "",
-        explanation: `
-    
-    
-    `,
-      },
+
 
       {
         question: `
@@ -1867,21 +3151,7 @@ It works well, so you decide to deploy your script in us-west-1 as well.
     `,
       },
 
-      {
-        question: `
-     `,
-        answers: {
-          a: " ",
-          b: "",
-          c: "",
-          d: "",
-        },
-        correctAnswer: "",
-        explanation: `
-    
-    
-    `,
-      },
+
 
       {
         question: `
@@ -1899,21 +3169,7 @@ It works well, so you decide to deploy your script in us-west-1 as well.
     `,
       },
 
-      {
-        question: `
-     `,
-        answers: {
-          a: " ",
-          b: "",
-          c: "",
-          d: "",
-        },
-        correctAnswer: "",
-        explanation: `
-    
-    
-    `,
-      },
+
 
       {
         question: `
@@ -1931,21 +3187,7 @@ It works well, so you decide to deploy your script in us-west-1 as well.
     `,
       },
 
-      {
-        question: `
-     `,
-        answers: {
-          a: " ",
-          b: "",
-          c: "",
-          d: "",
-        },
-        correctAnswer: "",
-        explanation: `
-    
-    
-    `,
-      },
+
 
       {
         question: `
@@ -1963,21 +3205,7 @@ It works well, so you decide to deploy your script in us-west-1 as well.
     `,
       },
 
-      {
-        question: `
-     `,
-        answers: {
-          a: " ",
-          b: "",
-          c: "",
-          d: "",
-        },
-        correctAnswer: "",
-        explanation: `
-    
-    
-    `,
-      },
+
 
       {
         question: `
@@ -1995,6 +3223,8 @@ It works well, so you decide to deploy your script in us-west-1 as well.
     `,
       },
 
+
+
       {
         question: `
      `,
@@ -2010,6 +3240,437 @@ It works well, so you decide to deploy your script in us-west-1 as well.
     
     `,
       },
+
+
+
+      {
+        question: `
+     `,
+        answers: {
+          a: " ",
+          b: "",
+          c: "",
+          d: "",
+        },
+        correctAnswer: "",
+        explanation: `
+    
+    
+    `,
+      },
+
+
+
+      {
+        question: `
+     `,
+        answers: {
+          a: " ",
+          b: "",
+          c: "",
+          d: "",
+        },
+        correctAnswer: "",
+        explanation: `
+    
+    
+    `,
+      },
+
+
+
+      {
+        question: `
+     `,
+        answers: {
+          a: " ",
+          b: "",
+          c: "",
+          d: "",
+        },
+        correctAnswer: "",
+        explanation: `
+    
+    
+    `,
+      },
+
+
+
+      {
+        question: `
+     `,
+        answers: {
+          a: " ",
+          b: "",
+          c: "",
+          d: "",
+        },
+        correctAnswer: "",
+        explanation: `
+    
+    
+    `,
+      },
+
+
+
+      {
+        question: `
+     `,
+        answers: {
+          a: " ",
+          b: "",
+          c: "",
+          d: "",
+        },
+        correctAnswer: "",
+        explanation: `
+    
+    
+    `,
+      },
+
+
+
+      {
+        question: `
+     `,
+        answers: {
+          a: " ",
+          b: "",
+          c: "",
+          d: "",
+        },
+        correctAnswer: "",
+        explanation: `
+    
+    
+    `,
+      },
+
+
+
+      {
+        question: `
+     `,
+        answers: {
+          a: " ",
+          b: "",
+          c: "",
+          d: "",
+        },
+        correctAnswer: "",
+        explanation: `
+    
+    
+    `,
+      },
+
+
+
+      {
+        question: `
+     `,
+        answers: {
+          a: " ",
+          b: "",
+          c: "",
+          d: "",
+        },
+        correctAnswer: "",
+        explanation: `
+    
+    
+    `,
+      },
+
+
+
+      {
+        question: `
+     `,
+        answers: {
+          a: " ",
+          b: "",
+          c: "",
+          d: "",
+        },
+        correctAnswer: "",
+        explanation: `
+    
+    
+    `,
+      },
+
+
+
+      {
+        question: `
+     `,
+        answers: {
+          a: " ",
+          b: "",
+          c: "",
+          d: "",
+        },
+        correctAnswer: "",
+        explanation: `
+    
+    
+    `,
+      },
+
+
+
+      {
+        question: `
+     `,
+        answers: {
+          a: " ",
+          b: "",
+          c: "",
+          d: "",
+        },
+        correctAnswer: "",
+        explanation: `
+    
+    
+    `,
+      },
+
+
+
+      {
+        question: `
+     `,
+        answers: {
+          a: " ",
+          b: "",
+          c: "",
+          d: "",
+        },
+        correctAnswer: "",
+        explanation: `
+    
+    
+    `,
+      },
+
+
+
+      {
+        question: `
+     `,
+        answers: {
+          a: " ",
+          b: "",
+          c: "",
+          d: "",
+        },
+        correctAnswer: "",
+        explanation: `
+    
+    
+    `,
+      },
+
+
+
+      {
+        question: `
+     `,
+        answers: {
+          a: " ",
+          b: "",
+          c: "",
+          d: "",
+        },
+        correctAnswer: "",
+        explanation: `
+    
+    
+    `,
+      },
+
+
+
+      {
+        question: `
+     `,
+        answers: {
+          a: " ",
+          b: "",
+          c: "",
+          d: "",
+        },
+        correctAnswer: "",
+        explanation: `
+    
+    
+    `,
+      },
+
+
+
+      {
+        question: `
+     `,
+        answers: {
+          a: " ",
+          b: "",
+          c: "",
+          d: "",
+        },
+        correctAnswer: "",
+        explanation: `
+    
+    
+    `,
+      },
+
+
+
+      {
+        question: `
+     `,
+        answers: {
+          a: " ",
+          b: "",
+          c: "",
+          d: "",
+        },
+        correctAnswer: "",
+        explanation: `
+    
+    
+    `,
+      },
+
+
+
+      {
+        question: `
+     `,
+        answers: {
+          a: " ",
+          b: "",
+          c: "",
+          d: "",
+        },
+        correctAnswer: "",
+        explanation: `
+    
+    
+    `,
+      },
+
+
+
+      {
+        question: `
+     `,
+        answers: {
+          a: " ",
+          b: "",
+          c: "",
+          d: "",
+        },
+        correctAnswer: "",
+        explanation: `
+    
+    
+    `,
+      },
+
+
+
+      {
+        question: `
+     `,
+        answers: {
+          a: " ",
+          b: "",
+          c: "",
+          d: "",
+        },
+        correctAnswer: "",
+        explanation: `
+    
+    
+    `,
+      },
+
+
+
+      {
+        question: `
+     `,
+        answers: {
+          a: " ",
+          b: "",
+          c: "",
+          d: "",
+        },
+        correctAnswer: "",
+        explanation: `
+    
+    
+    `,
+      },
+
+
+
+      {
+        question: `
+     `,
+        answers: {
+          a: " ",
+          b: "",
+          c: "",
+          d: "",
+        },
+        correctAnswer: "",
+        explanation: `
+    
+    
+    `,
+      },
+
+
+
+      {
+        question: `
+     `,
+        answers: {
+          a: " ",
+          b: "",
+          c: "",
+          d: "",
+        },
+        correctAnswer: "",
+        explanation: `
+    
+    
+    `,
+      },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
