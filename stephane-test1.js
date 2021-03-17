@@ -803,7 +803,7 @@ It works well, so you decide to deploy your script in us-west-1 as well.
 
      `,
         answers: {
-          a: "An ElastiCache cluster ",
+          a: "An ststiCache cluster ",
           b: "RDS Read Replicas",
           c: "RDS Multi AZ",
           d: "none of the above",
@@ -2939,12 +2939,34 @@ It works well, so you decide to deploy your script in us-west-1 as well.
 
       {
         question: `
+        Your Lambda function is processing events coming through S3 events and distributed through an SNS topic.
+         You have decided to ensure that events that can not be processed are sent to a DLQ. 
+        In which service should you set up the DLQ?
      `,
         answers: {
-          a: " ",
-          b: "",
-          c: "",
-          d: "",
+          a: "s3 Events",
+          b: "SNS Topics",
+          c: "Lambda function",
+          d: "none of the above",
+        },
+        correctAnswer: "c",
+        explanation: `
+        the invocation is asynchronous (coming from the SNS topic) so the DLQ has to be set on the Lambda side
+    `,
+      },
+
+
+
+      {
+        question: `
+        You have created an architecture including CloudFront with WAF, Shield, 
+        an ALB, and EC2 instances. You would like to block an IP, where should you do it?
+     `,
+        answers: {
+          a: "CloudFront",
+          b: "WAF",
+          c: "Shhield",
+          d: "ALB Security Group",
         },
         correctAnswer: "",
         explanation: `
@@ -2957,15 +2979,336 @@ It works well, so you decide to deploy your script in us-west-1 as well.
 
       {
         question: `
+        our instances are deployed in an EC2 placement group of type cluster in order to perform HPC. 
+        You would like to maximize network performance between your instances. What should you use?
      `,
         answers: {
-          a: " ",
-          b: "",
-          c: "",
-          d: "",
+          a: "Elastic Network Interface",
+          b: "Elastic Fabric Adapter",
+          c: "Elastic Network Adapter",
+          d: "FSx for Lustre",
         },
-        correctAnswer: "",
+        correctAnswer: "b",
         explanation: `
+    not implemented
+    
+    `,
+      },
+
+
+
+      {
+        question: `
+        You are looking for a service to store docker images in AWS. Which one do you recommend?
+     `,
+        answers: {
+          a: "ECS",
+          b: "ECR",
+          c: "s3",
+          d: "codeCommit",
+        },
+        correctAnswer: "b",
+        explanation: `
+        Amazon Elastic Container Registry (ECR) is a fully-managed Docker container registry that makes
+         it easy for developers to store, manage, and deploy Docker containers
+    `,
+      },
+
+
+
+      {
+        question: `
+        You would like to find a managed-service in AWS alternative to GitLab, 
+        in order to version control your code entirely in AWS. Which technology do you recommend?
+     `,
+        answers: {
+          a: "CodeBuild",
+          b: "CodeCommit",
+          c: "s3",
+          d: "CodePipline",
+        },
+        correctAnswer: "b",
+        explanation: `
+        CodeCommit is used to store and version control your
+         code and as such, it's an alternative to GitLab and GitHub
+  `,
+      },
+
+
+
+      {
+        question: `
+        As part of your disaster recovery strategy, you would like to make sure your entire infrastructure is code,
+         so that you can easily re-deploy it in any region. Which service do you recommend?
+     `,
+        answers: {
+          a: "CodePipline",
+          b: "Elastic Beanstalk",
+          c: "CodeDeploy",
+          d: "CloudFormation",
+        },
+        correctAnswer: "d",
+        explanation: `
+        CloudFormation is the de-facto service in AWS for infrastructure as code. 
+     `,
+      },
+
+
+
+      {
+        question: `
+        You need to manage a fleet of Docker containers in the cloud, which service do you recommend?
+     `,
+        answers: {
+          a: "EC2",
+          b: "ECR",
+          c: "ECS",
+          d: "Lambda",
+        },
+        correctAnswer: "c",
+        explanation: `
+        ECS is a container orchestrator service and
+         the correct service to manage a fleet of Docker containers in the cloud
+  `,
+      },
+
+
+
+      {
+        question: `
+        You would like to orchestrate your CICD pipeline 
+        to deliver all the way to Elastic Beanstalk. Which service do you recommend?
+     `,
+        answers: {
+          a: "CodeBuild",
+          b: "CodePipline",
+          c: "CloudFormation",
+          d: "SWF",
+        },
+        correctAnswer: "c",
+        explanation: `
+        CodePipeline is a CICD orchestration service, and has an integration with Elastic Beanstalk
+    `,
+      },
+
+
+
+      {
+        question: `
+        You need to deploy your code to a 
+        fleet of EC2 instances with a specific strategy. Which technology do you recommend?
+     `,
+     answers: {
+      a: "CodeBuild",
+      b: "CodePipline",
+      c: "CloudFormation",
+      d: "CodeDeploy",
+    },
+        correctAnswer: "d",
+        explanation: `
+        When deploying code directly onto EC2 instances or On Premise servers, CodeDeploy is the service to use. 
+        You can define the strategy (how fast the rollout of the new code should be)
+  `,
+      },
+
+
+
+      {
+        question: `
+        You have a Jenkins CI build server hosted on premise and you would like to de-commission it
+         and replace it by a managed service on AWS. Which service do you recommend?
+     `,
+        answers: {
+          a: "CodeBuild",
+          b: "CloudFormation",
+          c: "CodePipline",
+          d: "AWS Jinkins",
+        },
+        correctWSnswer: "a",
+        explanation: `
+        CodeBuild is an alternative to Jenkins
+  `,
+      },
+
+
+
+      {
+        question: `
+        You need to orchestrate a series of AWS Lambda function into a workflow. Which service do you recommend?
+     `,
+        answers: {
+          a: "SWF",
+          b: "CodePipline",
+          c: "Step Functions",
+          d: "OpsWorks",
+        },
+        correctAnswer: "c",
+        explanation: `
+    not implemented
+    
+    `,
+      },
+
+
+
+      {
+        question: `
+        You are looking to create an Hadoop cluster to perform Big Data Analysis.
+         Which service do you recommend on using?
+`,
+        answers: {
+          a: "Redshift ",
+          b: "Athena",
+          c: "EMR",
+          d: "Glue",
+        },
+        correctAnswer: "c",
+        explanation: `
+        EMR is the AWS way of creating an Hadoop cluster with the tools of your choosing.
+    `,
+      },
+
+
+
+      {
+        question: `
+        You are looking to move data all around your AWS databases using a
+         managed ETL service that has a metadata catalog feature. Which one do you recommend?
+     `,
+        answers: {
+          a: "EMR",
+          b: "Redshift",
+          c: "Glue",
+          d: "Athena",
+        },
+        correctAnswer: "c",
+        explanation: `
+        Glue is an ETL service
+    `,
+      },
+
+
+
+      {
+        question: `
+        Your company is already using Chef recipes to manage its infrastructure. You would like to move to
+         the AWS cloud and keep on using Chef. What service do you recommend?
+     `,
+        answers: {
+          a: "CloudFormation ",
+          b: "SSM",
+          c: "OpoWorks",
+          d: "EC2",
+        },
+        correctAnswer: "c",
+        explanation: `
+        OpsWorks is a managed Chef service
+    `,
+      },
+
+
+
+      {
+        question: `
+        You work for a consulting company which has recently decided to create 
+        video training content for their clients. They would like to view the 
+        videos on different devices such as iPhone, iPad, Web browsers.
+         Which service do you recommend to convert the videos?
+     `,
+        answers: {
+          a: "ElasticVideo ",
+          b: "ElasticTranscoder",
+          c: "ECS",
+          d: "Lambda",
+        },
+        correctAnswer: "b",
+        explanation: `
+    not implemented
+    
+    `,
+      },
+
+
+
+      {
+        question: `
+        Your organization would like to create various accounts to physically separate their dev, 
+        test and production environments. Your IT lead would still like to manage 
+        these environments centrally from a billing purposes, 
+        in order for management to be simple. Which service do you recommend?
+     `,
+        answers: {
+          a: "IAM",
+          b: "STS",
+          c: "Organizations",
+          d: "Workspaces",
+        },
+        correctAnswer: "c",
+        explanation: `
+        AWS Organizations allow you to create multiple AWS accounts and centralize them
+         around a single organization for simplified and unified billing. 
+    
+    `,
+      },
+
+
+
+      {
+        question: `
+        You have a VDI (Virtual Desktop Infrastructure) on premise and as a solution architect,
+         you would like to optimize maintenance and management cost by switching to
+        virtual desktops on the AWS Cloud. Which service do you recommend?
+     `,
+        answers: {
+          a: "AppSync ",
+          b: "Organizations",
+          c: "Workspaces",
+          d: "ECR",
+        },
+        correctAnswer: "c",
+        explanation: `
+        Amazon WorkSpaces is a managed, secure cloud desktop service. 
+        You can use Amazon WorkSpaces to provision either Windows or Linux desktops
+    `,
+      },
+
+
+
+      {
+        question: `
+        Your developers are creating a mobile application and
+         would like to have a managed GraphQL backend. Which service do you recommend?
+     `,
+        answers: {
+          a: "API Gateway",
+          b: "AWS Lambda",
+          c: "AppSync",
+          d: "ECS",
+        },
+        correctAnswer: "c",
+        explanation: `
+        AppSync is a managed GraphQL service in AWS
+    `,
+      },
+
+
+
+      {
+        question: `
+        You are deploying your application on an ECS cluster made of EC2 instances. 
+        The cluster is hosting one application that has been issuing API calls to DynamoDB successfully.
+         Upon adding a second application, which issues API calls to S3, you are getting authorization issues. 
+        What should you do to resolve the problem and ensure proper security?
+     `,
+        answers: {
+          a: "Edit the EC2 Instance role to add permissions to s3",
+          b: "Create an IAM task role for the new application",
+          c: "Enable the Fargate mode",
+          d: "Edit s3 bucket policy to allow ECS task"
+        },
+        correctAnswer: "b",
+        explanation: `
+        not implemented
     
     
     `,
@@ -2975,705 +3318,23 @@ It works well, so you decide to deploy your script in us-west-1 as well.
 
       {
         question: `
+        You would like to get AWS recommendations on actual potential cost savings, performance,
+         service limits improvements amongst other things. Which service do you recommend?
      `,
         answers: {
-          a: " ",
-          b: "",
-          c: "",
-          d: "",
+          a: "Trusted Advisor",
+          b: "Cloud Trail",
+          c: "IAM",
+          d: "CloudFormation",
         },
-        correctAnswer: "",
+        correctAnswer: "a",
         explanation: `
-    
-    
+    not implemented
     `,
       },
 
 
 
-      {
-        question: `
-     `,
-        answers: {
-          a: " ",
-          b: "",
-          c: "",
-          d: "",
-        },
-        correctAnswer: "",
-        explanation: `
-    
-    
-    `,
-      },
-
-
-
-      {
-        question: `
-     `,
-        answers: {
-          a: " ",
-          b: "",
-          c: "",
-          d: "",
-        },
-        correctAnswer: "",
-        explanation: `
-    
-    
-    `,
-      },
-
-
-
-      {
-        question: `
-     `,
-        answers: {
-          a: " ",
-          b: "",
-          c: "",
-          d: "",
-        },
-        correctAnswer: "",
-        explanation: `
-    
-    
-    `,
-      },
-
-
-
-      {
-        question: `
-     `,
-        answers: {
-          a: " ",
-          b: "",
-          c: "",
-          d: "",
-        },
-        correctAnswer: "",
-        explanation: `
-    
-    
-    `,
-      },
-
-
-
-      {
-        question: `
-     `,
-        answers: {
-          a: " ",
-          b: "",
-          c: "",
-          d: "",
-        },
-        correctAnswer: "",
-        explanation: `
-    
-    
-    `,
-      },
-
-
-
-      {
-        question: `
-     `,
-        answers: {
-          a: " ",
-          b: "",
-          c: "",
-          d: "",
-        },
-        correctAnswer: "",
-        explanation: `
-    
-    
-    `,
-      },
-
-
-
-      {
-        question: `
-     `,
-        answers: {
-          a: " ",
-          b: "",
-          c: "",
-          d: "",
-        },
-        correctAnswer: "",
-        explanation: `
-    
-    
-    `,
-      },
-
-
-
-      {
-        question: `
-     `,
-        answers: {
-          a: " ",
-          b: "",
-          c: "",
-          d: "",
-        },
-        correctAnswer: "",
-        explanation: `
-    
-    
-    `,
-      },
-
-
-
-      {
-        question: `
-     `,
-        answers: {
-          a: " ",
-          b: "",
-          c: "",
-          d: "",
-        },
-        correctAnswer: "",
-        explanation: `
-    
-    
-    `,
-      },
-
-
-
-      {
-        question: `
-     `,
-        answers: {
-          a: " ",
-          b: "",
-          c: "",
-          d: "",
-        },
-        correctAnswer: "",
-        explanation: `
-    
-    
-    `,
-      },
-
-
-
-      {
-        question: `
-     `,
-        answers: {
-          a: " ",
-          b: "",
-          c: "",
-          d: "",
-        },
-        correctAnswer: "",
-        explanation: `
-    
-    
-    `,
-      },
-
-
-
-      {
-        question: `
-     `,
-        answers: {
-          a: " ",
-          b: "",
-          c: "",
-          d: "",
-        },
-        correctAnswer: "",
-        explanation: `
-    
-    
-    `,
-      },
-
-
-
-      {
-        question: `
-     `,
-        answers: {
-          a: " ",
-          b: "",
-          c: "",
-          d: "",
-        },
-        correctAnswer: "",
-        explanation: `
-    
-    
-    `,
-      },
-
-
-
-      {
-        question: `
-     `,
-        answers: {
-          a: " ",
-          b: "",
-          c: "",
-          d: "",
-        },
-        correctAnswer: "",
-        explanation: `
-    
-    
-    `,
-      },
-
-
-
-      {
-        question: `
-     `,
-        answers: {
-          a: " ",
-          b: "",
-          c: "",
-          d: "",
-        },
-        correctAnswer: "",
-        explanation: `
-    
-    
-    `,
-      },
-
-
-
-      {
-        question: `
-     `,
-        answers: {
-          a: " ",
-          b: "",
-          c: "",
-          d: "",
-        },
-        correctAnswer: "",
-        explanation: `
-    
-    
-    `,
-      },
-
-
-
-      {
-        question: `
-     `,
-        answers: {
-          a: " ",
-          b: "",
-          c: "",
-          d: "",
-        },
-        correctAnswer: "",
-        explanation: `
-    
-    
-    `,
-      },
-
-
-
-      {
-        question: `
-     `,
-        answers: {
-          a: " ",
-          b: "",
-          c: "",
-          d: "",
-        },
-        correctAnswer: "",
-        explanation: `
-    
-    
-    `,
-      },
-
-
-
-      {
-        question: `
-     `,
-        answers: {
-          a: " ",
-          b: "",
-          c: "",
-          d: "",
-        },
-        correctAnswer: "",
-        explanation: `
-    
-    
-    `,
-      },
-
-
-
-      {
-        question: `
-     `,
-        answers: {
-          a: " ",
-          b: "",
-          c: "",
-          d: "",
-        },
-        correctAnswer: "",
-        explanation: `
-    
-    
-    `,
-      },
-
-
-
-      {
-        question: `
-     `,
-        answers: {
-          a: " ",
-          b: "",
-          c: "",
-          d: "",
-        },
-        correctAnswer: "",
-        explanation: `
-    
-    
-    `,
-      },
-
-
-
-      {
-        question: `
-     `,
-        answers: {
-          a: " ",
-          b: "",
-          c: "",
-          d: "",
-        },
-        correctAnswer: "",
-        explanation: `
-    
-    
-    `,
-      },
-
-
-
-      {
-        question: `
-     `,
-        answers: {
-          a: " ",
-          b: "",
-          c: "",
-          d: "",
-        },
-        correctAnswer: "",
-        explanation: `
-    
-    
-    `,
-      },
-
-
-
-      {
-        question: `
-     `,
-        answers: {
-          a: " ",
-          b: "",
-          c: "",
-          d: "",
-        },
-        correctAnswer: "",
-        explanation: `
-    
-    
-    `,
-      },
-
-
-
-      {
-        question: `
-     `,
-        answers: {
-          a: " ",
-          b: "",
-          c: "",
-          d: "",
-        },
-        correctAnswer: "",
-        explanation: `
-    
-    
-    `,
-      },
-
-
-
-      {
-        question: `
-     `,
-        answers: {
-          a: " ",
-          b: "",
-          c: "",
-          d: "",
-        },
-        correctAnswer: "",
-        explanation: `
-    
-    
-    `,
-      },
-
-
-
-      {
-        question: `
-     `,
-        answers: {
-          a: " ",
-          b: "",
-          c: "",
-          d: "",
-        },
-        correctAnswer: "",
-        explanation: `
-    
-    
-    `,
-      },
-
-
-
-      {
-        question: `
-     `,
-        answers: {
-          a: " ",
-          b: "",
-          c: "",
-          d: "",
-        },
-        correctAnswer: "",
-        explanation: `
-    
-    
-    `,
-      },
-
-
-
-      {
-        question: `
-     `,
-        answers: {
-          a: " ",
-          b: "",
-          c: "",
-          d: "",
-        },
-        correctAnswer: "",
-        explanation: `
-    
-    
-    `,
-      },
-
-
-
-      {
-        question: `
-     `,
-        answers: {
-          a: " ",
-          b: "",
-          c: "",
-          d: "",
-        },
-        correctAnswer: "",
-        explanation: `
-    
-    
-    `,
-      },
-
-
-
-      {
-        question: `
-     `,
-        answers: {
-          a: " ",
-          b: "",
-          c: "",
-          d: "",
-        },
-        correctAnswer: "",
-        explanation: `
-    
-    
-    `,
-      },
-
-
-
-      {
-        question: `
-     `,
-        answers: {
-          a: " ",
-          b: "",
-          c: "",
-          d: "",
-        },
-        correctAnswer: "",
-        explanation: `
-    
-    
-    `,
-      },
-
-
-
-      {
-        question: `
-     `,
-        answers: {
-          a: " ",
-          b: "",
-          c: "",
-          d: "",
-        },
-        correctAnswer: "",
-        explanation: `
-    
-    
-    `,
-      },
-
-
-
-      {
-        question: `
-     `,
-        answers: {
-          a: " ",
-          b: "",
-          c: "",
-          d: "",
-        },
-        correctAnswer: "",
-        explanation: `
-    
-    
-    `,
-      },
-
-
-
-      {
-        question: `
-     `,
-        answers: {
-          a: " ",
-          b: "",
-          c: "",
-          d: "",
-        },
-        correctAnswer: "",
-        explanation: `
-    
-    
-    `,
-      },
-
-
-
-      {
-        question: `
-     `,
-        answers: {
-          a: " ",
-          b: "",
-          c: "",
-          d: "",
-        },
-        correctAnswer: "",
-        explanation: `
-    
-    
-    `,
-      },
-
-
-
-      {
-        question: `
-     `,
-        answers: {
-          a: " ",
-          b: "",
-          c: "",
-          d: "",
-        },
-        correctAnswer: "",
-        explanation: `
-    
-    
-    `,
-      },
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+      
+      
 ]
