@@ -1,4 +1,5 @@
-[
+const ele = document.querySelector("#hel")
+const steArray1=[
 
 {
         question: `
@@ -3332,9 +3333,12 @@ It works well, so you decide to deploy your script in us-west-1 as well.
     not implemented
     `,
       },
+      
 
 
 
       
       
 ]
+
+ele.innerHTML=steArray1.length
