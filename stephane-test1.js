@@ -268,9 +268,10 @@ It works well, so you decide to deploy your script in us-west-1 as well.
           c: "ASG will keep the instance running and re-start the application",
           d: "none of the above",
         },
-        correctAnswer: "",
+        correctAnswer: "a",
         explanation: `
-        Because the ASG has been configured to leverage the ALB health checks, unhealthy instances will be terminated
+        Because the ASG has been configured to leverage the ALB health checks,
+         unhealthy instances will be terminated
     `,
       },
       {
@@ -335,7 +336,8 @@ It works well, so you decide to deploy your script in us-west-1 as well.
         correctAnswer: "c",
         explanation: `
         This is the most secure way of ensuring only the ALB can access the EC2 instances. 
-        Referencing by security groups in rules is an extremely powerful rule and many questions at the exam rely on it. 
+        Referencing by security groups in rules is an extremely powerful rule and
+         many questions at the exam rely on it. 
         Make sure you fully master the concepts behind it!
     
     `,
@@ -355,7 +357,8 @@ It works well, so you decide to deploy your script in us-west-1 as well.
         },
         correctAnswer: "a",
         explanation: `
-        SNI (Server Name Indication) is a feature allowing you to expose multiple SSL certs if the client supports it.
+        SNI (Server Name Indication) is a feature allowing you to expose multiple SSL certs if 
+        the client supports it.
          Read more here: https://aws.amazon.com/blogs/aws/new-application-load-balancer-sni/
     `,
       },
@@ -433,9 +436,9 @@ It works well, so you decide to deploy your script in us-west-1 as well.
       {
         question: `
         An application is deployed with an Application Load Balancer and an Auto Scaling Group.
-         Currently, the scaling of the Auto Scaling Group is done
-          manually and you would like to define a scaling policy 
-          that will ensure the average number of connections 
+        Currently, the scaling of the Auto Scaling Group is done
+        manually and you would like to define a scaling policy 
+        that will ensure the average number of connections 
         to your EC2 instances is averaging at around 1000. Which scaling policy should you use?
      `,
         answers: {
@@ -518,7 +521,9 @@ It works well, so you decide to deploy your script in us-west-1 as well.
       },
       {
         question: `
-        Although EBS is already a replicated solution, your company SysOps advised you to use a RAID mode that will mirror data and will allow your instance to not be affected if an EBS volume entirely fails.
+        Although EBS is already a replicated solution, your company SysOps
+         advised you to use a RAID mode that will mirror data and will allow your 
+         instance to not be affected if an EBS volume entirely fails.
          Which RAID mode did he recommend to you?
      `,
         answers: {
@@ -539,7 +544,7 @@ It works well, so you decide to deploy your script in us-west-1 as well.
         answers: {
           a: "Mount an EFS ",
           b: "Mount an EBS",
-          c: "",
+          c: "RDS",
           d: "Mount an instance store",
         },
         correctAnswer: "a",
@@ -581,7 +586,8 @@ It works well, so you decide to deploy your script in us-west-1 as well.
         Is running a DB on EC2 instance store possible? It is possible to run a database on EC2.
          It is also possible to use instance store, but there are some considerations to have. 
          The data will be lost if the instance is stopped, but it can be restarted without problems.
-          One can also set up a replication mechanism on another EC2 instance with instance store to have a standby copy.
+          One can also set up a replication mechanism on another EC2 instance with instance store
+           to have a standby copy.
            One can also have back-up mechanisms. 
            It's all up to how you want to set up your architecture to validate your requirements. 
         In this case, it's around IOPS, and we build an architecture of replication and back up around i
@@ -692,7 +698,7 @@ It works well, so you decide to deploy your script in us-west-1 as well.
       {
         question: `
         You would like to ensure you have a database available in another region
-         if a dimster happens to your main region. Which database do you recommend?
+         if a disaster happens to your main region. Which database do you recommend?
      `,
         answers: {
           a: "Aurora Global Database",
@@ -724,10 +730,10 @@ It works well, so you decide to deploy your script in us-west-1 as well.
         question: `
         Your company has a production Node.js application 
         that is using RDS MySQL 5.6 as its data backend.
-         A new application programmed in Java will perform some
-          heavy analytics workload to create a dashboard, on a regular hourly basis.
-           You want to the final solution to minimize costs 
-           and have minimal disruption on the production application, 
+        A new application programmed in Java will perform some
+        heavy analytics workload to create a dashboard, on a regular hourly basis.
+        You want a final solution that will minimize costs 
+        and have minimal disruption on the production application, 
         what should you do?
      `,
         answers: {
@@ -804,7 +810,7 @@ It works well, so you decide to deploy your script in us-west-1 as well.
 
      `,
         answers: {
-          a: "An ststiCache cluster ",
+          a: "An elastiCache cluster ",
           b: "RDS Read Replicas",
           c: "RDS Multi AZ",
           d: "none of the above",
@@ -868,9 +874,9 @@ It works well, so you decide to deploy your script in us-west-1 as well.
         },
         correctAnswer: "a",
         explanation: `
-        DNS records have a TTL (Time to Live) in order for clients to
+        DNS records have a TTL (Time To Live) in order for clients to
          know for how long to caches these values and not overload the DNS with DNS requests.
-          TTL should be set to strike
+        TTL should be set to strike
          a balance between how long the value should be cached vs how much pressure should go on the DNS. 
      `,
       },
@@ -1022,9 +1028,9 @@ It works well, so you decide to deploy your script in us-west-1 as well.
       {
         question: `
         My deployments on Elastic Beanstalk have been painfully slow,
-         and after looking at the logs, I realize this is due to the fact
-          that my dependencies are resolved on each EC2 machine at deployment time.
-         How can I speed up my deployment with the minimal impact?
+        and after looking at the logs, I realize this is due to the fact
+        that my dependencies are resolved on each EC2 machine at deployment time.
+        How can I speed up my deployment with the minimal impact?
      `,
         answers: {
           a: "Place the dependencies on Amazon EFS ",
@@ -1424,7 +1430,7 @@ It works well, so you decide to deploy your script in us-west-1 as well.
           c: "S3 Pre-Signed URLS",
           d: "none of the above",
         },
-        correctAnswer: "c",
+        correctAnswer: "b",
         explanation: `
         S3 CRR allows you to replicate the data from one bucket in a region to another bucket in another region
     `,
@@ -1557,8 +1563,7 @@ It works well, so you decide to deploy your script in us-west-1 as well.
         },
         correctAnswer: "FSx",
         explanation: `
-    
-    
+    not implemented
     `,
       },
 
@@ -1606,7 +1611,7 @@ It works well, so you decide to deploy your script in us-west-1 as well.
         processed by SQS consumers only after 5 minutes of being published to SQS. What should you do?
      `,
         answers: {
-          a: "Change the Visibility Timeout ",
+          a: "Change the Visibility Timeout",
           b: "Increase the DelaySeconds parameters",
           c: "Enable Long Polling",
           d: "Use extended SQS client",
@@ -1617,7 +1622,6 @@ It works well, so you decide to deploy your script in us-west-1 as well.
         If you create a delay queue, any messages that you send 
         to the queue remain invisible to consumers for the duration of the delay period. 
         The default (minimum) delay for a queue is 0 seconds. The maximum is 15 minutes
-    
     `,
       },
 
@@ -1730,8 +1734,7 @@ It works well, so you decide to deploy your script in us-west-1 as well.
         },
         correctAnswer: "c",
         explanation: `
-    
-    
+    Not implemented
     `,
       },
 
@@ -1803,8 +1806,7 @@ It works well, so you decide to deploy your script in us-west-1 as well.
         },
         correctAnswer: "c",
         explanation: `
-    
-    
+    not implemented
     `,
       },
 
@@ -1923,7 +1925,7 @@ It works well, so you decide to deploy your script in us-west-1 as well.
           c: "Cognito user pools",
           d: "none of the above",
         },
-        correctAnswer: "",
+        correctAnswer: "c",
         explanation: `
         Cognito User Pools directly integration with Facebook Logins
     `,
@@ -2484,7 +2486,7 @@ It works well, so you decide to deploy your script in us-west-1 as well.
           c: "Set up web identity federation through cognito",
           d: "Create a Lambda function that automatically creates IAM user in every aws account  for each user in yourr AD",
         },
-        correctAnswer: "",
+        correctAnswer: "b",
         explanation: `
     not implemented
     `,
@@ -2651,9 +2653,7 @@ It works well, so you decide to deploy your script in us-west-1 as well.
         },
         correctAnswer: "a",
         explanation: `
-        Your user-facing website is a high risk target for DDoS attack and
-         you would like to get 24/7 support in case they happen, as well as
-         AWS bill reimbursement for the incurred costs during the attacks. What service should you use?
+        not implemented
     `,
       },
 
@@ -2677,7 +2677,7 @@ It works well, so you decide to deploy your script in us-west-1 as well.
 
       {
         question: `
-        What does this CIDR correspond to?
+        What does this CIDR(10.0.4.0/28) correspond to?
      `,
         answers: {
           a: "10.0.4.0  to  10.0.4.15",
@@ -2709,8 +2709,8 @@ It works well, so you decide to deploy your script in us-west-1 as well.
 
       {
         question: `
-        You would like to provide internet access to your instances in private subnets with IPv4, 
-        while making sure this solution
+        You would like to provide internet access to your instances
+         in private subnets with IPv4, while making sure this solution
          requires the least amount of administration and scales seamlessly. What should you use?
      `,
         answers: {
@@ -2744,7 +2744,8 @@ It works well, so you decide to deploy your script in us-west-1 as well.
 
       {
         question: `
-        Which are the only two services that have a Gateway Endpoint instead of an Interface Endpoint as a VPC endpoint? 
+        Which are the only two services that have 
+        a Gateway Endpoint instead of an Interface Endpoint as a VPC endpoint? 
      `,
         answers: {
           a: "Amazon s3 & Amazon SQS",
@@ -2911,34 +2912,14 @@ It works well, so you decide to deploy your script in us-west-1 as well.
         c: "Warm Standby",
         d: "Multi site",
       },
-        correctAnswer: "d",
+        correctAnswer: "a",
         explanation: `
         If you're interested into reading more about disaster recovery, the whitepaper is here:
          https://d1.awsstatic.com/asset-repository/products/CloudEndure/CloudEndure_Affordable_Enterprise-Grade_Disaster_Recovery_Using_AWS.pdf
     `,
       },
 
-
-
-      {
-        question: `
-     `,
-        answers: {
-          a: " ",
-          b: "",
-          c: "",
-          d: "",
-        },
-        correctAnswer: "",
-        explanation: `
-    
-    
-    `,
-      },
-
-
-
-      {
+{
         question: `
         Your Lambda function is processing events coming through S3 events and distributed through an SNS topic.
          You have decided to ensure that events that can not be processed are sent to a DLQ. 
@@ -2969,9 +2950,9 @@ It works well, so you decide to deploy your script in us-west-1 as well.
           c: "Shhield",
           d: "ALB Security Group",
         },
-        correctAnswer: "",
+        correctAnswer: "b",
         explanation: `
-    
+    not implemented
     
     `,
       },
@@ -3086,7 +3067,7 @@ It works well, so you decide to deploy your script in us-west-1 as well.
           c: "CloudFormation",
           d: "SWF",
         },
-        correctAnswer: "c",
+        correctAnswer: "b",
         explanation: `
         CodePipeline is a CICD orchestration service, and has an integration with Elastic Beanstalk
     `,
