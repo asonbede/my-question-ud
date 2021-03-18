@@ -166,9 +166,10 @@ to only allow traffic coming from the EC2 instances?
     Correct option:
 
 Use Athena to run SQL based analytics against S3 data
-
-Amazon Athena is an interactive query service that makes it easy to analyze data directly in Amazon S3 using standard SQL.
- Athena is serverless, so there is no infrastructure to set up or manage, and customers pay only for the queries they run. 
+Amazon Athena is an interactive query service that makes it 
+easy to analyze data directly in Amazon S3 using standard SQL.
+ Athena is serverless, so there is no infrastructure to set up or manage, 
+ and customers pay only for the queries they run. 
  You can use Athena to process logs, perform ad-hoc analysis, and run interactive queries.
 
 AWS Athena Benefits:
@@ -301,18 +302,24 @@ https://aws.amazon.com/cloudfront/faqs/
     question:  `Which of the following is true regarding cross-zone load 
     balancing as seen in Application Load Balancer versus Network Load Balancer?`,
     answers:{
-        a:"By default, cross-zone load balancing is disabled for Application Load Balancer and enabled for Network Load Balancer",
-        b:"By default, cross-zone load balancing is enabled for both Application Load Balancer and Network Load Balancer",
+        a:`By default, cross-zone load balancing is disabled for Application Load Balancer
+         and enabled for Network Load Balancer`,
+        b:`By default, cross-zone load balancing is enabled for both Application Load Balancer and 
+        Network Load Balancer`,
         
-        c:"By default, cross-zone load balancing is enabled for Application Load Balancer and disabled for Network Load Balancer",
+        c:`By default, cross-zone load balancing is enabled for Application Load Balancer and 
+        disabled for Network Load Balancer`,
         
-        d:"By default, cross-zone load balancing is disabled for both Application Load Balancer and Network Load Balancer",
+        d:`By default, cross-zone load balancing is disabled for both Application Load Balancer and
+         Network Load Balancer`,
         
     },
     correctAnswer:"c",
     explanation:`
-By default, cross-zone load balancing is enabled for Application Load Balancer and disabled for Network Load Balancer
-By default, cross-zone load balancing is enabled for Application Load Balancer and disabled for Network Load Balancer.
+By default, cross-zone load balancing is enabled for Application Load Balancer and 
+disabled for Network Load Balancer
+By default, cross-zone load balancing is enabled for Application Load Balancer and 
+disabled for Network Load Balancer.
 When cross-zone load balancing is enabled,
 each load balancer node distributes traffic across the registered targets in all the enabled Availability Zones. 
 When cross-zone load balancing is disabled, 
@@ -458,9 +465,13 @@ https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balance
      the media company wants to archive about 5PB of data in its on-premises data center to durable long term storage.
      As a solutions architect, what is your recommendation to migrate this data in the MOST cost-optimal way?`,
    answers: { 
-        b: "Transfer the on-premises data into multiple Snowball Edge Storage Optimized devices. Copy the Snowball Edge data into Amazon S3 and create a lifecycle policy to transition the data into AWS Glacier",
-         a: "Transfer the on-premises data into multiple Snowball Edge Storage Optimized devices. Copy the Snowball Edge data into AWS Glacier",
-        c: "Setup Site-to-Site VPN connection between the on-premises data center and AWS Cloud. Use this connection to transfer the data into AWS Glacier"
+        b: `Transfer the on-premises data into multiple Snowball Edge Storage Optimized devices.
+         Copy the Snowball Edge data into Amazon S3 and create a lifecycle policy to transition
+          the data into AWS Glacier`,
+         a: `Transfer the on-premises data into multiple Snowball Edge Storage Optimized devices.
+          Copy the Snowball Edge data into AWS Glacier`,
+        c: `Setup Site-to-Site VPN connection between the on-premises data center and AWS Cloud.
+         Use this connection to transfer the data into AWS Glacier`
    },
    correctAnswer:"b",
    explanation:`
@@ -514,7 +525,8 @@ https://aws.amazon.com/snowball/
      answers: { 
           c:'Lambda  and DynamoDB',
           b:"ElastiCache",
-          a:"Redshift"
+          a:"Redshift",
+          d:"none of the above"
       },
       answers:"c",
       explanation:`
@@ -778,13 +790,15 @@ https://aws.amazon.com/elasticache/redis/
       checklist for the engineering team? (Select three)`,
 
    answers: { 
-         a: "Delete the existing standard queue and recreate it as a FIFO queue;Make sure that the name of the FIFO queue ends with the .fifo suffix;Make sure that the throughput for the target FIFO queue does not exceed 3,000 messages per second",
+         a: `Delete the existing standard queue and recreate it as a FIFO queue;
+         Make sure that the name of the FIFO queue ends with the .fifo suffix;
+         Make sure that the throughput for the target FIFO queue does not exceed 3,000 messages per second`,
         b:  "Convert the existing standard queue into a FIFO queue",
          c: "Make sure that the name of the FIFO queue is the same as the standard queue",
         d:  "Make sure that the throughput for the target FIFO queue does not exceed 300 messages per second",
-        e:"a and b"
+        
    },
-   correctAnswer:"e",
+   correctAnswer:"a",
    explanation:`
    Correct options:
 
@@ -962,8 +976,11 @@ https://aws.amazon.com/sns/
      so that they can access some resources in the production environment which is managed under another AWS account.
      As a solutions architect, which of the following steps would you recommend?`,
     answers: { 
-       c:"Create a new IAM role with the required permissions to access the resources in the production environment. The users can then assume this IAM role while accessing the resources from the production environment",
-       b:"Create new IAM user credentials for the production environment and share these credentials with the set of users from the development environment",
+       c:`Create a new IAM role with the required permissions to access 
+       the resources in the production environment. The users can then assume this IAM role while 
+       accessing the resources from the production environment`,
+       b:`Create new IAM user credentials for the production environment and 
+       share these credentials with the set of users from the development environment`,
        a:"It is not possible to access cross-account resources",
        d:"Both IAM roles and IAM users can be used interchangeably for cross-account access",
     },
@@ -1016,7 +1033,7 @@ As a Solutions Architect, which of the following will you identify as the outcom
          d: "The CNAME record will be updated to point to the standby DB",
          a:"The URL to access the database will change to the standby DB",
          b:"The application will be down until the primary database has recovered itself",
-         c:"The application will be down until the primary database has recovered itself"
+         c:"The application will be down until the primary database has been terminated"
       },
       correctAnswer:"d",
       explanation:`
@@ -1030,18 +1047,18 @@ The CNAME record will be updated to point to the standby DB -
 
 In a Multi-AZ deployment, 
 Amazon RDS automatically provisions and maintains a synchronous standby replica in a different Availability Zone.
- The primary DB instance is synchronously replicated across Availability Zones to
-  a standby replica to provide data redundancy, eliminate I/O freezes, 
-  and minimize latency spikes during system backups. Running a DB instance 
-  with high availability can enhance availability during planned system maintenance, 
-  and help protect your databases against DB instance failure and Availability Zone disruption.
+The primary DB instance is synchronously replicated across Availability Zones to
+a standby replica to provide data redundancy, eliminate I/O freezes, 
+and minimize latency spikes during system backups. Running a DB instance 
+with high availability can enhance availability during planned system maintenance, 
+and help protect your databases against DB instance failure and Availability Zone disruption.
 
 Failover is automatically handled by Amazon RDS so that you
  can resume database operations as quickly as possible without administrative intervention. 
  When failing over, Amazon RDS simply flips the canonical name record (CNAME)
-  for your DB instance to point at the standby, which is in turn promoted to become the new primary.
-   Multi-AZ means the URL is the same, the failover is automated, 
-   and the CNAME will automatically be updated to point to the standby database.
+for your DB instance to point at the standby, which is in turn promoted to become the new primary.
+Multi-AZ means the URL is the same, the failover is automated, 
+and the CNAME will automatically be updated to point to the standby database.
 
 Incorrect options:
 
@@ -1069,9 +1086,11 @@ https://aws.amazon.com/rds/faqs/
      As a solutions architect, what are your recommendations to address these guidelines? (Select two)`,
   answers:  { 
          c:"Enable versioning on the bucket and Enable MFA delete on the bucket",
-         a:"Create an event trigger on deleting any S3 object. The event invokes an SNS notification via email to the IT manager",
+         a:`Create an event trigger on deleting any S3 object.
+          The event invokes an SNS notification via email to the IT manager`,
          b:"Establish a process to get managerial approval for deleting S3 objects",
-         d:"Change the configuration on AWS S3 console so that the user needs to provide additional confirmation while deleting any S3 object"
+         d:`Change the configuration on AWS S3 console so
+          that the user needs to provide additional confirmation while deleting any S3 object`
      },
      correctAnswer:"c",
      explanation:`
@@ -1221,9 +1240,12 @@ https://docs.aws.amazon.com/whitepapers/latest/building-scalable-secure-multi-vp
          b: `Host the static content on Amazon S3 and use Lambda with DynamoDB 
          for the serverless web application that handles dynamic content.
           Amazon CloudFront will sit in front of Lambda for distribution across diverse regions`,
-         c:"Host both the static and dynamic content of the web application on Amazon S3 and use Amazon CloudFront for distribution across diverse regions/countries",
-         d:"Host the static content on Amazon S3 and use Amazon EC2 with RDS for generating the dynamic content. Amazon CloudFront can be configured in front of EC2 instance, to make global distribution easy",
-         a:"Host both the static and dynamic content of the web application on Amazon EC2 with RDS as the database. Amazon CloudFront should be configured to distribute the content across geographically disperse regions"
+         c:`Host both the static and dynamic content of the web application
+          on Amazon S3 and use Amazon CloudFront for distribution across diverse regions/countries`,
+         d:`Host the static content on Amazon S3 and use Amazon EC2 with RDS for generating the dynamic content.
+          Amazon CloudFront can be configured in front of EC2 instance, to make global distribution easy`,
+         a:`Host both the static and dynamic content of the web application on Amazon EC2 with RDS as the database.
+          Amazon CloudFront should be configured to distribute the content across geographically disperse regions`
      },
      correctAnswer:"b",
      explanation:`
@@ -1271,9 +1293,15 @@ https://aws.amazon.com/blogs/networking-and-content-delivery/deliver-your-apps-d
        The company wants to develop a solution with the LEAST amount of effort and MINIMUM cost.
        As a solutions architect, which option would you recommend to facilitate this use-case?`,
   answers:  { 
-         a: "Use Redshift Spectrum to create Redshift cluster tables pointing to the underlying historical data in S3. The analytics team can then query this historical data to cross-reference with the daily reports from Redshift",
-         b:"Setup access to the historical data via Athena. The analytics team can run historical data queries on Athena and continue the daily reporting on Redshift. In case the reports need to be cross-referenced, the analytics team need to export these in flat files and then do further analysis",
-         c:"Use Glue ETL job to load the S3 based historical data into Redshift. Once the ad-hoc queries are run for the historic data, it can be removed from Redshift",
+         a: `Use Redshift Spectrum to create Redshift cluster tables pointing to the
+          underlying historical data in S3. The analytics team can then query this 
+          historical data to cross-reference with the daily reports from Redshift`,
+         b:`Setup access to the historical data via Athena. The analytics team can run historical data queries 
+         on Athena and continue the daily reporting on Redshift.
+        In case the reports need to be cross-referenced, the analytics team need to
+         export these in flat files and then do further analysis`,
+         c:`Use Glue ETL job to load the S3 based historical data into Redshift.
+          Once the ad-hoc queries are run for the historic data, it can be removed from Redshift`,
          d:`
          Use the Redshift COPY command to load the S3 based historical data into Redshift. 
          Once the ad-hoc queries are run for the historic data, it can be removed from Redshift
@@ -1296,7 +1324,8 @@ from files in Amazon S3 without having to load the data into Amazon Redshift tab
  down to the Redshift Spectrum layer. 
  Thus, Redshift Spectrum queries use much less of your cluster's processing capacity than other queries.
 
-Redshift Spectrum Overview via - https://aws.amazon.com/blogs/big-data/amazon-redshift-spectrum-extends-data-warehousing-out-to-exabytes-no-loading-required/
+Redshift Spectrum Overview via - https://aws.amazon.com/blogs/big-data/amazon-redshift-spectrum-extends-data-warehousing-out-to-e
+tes-no-loading-required/
 
 Incorrect options:
 
@@ -1336,13 +1365,19 @@ amazon-redshift-spectrum-extends-data-warehousing-out-to-exabytes-no-loading-req
     question:  `A social photo-sharing web application is hosted on EC2 instances behind an Elastic Load Balancer. 
     The app gives the users the ability to upload their photos and also shows a leaderboard on the homepage of 
     the app. The uploaded photos are stored in S3 and the leaderboard data is maintained in DynamoDB. 
-    The EC2 instances need to access both S3 and DynamoDB for these features.As a solutions architect,
+    The EC2 instances need to access both S3 and DynamoDB for these features. As a solutions architect,
      which of the following solutions would you recommend as the MOST secure option?`,
    answers: { 
-         c: "Attach the appropriate IAM role to the EC2 instance profile so that the instance can access S3 and DynamoDB",
-         a: "Save the AWS credentials (access key Id and secret access token) in a configuration file within the application code on the EC2 instances. EC2 instances can use these credentials to access S3 and DynamoDB",
-         b: "Configure AWS CLI on the EC2 instances using a valid IAM user's credentials. The application code can then invoke shell scripts to access S3 and DynamoDB via AWS CLI,",
-         d: "Encrypt the AWS credentials via a custom encryption library and save it in a secret directory on the EC2 instances. The application code can then safely decrypt the AWS credentials to make the API calls to S3 and DynamoDB"
+         c: `Attach the appropriate IAM role to the EC2 instance profile so 
+         that the instance can access S3 and DynamoDB`,
+         a: `Save the AWS credentials (access key Id and secret access token) in a 
+         configuration file within the application code on the EC2 instances. 
+         EC2 instances can use these credentials to access S3 and DynamoDB`,
+         b: `Configure AWS CLI on the EC2 instances using a valid IAM user's credentials. 
+         The application code can then invoke shell scripts to access S3 and DynamoDB via AWS CLI,`,
+         d: `Encrypt the AWS credentials via a custom encryption library and save it in a secret
+          directory on the EC2 instances. The application code can then safely decrypt the 
+          AWS credentials to make the API calls to S3 and DynamoDB`
  },
  correctAnswer:"c",
  explanation:`
@@ -1396,10 +1431,15 @@ https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2.ht
      with the EC2 launch type compared to the Elastic Container Service (ECS) with the Fargate launch type.
      Which of the following is correct regarding the pricing for these two services?`,
   answers:   { 
-        d:  "ECS with EC2 launch type is charged based on EC2 instances and EBS volumes used. ECS with Fargate launch type is charged based on vCPU and memory resources that the containerized application requests",
-        a:"Both ECS with EC2 launch type and ECS with Fargate launch type are charged based on vCPU and memory resources that the containerized application requests",
-        b:"Both ECS with EC2 launch type and ECS with Fargate launch type are charged based on EC2 instances and EBS volumes used",
-        c:"Both ECS with EC2 launch type and ECS with Fargate launch type are just charged based on Elastic Container Service used per hour"
+        d:  `ECS with EC2 launch type is charged based on EC2 instances and EBS volumes used.
+         ECS with Fargate launch type is charged based on vCPU and memory resources that the 
+         containerized application requests`,
+        a:`Both ECS with EC2 launch type and ECS with Fargate launch type
+         are charged based on vCPU and memory resources that the containerized application requests`,
+        b:`Both ECS with EC2 launch type and ECS with Fargate launch type are 
+        charged based on EC2 instances and EBS volumes used`,
+        c:`Both ECS with EC2 launch type and ECS with Fargate launch type are just charged based
+         on Elastic Container Service used per hour`
      },
      correctAnswer:"d",
      explanation:`
@@ -1453,10 +1493,18 @@ https://aws.amazon.com/ecs/pricing/
       The company is also looking at facilitating content-based routing in its architecture.
       As a Solutions Architect, which of the following will you suggest for the company?`,
   answers:  { 
-         a: "Use an Application Load Balancer for distributing traffic to the EC2 instances spread across different Availability Zones. Configure Auto Scaling group to mask any failure of an instance",
-         b: "Use a Network Load Balancer for distributing traffic to the EC2 instances spread across different Availability Zones. Configure a Private IP address to mask any failure of an instance",
-         c: "Use an Auto Scaling group for distributing traffic to the EC2 instances spread across different Availability Zones. Configure an Elastic IP address to mask any failure of an instance",
-         d: "Use an Auto Scaling group for distributing traffic to the EC2 instances spread across different Availability Zones. Configure a Public IP address to mask any failure of an instance"
+         a: `Use an Application Load Balancer for distributing traffic 
+         to the EC2 instances spread across different Availability Zones. 
+         Configure Auto Scaling group to mask any failure of an instance`,
+         b: `Use a Network Load Balancer for distributing traffic to the EC2
+          instances spread across different Availability Zones. Configure a 
+          Private IP address to mask any failure of an instance`,
+         c: `Use an Auto Scaling group for distributing traffic to the EC2 instances 
+         spread across different Availability Zones. 
+         Configure an Elastic IP address to mask any failure of an instance`,
+         d: `Use an Auto Scaling group for distributing traffic to the EC2 instances 
+         spread across different Availability Zones. Configure a Public IP address 
+         to mask any failure of an instance`
   },
   correctAnswer:"a",
   explanation:`
@@ -1527,8 +1575,12 @@ https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-add-availability-zone.h
       Which of the following is the MOST cost-optimal and resource-efficient way 
       to implement an automated solution until a permanent fix is delivered by the development team?`,
    answers:  { 
-        b:  "Setup a CloudWatch alarm to monitor the health status of the instance. In case of an Instance Health Check failure, an EC2 Reboot CloudWatch Alarm Action can be used to reboot the instance",
-        a:  "Use CloudWatch events to trigger a Lambda function to check the instance status every 5 minutes. In the case of Instance Health Check failure, the lambda function can use AWS EC2 API to reboot the instance",
+        b:  `Setup a CloudWatch alarm to monitor the health status of the instance.
+         In case of an Instance Health Check failure, an EC2 Reboot CloudWatch Alarm Action 
+         can be used to reboot the instance`,
+        a:  `Use CloudWatch events to trigger a Lambda function to check the instance status every 5 minutes.
+         In the case of Instance Health Check failure, the lambda function can use AWS EC2 API to 
+         reboot the instance`,
         c:  "Use CloudWatch events to trigger a Lambda function to reboot the instance status every 5 minutes",
         d: "Use CloudWatch events to trigger a Lambda function to reboot the instance status every 5 minutes"
      },
@@ -1543,8 +1595,10 @@ Setup a CloudWatch alarm to monitor the health status of the instance.
 Using Amazon CloudWatch alarm actions,
  you can create alarms that automatically stop,
   terminate, reboot, or recover your EC2 instances. 
-  You can use the stop or terminate actions to help you save money when you no longer need an instance to be running. 
-  You can use the reboot and recover actions to automatically reboot those instances or recover them onto new hardware if a system impairment occurs.
+  You can use the stop or terminate actions to help you save money when 
+  you no longer need an instance to be running. 
+  You can use the reboot and recover actions to automatically reboot those instances or 
+  recover them onto new hardware if a system impairment occurs.
 
 You can create an Amazon CloudWatch alarm that monitors 
 an Amazon EC2 instance and automatically reboots the instance. 
@@ -1581,7 +1635,8 @@ mobile app that allows users to create custom animated videos and share it with 
 The app has grown at a rate of 150% new users on a month by month basis over the last 1 year.
 The startup is now moving to AWS Cloud to better manage the IT infrastructure and scale efficiently. 
 The engineering team is evaluating various AWS services as part of the solution stack for the data store layer. 
-The AWS service should be able to handle some complicated queries such as What are the number of likes on the videos that have been posted by friends of a user A?.
+The AWS service should be able to handle some complicated queries such as What are the 
+number of likes on the videos that have been posted by friends of a user A?.
 As a solutions architect, which of the following services would you recommend?`,
   answers:   { 
          c: "Amazon Neptune",
@@ -1691,7 +1746,10 @@ Use Cognito Authentication via Cognito Identity Pools for your Application Load 
  Amazon Cognito identity pools provide temporary AWS credentials for users who are 
  guests (unauthenticated) and for users who have been authenticated and received a token.
 
-Use Cognito Authentication via Cognito User Pools for your CloudFront distribution - You cannot directly integrate Cognito User Pools with CloudFront distribution as you have to create a separate Lambda@Edge function to accomplish the authentication via Cognito User Pools. This involves additional development effort, so this option is not the best fit for the given use-case.
+Use Cognito Authentication via Cognito User Pools for your CloudFront distribution -
+ You cannot directly integrate Cognito User Pools with CloudFront distribution as 
+ you have to create a separate Lambda@Edge function to accomplish the authentication via Cognito User Pools.
+  This involves additional development effort, so this option is not the best fit for the given use-case.
 
 Use Cognito Authentication via Cognito Identity Pools for your CloudFront distribution -
  You cannot use Cognito Identity Pools for managing user authentication, so this option is not correct.
@@ -2065,7 +2123,8 @@ https://docs.aws.amazon.com/vpc/latest/tgw/what-is-transit-gateway.html
    Can you identify the AWS tasks that the DevOps engineer 
    CANNOT perform even though he has full Administrator privileges (Select two)?`,
   answers: { 
-      d:  "Configure an Amazon S3 bucket to enable MFA (Multi Factor Authentication) delete and  the company's AWS account",
+      d:  `Configure an Amazon S3 bucket to enable MFA (Multi Factor Authentication) delete and  
+      the company's AWS account`,
       b:  "Delete the IAM user for his manager",
       a:  "Delete an S3 bucket from the production environment",
       c:  "Change the password for his own IAM user account"
@@ -2114,7 +2173,8 @@ https://docs.aws.amazon.com/general/latest/gr/aws_tasks-that-require-root.html
      assistance in terms of the configuration options available for the NAT instance and the NAT gateway.
      As a solutions architect, which of the following options would you identify as CORRECT? (Select three)`,
  answers: { 
-       d: "NAT instance can be used as a bastion server and Security Groups can be associated with a NAT instance and  NAT instance supports port forwarding",
+       d: `NAT instance can be used as a bastion server and Security Groups can be 
+       associated with a NAT instance and  NAT instance supports port forwarding`,
        a:"NAT gateway supports port forwarding",
       c: "Security Groups can be associated with a NAT gateway",
       b:  "NAT gateway can be used as a bastion server"
@@ -3090,7 +3150,9 @@ Question 47: C
    of EC2 instances to ensure new instances are ready for operations.
    Which of the following are true about the EC2 user data configuration? (Select two)`,
  answers: { 
-       a :"By default, scripts entered as user data are executed with root user privileges  and By default, user data runs only during the boot cycle when you first launch an instance",
+       a :
+       `By default, scripts entered as user data are executed with root user privileges 
+        and By default, user data runs only during the boot cycle when you first launch an instance`,
        b: "By default, user data is executed every time an EC2 instance is re-started",
        c: "When an instance is running, you can update user data by using root user credentials",
        d: "By default, scripts entered as user data do not have root user privileges for executing"
@@ -3105,7 +3167,11 @@ When you launch an instance in Amazon EC2, you can pass two types of user data -
 shell scripts and cloud-init directives. 
 You can also pass this data into the launch wizard as plain text or as a file.
 
-By default, scripts entered as user data are executed with root user privileges - Scripts entered as user data are executed as the root user, hence do not need the sudo command in the script. Any files you create will be owned by root; if you need non-root users to have file access, you should modify the permissions accordingly in the script.
+By default, scripts entered as user data are executed with root user privileges -
+ Scripts entered as user data are executed as the root user, 
+ hence do not need the sudo command in the script. 
+ Any files you create will be owned by root; if you need non-root users to have file access,
+  you should modify the permissions accordingly in the script.
 
 By default, user data runs only during the boot cycle when you first launch an instance - 
 By default, user data scripts and cloud-init directives run only during the boot cycle 
@@ -3149,11 +3215,22 @@ https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html
 
 Use EC2 dedicated hosts
 
-You can use Dedicated Hosts to launch Amazon EC2 instances on physical servers that are dedicated for your use. Dedicated Hosts give you additional visibility and control over how instances are placed on a physical server, and you can reliably use the same physical server over time. As a result, Dedicated Hosts enable you to use your existing server-bound software licenses like Windows Server and address corporate compliance and regulatory requirements.
+You can use Dedicated Hosts to launch Amazon EC2 instances on physical servers that are dedicated for your use. 
+Dedicated Hosts give you additional visibility and control over how instances are placed on a physical server,
+ and you can reliably use the same physical server over time. 
+ As a result, Dedicated Hosts enable you to use your existing server-bound software licenses
+  like Windows Server and address corporate compliance and regulatory requirements.
 
 Incorrect options:
 
-Use EC2 dedicated instances - Dedicated instances are Amazon EC2 instances that run in a VPC on hardware that's dedicated to a single customer. Your dedicated instances are physically isolated at the host hardware level from instances that belong to other AWS accounts. Dedicated instances may share hardware with other instances from the same AWS account that are not dedicated instances. Dedicated instances cannot be used for existing server-bound software licenses.
+Use EC2 dedicated instances -
+ Dedicated instances are Amazon EC2 instances that run in a VPC on hardware 
+ that's dedicated to a single customer. 
+ Your dedicated instances are physically isolated at the host hardware level 
+ from instances that belong to other AWS accounts.
+  Dedicated instances may share hardware with other instances from the
+   same AWS account that are not dedicated instances. 
+   Dedicated instances cannot be used for existing server-bound software licenses.
 
 Use EC2 on-demand instances
 
@@ -3259,9 +3336,15 @@ https://docs.aws.amazon.com/AmazonS3/latest/dev/example-bucket-policies.html#exa
     As a Solutions Architect, which of the following will you recommend 
     as the BEST solution to meet this requirement?`,
  answers: { 
-       a: "Create an AWS Identity and Access Management (IAM) role for the Lambda function that also grants access to the S3 bucket. Set the IAM role as the Lambda function's execution role. Verify that the bucket policy grants access to the Lambda function's execution role",
-       b:"AWS Lambda cannot access resources across AWS accounts. Use Identity federation to work around this limitation of Lambda ",
-      c:  "Create an AWS Identity and Access Management (IAM) role for the Lambda function that also grants access to the S3 bucket. Set the IAM role as the Lambda function's execution role",
+       a: `Create an AWS Identity and Access Management 
+       (IAM) role for the Lambda function that also grants access to the S3 bucket. 
+       Set the IAM role as the Lambda function's execution role. 
+       Verify that the bucket policy grants access to the Lambda function's execution role`,
+       b:`AWS Lambda cannot access resources across AWS accounts.
+        Use Identity federation to work around this limitation of Lambda ` ,
+      c:  `Create an AWS Identity and Access Management (IAM) 
+      role for the Lambda function that also grants access to the S3 bucket. 
+      Set the IAM role as the Lambda function's execution role`,
        d: "The S3 bucket owner can delegate permissions to users in the other AWS account "
  },
  correctAnswer:"a",
@@ -4205,14 +4288,7 @@ https://aws.amazon.com/sqs/features/
     `
 },
 
-// {
-//     "":[
-//         "",
-//         "",
-//         "",
-//         ""
-//     ]
-// },
+
 
 
 
