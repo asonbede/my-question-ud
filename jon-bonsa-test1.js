@@ -631,19 +631,17 @@ What does the above IAM policy allow? (Select THREE.)
         `,
     answers: {
       a:
-        "An IAM user with this IAM policy is allowed to read objects from all S3 buckets owned by the account.",
-      b:
-        "An IAM user with this IAM policy is allowed to write objects into the 'tutorialsdojo' S3 bucket.",
-      c:
-        "An IAM user with this IAM policy is allowed to read objects from the 'tutorialsdojo' S3 bucket.",
-      d:
+        `An IAM user with this IAM policy is allowed to read objects from all S3 buckets owned by the account.
+        and An IAM user with this IAM policy is allowed to write objects into the 'tutorialsdojo' S3 bucket
+        and An IAM user with this IAM policy is allowed to rend d objects from the 'tutorialsdojo' S3 bucket.`,
+     b:
         "An IAM user with this IAM policy is allowed to change access rights for the 'tutorialsdojo' S3 bucket",
-      e:
+      c:
         " An IAM user with this IAM policy is allowed to read objects in the 'tutorialsdojo' S3 bucket but not allowed to list the objects in the bucket",
-      f:
+      d:
         "An IAM user with this IAM policy is allowed to read and delete objects from the 'tutorialsdojo' S3 bucket",
     },
-    correctAnswer: "a,b,c",
+    correctAnswer: "a",
     explanation: `
 You manage access in AWS by creating policies and attaching them 
 to IAM identities (users, groups of users, or roles) or AWS resources.
@@ -957,18 +955,17 @@ corporate AD or LDAP directory and also restricts access for each individual
 user to a designated user folder in an S3 bucket? (Select TWO.)
         `,
     answers: {
-      a: "Setup a Federation proxy or an Identity provider",
-      b: "Setup an AWS Security Token Service to generate temporary tokens",
-      c: "Configure an IAM role and an IAM Policy to access the bucket",
-      d: "",
-      e:
-        "Using 3rd party Single Sign-On solutions such as Atlassian Crowd, OKTA, OneLogin and many others",
-      f:
+      a: `Setup a Federation proxy or an Identity provider and
+      Setup an AWS Security Token Service to generate temporary tokens
+      and  Configure an IAM role and an IAM Policy to access the bucket`,
+     b:
+        "Using 3rd party Single Sign-On solutions such nds Atlassian Crowd, OKTA, OneLogin and many others",
+      c:
         "Mapping each individual user to a designated user folder in S3 using Amazon WorkDocs to access their personal documents",
-      g:
+      d:
         "Setting up a matching IAM user for each of the 1200 users in your corporate directory that needs access to a folder in the S3 bucket",
     },
-    correctAnswer: "a,b,c",
+    correctAnswer: "a",
     explanation: `
 The question refers to one of the common scenarios for temporary credentials in AWS. 
 Temporary credentials are useful in scenarios that involve identity federation, delegation, 
@@ -1370,17 +1367,16 @@ Which of the following approach can be used to fulfill this requirement? (Select
         `,
     answers: {
       a:
-        "Use Amazon S3 and create a lifecycle policy that will move the objects to Amazon S3 Glacier after 2 years.",
-      b:
-        "Use Amazon S3 and create a lifecycle policy that will move the objects to Amazon S3 Standard-IA after 2 years.",
-      c:
+        `Use Amazon S3 and create a lifecycle policy that will move the objects to Amazon S3 Glacier after 2 years.
+        and  Use Amazon S3 and create a lifecycle policy that will move the objects to Amazon S3 Standard-IA after 2 years`,
+     c:
         " Use Amazon EFS and create a lifecycle policy that will move the objects to Amazon EFS-IA after 2 years",
-      d:
+      c:
         "Use Amazon EBS volumes to store the files. Configure the Amazon Data Lifecycle Manager (DLM) to schedule snapshots of the volumes after 2 years",
-      e:
+      d:
         "Use a RAID 0 storage configuration that stripes multiple Amazon EBS volumes together to store the files. Configure the Amazon Data Lifecycle Manager (DLM) to schedule snapshots of the volumes after 2 years",
     },
-    correctAnswer: "a,b",
+    correctAnswer: "a",
     explanation: `
 Amazon S3 stores data as objects within buckets.
  An object is a file and any optional metadata that describes the file. 
@@ -1741,18 +1737,17 @@ https://tutorialsdojo.com/amazon-aurora/
  As the Solutions Architect, which combination of options should you implement in this scenario? (Select TWO.)
         `,
     answers: {
-      a: "Consolidate all of the company's accounts using AWS Organizations.",
+      a: `Consolidate all of the company's accounts using AWS Organizations.
+      AND  Use the AWS Resource Access Manager (RAM) service to easily and 
+      securely share your resources with your AWS accounts.`,
       b:
-        `Use the AWS Resource Access Manager (RAM) service to easily and 
-        securely share your resources with your AWS accounts.`,
-      c:
         `Use the AWS Identity and Access Management service to set up cross-account access 
         that will easily and securely share your resources with your AWS accounts`,
-      d:
+      c:
         "Use AWS Control Tower to easily and securely share your resources with your AWS accounts",
-      e: "Consolidate all of the company's accounts using AWS ParallelCluster ",
+      d: "Consolidate all of the company's accounts using AWS ParallelCluster ",
     },
-    correctAnswer: "a,b",
+    correctAnswer: "a",
     explanation: `
   AWS Resource Access Manager (RAM) is a service that enables you to easily and
   securely share AWS resources with any AWS account or within your AWS Organization. 
@@ -2548,25 +2543,25 @@ solution that can improve your application's performance? (Select TWO.)
       a: `
       Customize the content that the CloudFront web distribution delivers to your users using Lambda@Edge, 
       which allows your Lambda functions to execute the authentication process in AWS locations closer to the users
-      `,
-      b: `
+      AND
       Set up an origin failover by creating an origin group with two origins. 
       Specify one as the primary origin and the other as the second origin
        which CloudFront automatically switches to when the primary origin returns
         specific HTTP status code failure responses.
       `,
-      c: "a and b",
-      d: `
+     
+      b: `
       Use multiple and geographically disperse VPCs to various AWS regions
        then create a transit VPC to connect all of your resources. In order to handle the requests faster,
        set up Lambda functions in each region using the AWS Serverless Application Model (SAM) service 
       `,
-      e:`
+      c:`
       Configure your origin to add a Cache-Control max-age directive to your objects, and specify the
        longest practical value for max-age to increase the cache hit ratio of your CloudFront distribution
-      `
+      `,
+      d:"------------"
     },
-    correctAnswer: "c",
+    correctAnswer: "a",
     explanation: `
     Lambda@Edge lets you run Lambda functions to customize the content that CloudFront delivers,
      executing the functions in AWS locations closer to the viewer.
@@ -3708,21 +3703,20 @@ https://tutorialsdojo.com/aws-certified-solutions-architect-associate/
  `,
     answers: {
       a: `
-      Reserved Instances don't get interrupted unlike Spot instances in the event that there are not enough unused EC2 instances to meet the demand
-      `,
-      b: `
+      Reserved Instances don't get interrupted unlike Spot instances 
+      in the event that there are not enough unused EC2 instances to meet the demand
+      AND
       You can have capacity reservations that recur on a daily, weekly, or monthly basis, 
       with a specified start time and duration, for a one-year term through Scheduled Reserved Instances 
       `,
-      c: "a and b",
-      d: `
+      b: `
       Standard Reserved Instances can be later exchanged for other Convertible Reserved Instances
       and 
       It can enable you to reserve capacity for your Amazon EC2 instances in multiple Availability Zones and multiple AWS Regions for any duration
       `,
-      e:" It runs in a VPC on hardware that's dedicated to a single customer "
+      c:" It runs in a VPC on hardware that's dedicated to a single customer "
     },
-    correctAnswer: "c",
+    correctAnswer: "a",
     explanation: `
 A company conducted a surprise IT audit on all of the AWS resources being used in the production environment.
 During the audit activities, it was noted that you are using a 
@@ -4305,14 +4299,15 @@ In this scenario, what combination of the following services can provide
  `,
     answers: {
       a: "Lambda",
-      b: "AWS Directory Service AD Connector",
-      c: "IAM Roles",
-      d: "b and c",
-      e:"AWS Directory Service Simple AD",
-      f:"IAM Groups",
+      b: `AWS Directory Service AD Connector
+      and
+      IAM Roles`,
+      c: "b and c",
+      d:"AWS Directory Service Simple AD and IAM Groups",
+    
       
     },
-    correctAnswer: "d",
+    correctAnswer: "b",
     explanation: `
 Considering that the company is using a corporate Active Directory,
 it is best to use AWS Directory Service AD Connector for easier integration.

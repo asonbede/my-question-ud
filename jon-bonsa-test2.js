@@ -1,4 +1,4 @@
-[  
+const solArcJonBon2= [  
  
  {
         question: `
@@ -11,9 +11,9 @@ host-based routing, and bi-directional communication channels using WebSockets.
 Which is the most suitable type of Elastic Load Balancer that will satisfy the given requirement?
      `,
         answers: {
-          a: " ",
-          b: "",
-          c: "",
+          a: "Network Load Balancer",
+          b: "Classic Load Balancer",
+          c: "Encryption Load Balancer",
           d: "Application Load Balancer",
         },
         correctAnswer: "d",
@@ -42,7 +42,7 @@ Which is the most suitable type of Elastic Load Balancer that will satisfy the g
         host-based routing, and support for containerized applications hence, 
         Application Load Balancer is the correct answer.
         
-        Network Load Balancer, Classic Load Balancer,
+        Network Load Balancer, Clasic Load Balancers,
          and either a Classic Load Balancer or a Network Load Balancer 
          are all incorrect as none of these support path-based routing and host-based routing, 
          unlike an Application Load Balancer.
@@ -1514,9 +1514,9 @@ to a website that is hosted in an Amazon S3 Bucket? (Select TWO.)
           a: "The S3 bucket must be in the same region as the hosted zone",
           b: "Register a domain name and the s3 bucket name must be the same as the domain name",
           c: "The record set must be of type 'MX'",
-          d: "",
+          d: "The Cross-Origin Resource Sharing (CORS) option should be enabled in the S3 bucket",
         },
-        correctAnswer: "The Cross-Origin Resource Sharing (CORS) option should be enabled in the S3 bucket",
+        correctAnswer: "d",
         explanation: `
         Here are the prerequisites for routing traffic to a website that is hosted in an Amazon S3 Bucket:
 
@@ -1573,9 +1573,9 @@ In Amazon S3 Standard - Infrequent Access storage class, which of the following 
           `,
           b: "It provides high latency and low throughput performance ",
           c: `
-It is designed for data that is accessed less frequently AND
- It is designed for data that requires rapid access when needed.
-          `,
+              It is designed for data that is accessed less frequently AND
+              It is designed for data that requires rapid access when needed.
+                        `,
           d: " Ideal to use for data archiving ",
         },
         correctAnswer: "c",
@@ -1919,7 +1919,7 @@ smart devices to the cloud-based applications?
           c: "AWS Elastic Beanstalk",
           d: "Amazon Elastic Container Service ",
         },
-        correctAnswer: "AWS IoT Core",
+        correctAnswer: "a",
         explanation: `
         AWS IoT Core is a managed cloud service that lets connected devices easily 
         and securely interact with cloud applications and other devices.
@@ -3535,9 +3535,7 @@ with an Application Load Balancer in front to evenly distribute the incoming tra
 A Solutions Architect has been tasked to enhance the security posture 
 of the company’s cloud infrastructure and minimize the impact of DDoS attacks on its resources.
 Which of the following is the most effective solution that should be implemented?
-
-
-     `,
+`,
         answers: {
           a: `Configure Amazon CloudFront distribution and set a Network Load Balancer as the origin. 
           Use VPC Flow Logs to monitor abnormal traffic patterns. 
@@ -3659,7 +3657,7 @@ Which Route 53 routing policy should the Solutions Architect use?
           c: "Geolocation Routing",
           d: "Weighted Routing ",
         },
-        correctAnswer: "Geoproximity Routing",
+        correctAnswer: "b",
         explanation: `
         Amazon Route 53 is a highly available and scalable Domain Name System (DNS) web service. 
         You can use Route 53 to perform three main functions in any combination:
@@ -4231,7 +4229,7 @@ Which of the following should the Architect do next?
           to the S3 buckets and SQS queue. Declare the IAM Role (taskRoleArn) in the task definition
           `,
         },
-        correctAnswer: "",
+        correctAnswer: "d",
         explanation: `
         Docker containers are particularly suited for batch job workloads.
          Batch jobs are often short-lived and embarrassingly parallel. 
@@ -4265,7 +4263,9 @@ Which of the following should the Architect do next?
          This is to avoid a circular dependency issue in the CloudFormation template.
           You should always make sure to assign the least amount of privileges needed to an IAM role.
         
-        Hence, the correct answer is: Launch a new Amazon SQS queue and configure the second ECS task to read from it. Create an IAM role that the ECS tasks can assume in order to get access to the S3 buckets and SQS queue. Declare the IAM Role (taskRoleArn) in the task definition.
+        Hence, the correct answer is: Launch a new Amazon SQS queue and configure the second 
+        ECS task to read from it. Create an IAM role that the ECS tasks can assume in order 
+        to get access to the S3 buckets and SQS queue. Declare the IAM Role (taskRoleArn) in the task definition.
         
         The option that says: Launch a new Amazon AppStream 2.0 queue and configure 
         the second ECS task to read from it. Create an IAM role that the ECS tasks 
